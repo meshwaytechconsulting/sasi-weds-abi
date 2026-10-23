@@ -1,48 +1,51 @@
 /* ==========================================================================
-   SASI WEDS ABI — ANIMATED REEL-STYLE SOUTH INDIAN ENGAGEMENT E-INVITATION
-   Airavaat Studio-Inspired • Pure Light Silk & Gold • Automated On-Scroll Motion
+   SASI WEDS ABI — LUXURY SOUTH INDIAN ENGAGEMENT E-INVITATION
+   Airavaat Studio-Inspired • Rich Silk & Temple Gold • One-Page Scroll Experience
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. DESIGN TOKENS (LIGHT ROYAL SOUTH INDIAN PALETTE)
+   1. DESIGN TOKENS (WARM IVORY & TEMPLE GOLD LUXURY)
    -------------------------------------------------------------------------- */
 :root {
-  /* Warm Silk & Ivory Backgrounds */
+  /* Rich Cream & Silk Canvas */
   --bg-page: #fbf7ee;
   --bg-card: #ffffff;
   --bg-card-subtle: #fdfaf3;
-  --bg-pill: #fff9ed;
-
-  /* Traditional South Indian Colors */
-  --color-maroon: #6e1522;
-  --color-maroon-dark: #4d0b14;
+  --bg-gold-tint: #fcf6e8;
+  
+  /* Traditional South Indian Royal Tones */
+  --color-maroon: #68131e;
+  --color-maroon-dark: #4a0b14;
   --color-gold-main: #c99824;
   --color-gold-rich: #ad7d13;
   --color-gold-light: #f7e6b5;
-  --color-gold-border: rgba(201, 152, 36, 0.35);
-  
-  /* Text */
+  --color-gold-border: rgba(201, 152, 36, 0.32);
+  --color-gold-zari: #d4af37;
+
+  /* Text Typography */
   --text-primary: #381e26;
-  --text-heading: #6e1522;
-  --text-secondary: #5c4e47;
+  --text-heading: #68131e;
+  --text-secondary: #5a4b44;
   --text-muted: #8c7e75;
 
   /* Fonts */
   --font-heading: 'Marcellus', Georgia, serif;
   --font-accent: 'Playfair Display', Georgia, serif;
-  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-title: 'Cinzel', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Shadows */
-  --shadow-card: 0 10px 28px -6px rgba(110, 21, 34, 0.08), 0 0 0 1px rgba(201, 152, 36, 0.22);
-  --shadow-button: 0 6px 18px rgba(173, 125, 19, 0.28);
+  --shadow-card: 0 12px 32px -8px rgba(104, 19, 30, 0.08), 0 0 0 1px rgba(201, 152, 36, 0.22);
+  --shadow-desktop-frame: 0 20px 60px -15px rgba(104, 19, 30, 0.12), 0 0 0 1px rgba(201, 152, 36, 0.28);
+  --shadow-smooth-btn: 0 4px 14px rgba(201, 152, 36, 0.22);
 
   --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
 }
 
 /* --------------------------------------------------------------------------
-   2. GLOBAL RESET & BASE SETUP
+   2. GLOBAL RESET & BASE STYLES
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -60,10 +63,10 @@ html {
 body.theme-light {
   font-family: var(--font-body);
   background-color: var(--bg-page);
-  /* Silk texture with subtle radial glows */
+  /* Pure traditional South Indian raw silk texture background */
   background-image: 
-    radial-gradient(circle at 10% 15%, rgba(201, 152, 36, 0.09) 0%, transparent 40%),
-    radial-gradient(circle at 90% 85%, rgba(110, 21, 34, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 10% 10%, rgba(201, 152, 36, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 90% 90%, rgba(104, 19, 30, 0.06) 0%, transparent 45%),
     linear-gradient(180deg, #fdfaf3 0%, #f7f0e3 50%, #faf5ec 100%);
   color: var(--text-primary);
   min-height: 100vh;
@@ -78,163 +81,67 @@ img, svg, picture, video, canvas {
   display: block;
 }
 
-/* --------------------------------------------------------------------------
-   3. BACKGROUND ROTATING KOLAM MANDALA
-   -------------------------------------------------------------------------- */
-.bg-rotating-kolam {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  opacity: 0.045;
-  pointer-events: none;
-  z-index: 0;
+.text-center {
+  text-align: center;
 }
 
-.kolam-watermark {
+/* --------------------------------------------------------------------------
+   3. DESKTOP & MOBILE WRAPPER
+   -------------------------------------------------------------------------- */
+.desktop-screen-center {
   width: 100%;
-  height: 100%;
-  animation: rotateKolam 60s linear infinite;
-}
-
-@keyframes rotateKolam {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* --------------------------------------------------------------------------
-   4. SWAYING HANGING BELLS & GARLANDS (REEL-STYLE FLANKS)
-   -------------------------------------------------------------------------- */
-.hanging-decor {
-  position: fixed;
-  top: 0;
-  z-index: 5;
-  pointer-events: none;
+  min-height: 100vh;
   display: flex;
-  gap: 0.35rem;
-  filter: drop-shadow(0 4px 10px rgba(173, 125, 19, 0.2));
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.75rem 0.6rem 3rem;
 }
 
-.left-decor {
-  left: -4px;
+@media (min-width: 600px) {
+  .desktop-screen-center {
+    padding: 2rem 1.5rem 4rem;
+  }
 }
 
-.right-decor {
-  right: -4px;
-}
-
-.decor-bell {
-  width: 28px;
-  height: auto;
-  transform-origin: top center;
-  animation: bellSway 3.2s ease-in-out infinite alternate;
-}
-
-.decor-garland {
-  width: 22px;
-  height: auto;
-  transform-origin: top center;
-  animation: garlandSway 4s ease-in-out infinite alternate;
-}
-
-.sway-delay-1 { animation-delay: 0s; }
-.sway-delay-2 { animation-delay: 0.7s; }
-.sway-delay-3 { animation-delay: 1.2s; }
-.sway-delay-4 { animation-delay: 0.4s; }
-
-@keyframes bellSway {
-  0% { transform: rotate(-5deg); }
-  100% { transform: rotate(6deg); }
-}
-
-@keyframes garlandSway {
-  0% { transform: rotate(-3.5deg); }
-  100% { transform: rotate(4deg); }
-}
-
-/* --------------------------------------------------------------------------
-   5. FLOATING JASMINE PETALS AMBIENT PARTICLES
-   -------------------------------------------------------------------------- */
-.petals-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
+.invite-card-main {
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 10;
-  overflow: hidden;
-}
-
-.petal-node {
-  position: absolute;
-  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fffbf0 60%, #eaddc5 100%);
-  border-radius: 65% 0 65% 0;
-  opacity: 0.7;
-  filter: drop-shadow(0 2px 4px rgba(180, 140, 60, 0.18));
-  will-change: transform, opacity;
-  animation: floatPetal 11s linear infinite;
-}
-
-@keyframes floatPetal {
-  0% {
-    transform: translateY(-25px) rotate(0deg) scale(0.7);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.85;
-  }
-  85% {
-    opacity: 0.75;
-  }
-  100% {
-    transform: translateY(105vh) rotate(360deg) scale(1);
-    opacity: 0;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   6. MAIN REEL CONTAINER & CARD FOUNDATION
-   -------------------------------------------------------------------------- */
-.invite-reel-wrapper {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 440px;
+  max-width: 450px; /* Primary mobile card portrait width */
   margin: 0 auto;
-  padding: 0.75rem 0.85rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
 }
 
-@media (min-width: 480px) {
-  .invite-reel-wrapper {
-    padding: 1.25rem 1rem 3rem;
-    gap: 1.35rem;
+@media (min-width: 500px) {
+  .invite-card-main {
+    max-width: 480px;
   }
 }
 
-.reel-card {
+/* --------------------------------------------------------------------------
+   4. SECTION CARD ARCHITECTURE & GOLD ZARI BORDER
+   -------------------------------------------------------------------------- */
+.story-section {
   background: var(--bg-card);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-gold-border);
   box-shadow: var(--shadow-card);
-  padding: 1.5rem 1.15rem;
+  padding: 1.6rem 1.2rem;
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (min-width: 400px) {
-  .reel-card {
-    padding: 1.85rem 1.35rem;
+@media (min-width: 420px) {
+  .story-section {
+    padding: 1.9rem 1.45rem;
   }
 }
 
 /* Top Zari Pattern Bar on Every Card */
-.reel-card::before {
+.story-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -251,185 +158,12 @@ img, svg, picture, video, canvas {
   );
 }
 
-.text-center {
-  text-align: center;
+/* Common Section Heading */
+.section-heading {
+  margin-bottom: 1.25rem;
 }
 
-/* --------------------------------------------------------------------------
-   7. SCENE 1: OPENING / ENTRANCE CARD
-   -------------------------------------------------------------------------- */
-.card-opening {
-  text-align: center;
-  padding-top: 1.25rem;
-  padding-bottom: 1.75rem;
-  background: linear-gradient(180deg, #ffffff 0%, #fdfaf3 100%);
-}
-
-.temple-arch-wrap {
-  max-width: 300px;
-  margin: 0 auto 0.9rem;
-}
-
-.temple-arch-svg {
-  width: 100%;
-  height: auto;
-  color: var(--color-gold-main);
-  filter: drop-shadow(0 2px 6px rgba(201, 152, 36, 0.25));
-}
-
-.blessing-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--bg-pill);
-  border: 1px solid rgba(201, 152, 36, 0.35);
-  color: var(--color-maroon);
-  padding: 0.28rem 0.85rem;
-  border-radius: 100px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.65rem;
-}
-
-.blessing-star {
-  color: var(--color-gold-main);
-  font-size: 0.65rem;
-}
-
-.tagline-kicker {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  font-style: italic;
-  font-family: var(--font-accent);
-  margin-bottom: 0.45rem;
-}
-
-/* Couple Names Headline */
-.couple-names-headline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  margin-bottom: 0.85rem;
-}
-
-.name-text {
-  font-family: var(--font-heading);
-  font-size: 2.15rem;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--color-maroon);
-  letter-spacing: 0.02em;
-}
-
-@media (min-width: 400px) {
-  .name-text {
-    font-size: 2.4rem;
-  }
-}
-
-.name-ampersand {
-  font-family: var(--font-accent);
-  font-size: 1.25rem;
-  font-style: italic;
-  color: var(--color-gold-rich);
-}
-
-.hashtag-chip {
-  display: inline-block;
-  background: rgba(110, 21, 34, 0.07);
-  border: 1px solid rgba(110, 21, 34, 0.2);
-  color: var(--color-maroon);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.85rem;
-}
-
-.invitation-phrase {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  max-width: 320px;
-  margin: 0 auto 1.25rem;
-  line-height: 1.45;
-}
-
-/* Date Ribbon */
-.date-ribbon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  background: var(--bg-card-subtle);
-  border: 1px dashed var(--color-gold-border);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.ribbon-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ribbon-lbl {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.ribbon-val {
-  font-family: var(--font-heading);
-  font-size: 0.96rem;
-  font-weight: 700;
-  color: var(--color-maroon);
-}
-
-.ribbon-sep {
-  color: var(--color-gold-main);
-  opacity: 0.6;
-}
-
-.scroll-down-hint {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  color: var(--color-gold-rich);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  opacity: 0.85;
-}
-
-.hint-chevron {
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid var(--color-gold-rich);
-  border-bottom: 2px solid var(--color-gold-rich);
-  transform: rotate(45deg);
-  animation: chevronBounce 1.6s ease-in-out infinite;
-}
-
-@keyframes chevronBounce {
-  0%, 100% { transform: translateY(0) rotate(45deg); }
-  50% { transform: translateY(4px) rotate(45deg); }
-}
-
-/* --------------------------------------------------------------------------
-   8. SCENE 2: COUPLE ARTWORK CARD
-   -------------------------------------------------------------------------- */
-.section-title-wrap {
-  margin-bottom: 1.15rem;
-}
-
-.card-kicker {
+.kicker-tag {
   display: inline-block;
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -439,37 +173,360 @@ img, svg, picture, video, canvas {
   margin-bottom: 0.25rem;
 }
 
-.card-title {
+.title-serif {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   color: var(--color-maroon);
   line-height: 1.25;
 }
 
-.section-subtitle {
+.subtitle-text {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.45;
-  margin-top: 0.5rem;
+  margin-top: 0.45rem;
 }
 
-.gold-zari-line {
-  width: 45px;
+.zari-ornament-line {
+  width: 48px;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--color-gold-main), transparent);
-  margin: 0.4rem auto 0;
+  margin: 0.45rem auto 0;
 }
 
-.couple-art-frame {
+/* --------------------------------------------------------------------------
+   5. SINGLE-RUN JASMINE PETAL CELEBRATION SHOWER
+   Runs only ONE time on initial load, drops down and finishes!
+   -------------------------------------------------------------------------- */
+.petals-canvas-single {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.single-petal-node {
+  position: absolute;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fffbf0 60%, #eaddc5 100%);
+  border-radius: 65% 0 65% 0;
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgba(180, 140, 60, 0.15));
+  will-change: transform, opacity;
+  animation: singlePetalFall 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes singlePetalFall {
+  0% {
+    transform: translateY(-30px) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(105vh) rotate(320deg) scale(1);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. BACKGROUND ROTATING KOLAM WATERMARK
+   -------------------------------------------------------------------------- */
+.bg-kolam-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 580px;
+  height: 580px;
+  transform: translate(-50%, -50%);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.kolam-spin {
+  width: 100%;
+  height: 100%;
+  animation: slowKolamSpin 75s linear infinite;
+}
+
+@keyframes slowKolamSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   7. LUXURY FLOATING AUDIO / MUSIC PLAYER PLACEHOLDER
+   -------------------------------------------------------------------------- */
+.audio-player-wrap {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 100;
+}
+
+.music-disc-btn {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-gold-main);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(201, 152, 36, 0.28);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.music-disc-btn:hover {
+  transform: scale(1.08);
+}
+
+.disc-vinyl {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #381e26 0%, #1f0b12 80%);
+  border: 1.5px solid var(--color-gold-main);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: discSpin 4s linear infinite;
+  animation-play-state: paused;
+}
+.disc-vinyl.playing {
+  animation-play-state: running;
+}
+
+@keyframes discSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.disc-center-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold-main);
+  border: 1px solid #ffffff;
+}
+
+.music-waves {
+  position: absolute;
+  bottom: -4px;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 8px;
+}
+.music-waves span {
+  width: 2px;
+  height: 3px;
+  background: var(--color-gold-rich);
+  border-radius: 2px;
+  animation: waveBounce 0.8s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.music-waves.active span {
+  animation-play-state: running;
+}
+.music-waves span:nth-child(2) { animation-delay: 0.2s; height: 6px; }
+.music-waves span:nth-child(3) { animation-delay: 0.4s; height: 4px; }
+
+@keyframes waveBounce {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.3); }
+}
+
+/* --------------------------------------------------------------------------
+   8. SCENE 1: OPENING COVER (SACRED TORANAM & NAMES)
+   -------------------------------------------------------------------------- */
+.section-cover {
+  text-align: center;
+  padding-top: 1.25rem;
+  padding-bottom: 1.85rem;
+  background: linear-gradient(180deg, #ffffff 0%, #fdfaf3 100%);
+}
+
+.sacred-toranam-box {
+  max-width: 320px;
+  margin: 0 auto 0.75rem;
+}
+
+.toranam-svg-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 5px rgba(201, 152, 36, 0.22));
+}
+
+.shree-invocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-gold-tint);
+  border: 1px solid rgba(201, 152, 36, 0.35);
+  color: var(--color-maroon);
+  padding: 0.25rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.65rem;
+}
+
+.om-symbol {
+  color: var(--color-gold-main);
+  font-weight: 700;
+}
+
+.season-kicker {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-family: var(--font-accent);
+  margin-bottom: 0.4rem;
+}
+
+/* Couple Names Headline */
+.couple-names-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.c-name {
+  font-family: var(--font-heading);
+  font-size: 2.15rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-maroon);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 400px) {
+  .c-name {
+    font-size: 2.45rem;
+  }
+}
+
+.c-weds {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-gold-rich);
+}
+
+.hashtag-pill-gold {
+  display: inline-block;
+  background: rgba(104, 19, 30, 0.07);
+  border: 1px solid rgba(104, 19, 30, 0.2);
+  color: var(--color-maroon);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.22rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.85rem;
+}
+
+.invite-lead-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  max-width: 320px;
+  margin: 0 auto 1.25rem;
+  line-height: 1.45;
+}
+
+/* Date Summary Ribbon */
+.date-summary-gold-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background: var(--bg-card-subtle);
+  border: 1px dashed var(--color-gold-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.sum-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sum-lbl {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.sum-val {
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--color-maroon);
+}
+
+.sum-sep {
+  color: var(--color-gold-main);
+  opacity: 0.6;
+}
+
+.scroll-indicator-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-gold-rich);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.scroll-line-anim {
+  width: 1.5px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--color-gold-rich) 0%, transparent 100%);
+  animation: lineDrop 1.8s ease-in-out infinite;
+}
+
+@keyframes lineDrop {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* --------------------------------------------------------------------------
+   9. SCENE 2: COUPLE ARTWORK STAGE
+   -------------------------------------------------------------------------- */
+.couple-art-frame-gold {
   position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
   border: 1.5px solid var(--color-gold-border);
-  box-shadow: 0 8px 24px rgba(110, 21, 34, 0.12);
+  box-shadow: 0 8px 24px rgba(104, 19, 30, 0.12);
   max-height: 380px;
 }
 
-.couple-art-img {
+.couple-featured-art {
   width: 100%;
   height: 380px;
   object-fit: cover;
@@ -477,12 +534,12 @@ img, svg, picture, video, canvas {
   display: block;
 }
 
-.couple-art-tag {
+.couple-caption-glass {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(56, 13, 23, 0.86) 75%);
+  background: linear-gradient(180deg, transparent 0%, rgba(46, 9, 15, 0.88) 75%);
   padding: 1.25rem 0.85rem 0.6rem;
   display: flex;
   justify-content: space-between;
@@ -490,62 +547,51 @@ img, svg, picture, video, canvas {
   color: #ffffff;
 }
 
-.tag-title {
+.caption-names {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
-.tag-sub {
+.caption-place {
   font-size: 0.72rem;
   opacity: 0.85;
 }
 
 /* --------------------------------------------------------------------------
-   9. SCENE 3: AUTOMATED RING EXCHANGE (MOTHIRAM MATHUTHAL)
+   10. SCENE 3: ENGAGEMENT (NATURAL RINGS & CEREMONY PAINTING)
    -------------------------------------------------------------------------- */
-.rings-animation-stage {
+.rings-natural-card {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--color-gold-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.rings-img-frame {
   position: relative;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.75rem auto 1rem;
+  border-radius: var(--radius-sm);
   overflow: hidden;
+  border: 1px solid rgba(201, 152, 36, 0.35);
+  max-height: 230px;
 }
 
-.ring-glide {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  will-change: transform;
-}
-
-/* Left Groom Ring */
-.ring-groom-glide {
-  left: 50%;
-  transform: translateX(-90px);
-}
-
-/* Right Bride Ring */
-.ring-bride-glide {
-  left: 50%;
-  transform: translateX(20px);
-}
-
-.ring-svg-side {
+.rings-natural-img {
   width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 4px 8px rgba(201, 152, 36, 0.4));
+  height: 230px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-/* Center Sparkle Flare */
-.rings-sparkle-center {
+/* Diamond Light Ray Sparkle Flare */
+.diamond-sparkle-shine {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
+  top: 42%;
+  left: 49%;
+  width: 32px;
+  height: 32px;
   transform: translate(-50%, -50%) scale(0);
   background: radial-gradient(circle, #ffffff 0%, #fef3c7 40%, rgba(212, 175, 55, 0.8) 70%, transparent 100%);
   border-radius: 50%;
@@ -553,22 +599,33 @@ img, svg, picture, video, canvas {
   z-index: 5;
   transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.rings-sparkle-center.flashing {
+.diamond-sparkle-shine.active {
   transform: translate(-50%, -50%) scale(2.2);
-  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.8));
+  filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.9));
 }
 
-.ring-exchange-art-frame {
+.rings-card-desc {
+  text-align: center;
+  padding-top: 0.6rem;
+}
+
+.rings-tagline {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  color: var(--color-maroon);
+  font-weight: 600;
+}
+
+.ceremony-exchange-frame {
   position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
   border: 1px solid var(--color-gold-border);
-  box-shadow: 0 6px 18px rgba(110, 21, 34, 0.1);
+  box-shadow: 0 6px 18px rgba(104, 19, 30, 0.1);
   max-height: 220px;
 }
 
-.ring-art-img {
+.ceremony-img {
   width: 100%;
   height: 220px;
   object-fit: cover;
@@ -576,12 +633,12 @@ img, svg, picture, video, canvas {
   display: block;
 }
 
-.ring-art-caption {
+.ceremony-overlay-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(56, 13, 23, 0.85) 75%);
+  background: linear-gradient(180deg, transparent 0%, rgba(46, 9, 15, 0.85) 75%);
   padding: 1rem 0.75rem 0.45rem;
   text-align: center;
   color: #ffffff;
@@ -590,16 +647,16 @@ img, svg, picture, video, canvas {
 }
 
 /* --------------------------------------------------------------------------
-   10. SCENE 4: FAMILY PILLARS & BLESSINGS
+   11. SCENE 4: BELOVED PARENTS & BLESSINGS
    -------------------------------------------------------------------------- */
-.family-pillars-container {
+.family-pillars-grid {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-bottom: 1rem;
 }
 
-.family-pillar {
+.family-pillar-box {
   background: var(--bg-card-subtle);
   border: 1px solid var(--color-gold-border);
   border-radius: var(--radius-sm);
@@ -607,36 +664,41 @@ img, svg, picture, video, canvas {
   text-align: center;
 }
 
-.pillar-tag {
+.pillar-label {
   display: inline-block;
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  background: rgba(110, 21, 34, 0.08);
+  background: rgba(104, 19, 30, 0.08);
   color: var(--color-maroon);
   padding: 0.15rem 0.55rem;
   border-radius: var(--radius-sm);
   margin-bottom: 0.3rem;
 }
 
-.pillar-child-name {
+.pillar-son-title {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   color: var(--color-maroon);
   margin-bottom: 0.6rem;
 }
 
-.parent-row {
+.parents-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.parent-item {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   font-size: 0.88rem;
-  margin-bottom: 0.25rem;
 }
 
-.parent-role {
+.rel-label {
   color: var(--text-muted);
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -645,17 +707,17 @@ img, svg, picture, video, canvas {
   text-align: right;
 }
 
-.parent-full-name {
+.rel-name {
   color: var(--text-primary);
   font-weight: 600;
 }
 
-.formal-quote-box {
+.formal-wording-panel {
   border-top: 1px dashed var(--color-gold-border);
   padding-top: 1rem;
 }
 
-.formal-quote-text {
+.formal-invitation-quote {
   font-family: var(--font-accent);
   font-size: 0.92rem;
   font-style: italic;
@@ -664,9 +726,9 @@ img, svg, picture, video, canvas {
 }
 
 /* --------------------------------------------------------------------------
-   11. SCENE 5: CEREMONY DETAILS & COUNTDOWN
+   12. SCENE 5: CEREMONY DETAILS, COUNTDOWN & SMOOTH NAV
    -------------------------------------------------------------------------- */
-.countdown-strip {
+.countdown-gold-card {
   background: linear-gradient(135deg, #fffbf2 0%, #f7edd7 100%);
   border: 1px solid rgba(201, 152, 36, 0.4);
   border-radius: var(--radius-sm);
@@ -675,7 +737,7 @@ img, svg, picture, video, canvas {
   margin-bottom: 1.25rem;
 }
 
-.countdown-heading-txt {
+.countdown-badge {
   display: block;
   font-size: 0.72rem;
   text-transform: uppercase;
@@ -685,14 +747,14 @@ img, svg, picture, video, canvas {
   margin-bottom: 0.6rem;
 }
 
-.countdown-digits-wrap {
+.countdown-display {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
 }
 
-.count-box {
+.digit-cell {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -703,7 +765,7 @@ img, svg, picture, video, canvas {
   min-width: 48px;
 }
 
-.count-num {
+.d-num {
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
@@ -711,7 +773,7 @@ img, svg, picture, video, canvas {
   line-height: 1;
 }
 
-.count-txt {
+.d-label {
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -719,7 +781,7 @@ img, svg, picture, video, canvas {
   margin-top: 0.15rem;
 }
 
-.count-colon {
+.d-sep {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   color: var(--color-gold-rich);
@@ -727,14 +789,14 @@ img, svg, picture, video, canvas {
   margin-bottom: 0.5rem;
 }
 
-.event-details-stack {
+.event-rows-stack {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
 }
 
-.event-info-block {
+.event-tile-gold {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -744,9 +806,9 @@ img, svg, picture, video, canvas {
   padding: 0.85rem;
 }
 
-.info-icon-badge {
-  width: 34px;
-  height: 34px;
+.tile-icon-box {
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
   background: rgba(201, 152, 36, 0.12);
   color: var(--color-gold-rich);
@@ -755,133 +817,124 @@ img, svg, picture, video, canvas {
   justify-content: center;
   flex-shrink: 0;
 }
-.info-icon-badge svg {
-  width: 18px;
-  height: 18px;
+.tile-icon-box svg {
+  width: 19px;
+  height: 19px;
 }
 
-.info-content {
+.tile-texts {
   display: flex;
   flex-direction: column;
 }
 
-.info-sub {
+.tile-caption {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
 }
 
-.info-title {
+.tile-title {
   font-family: var(--font-heading);
   font-size: 1.1rem;
   color: var(--color-maroon);
   margin: 0.1rem 0;
 }
 
-.info-meta, .info-address {
+.tile-time, .tile-address {
   font-size: 0.84rem;
   color: var(--text-secondary);
   line-height: 1.4;
 }
 
-/* Action Buttons */
-.action-buttons-wrap {
+/* Single Smooth, Refined Navigation Link (Smooth, not thick!) */
+.smooth-navigation-wrap {
   display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 
-.btn-primary-gold {
-  background: linear-gradient(135deg, #d4af37 0%, #ad7d13 100%);
-  color: #ffffff;
+.btn-smooth-maps {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(201, 152, 36, 0.12) 0%, rgba(201, 152, 36, 0.05) 100%);
+  border: 1.5px solid var(--color-gold-main);
+  color: var(--color-maroon);
   font-family: var(--font-body);
   font-size: 0.92rem;
-  font-weight: 700;
-  padding: 0.8rem 1rem;
-  border-radius: var(--radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 1.25rem;
+  border-radius: 100px;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  box-shadow: var(--shadow-button);
-  min-height: 46px;
-}
-
-.btn-outline-gold {
-  background: #ffffff;
-  border: 1px solid var(--color-gold-main);
-  color: var(--color-gold-rich);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  cursor: pointer;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(201, 152, 36, 0.1);
   min-height: 44px;
 }
 
-.btn-whatsapp-gold {
-  background: #25d366;
+.btn-smooth-maps:hover {
+  background: var(--color-gold-main);
   color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  cursor: pointer;
-  min-height: 44px;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(201, 152, 36, 0.3);
 }
 
-.btn-svg-icon {
+.maps-pin-icon {
   width: 17px;
   height: 17px;
+  color: var(--color-gold-rich);
+  transition: color 0.3s ease;
+}
+.btn-smooth-maps:hover .maps-pin-icon {
+  color: #ffffff;
+}
+
+.arrow-forward-icon {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.25s ease;
+}
+.btn-smooth-maps:hover .arrow-forward-icon {
+  transform: translateX(4px);
 }
 
 /* --------------------------------------------------------------------------
-   12. SCENE 6: CLOSING BLESSING CARD
+   13. SCENE 6: CLOSING BLESSING CARD
    -------------------------------------------------------------------------- */
-.card-closing {
+.section-closing {
   background: linear-gradient(180deg, #ffffff 0%, #fbf5ea 100%);
   padding: 1.85rem 1.25rem;
 }
 
-.closing-mandala-icon {
+.closing-mandala-wrap {
   width: 40px;
   height: 40px;
   margin: 0 auto 0.6rem;
 }
-.kolam-closing-svg {
+.closing-kolam-svg {
   width: 100%;
   height: 100%;
   color: var(--color-gold-main);
 }
 
-.closing-title {
+.closing-couple-title {
   font-family: var(--font-heading);
   font-size: 1.45rem;
   color: var(--color-maroon);
   margin-bottom: 0.2rem;
 }
 
-.closing-hashtag {
+.closing-hashtag-gold {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--color-gold-rich);
   margin-bottom: 0.6rem;
 }
 
-.closing-blessing-text {
+.closing-blessing-quote {
   font-family: var(--font-accent);
   font-style: italic;
   font-size: 0.92rem;
@@ -890,39 +943,13 @@ img, svg, picture, video, canvas {
   margin-bottom: 0.85rem;
 }
 
-.closing-venue-tag {
+.closing-location-line {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-muted);
   border-top: 1px solid var(--color-gold-border);
   padding-top: 0.75rem;
-}
-
-/* --------------------------------------------------------------------------
-   13. TOAST NOTIFICATION
-   -------------------------------------------------------------------------- */
-.toast-popup {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(40px);
-  background: var(--color-maroon-dark);
-  color: #ffffff;
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.6rem 1.2rem;
-  border-radius: 100px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-}
-
-.toast-popup.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -933,7 +960,7 @@ img, svg, picture, video, canvas {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .petal-node, .decor-bell, .decor-garland, .kolam-watermark {
+  .single-petal-node, .kolam-spin, .disc-vinyl {
     animation: none !important;
   }
 }

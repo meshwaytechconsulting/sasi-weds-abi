@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#FAF6EE">
-  <title>Sasi Weds Abi — Animated Engagement E-Invitation</title>
+  <meta name="theme-color" content="#FDFBF7">
+  <title>Sasi Weds Abi — Engagement Invitation</title>
   
-  <!-- Meta & Social Sharing -->
+  <!-- SEO & Social Sharing Meta Tags -->
   <meta name="description" content="Engagement Invitation of Dr. Sasidharan S & Dr. Abinaya M. Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dr. Sasidharan & Dr. Abinaya — Engagement Invitation">
-  <meta property="og:description" content="We heartily invite you to celebrate our Engagement on Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
+  <meta property="og:description" content="We cordially invite you to celebrate our Engagement on Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
   <meta property="og:image" content="assets/images/couple-leaning.jpg">
   
   <link rel="icon" type="image/svg+xml" href="assets/illustrations/kuthu-vilakku.svg">
   
-  <!-- Traditional & Luxury Google Fonts -->
+  <!-- Google Fonts: Marcellus (Classical South Indian), Playfair Display (Luxury Serif), Outfit (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Marcellus&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -27,351 +27,329 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   
-  <!-- Config & Automated Scroll Animation Controller -->
+  <!-- Central Configuration & Logic -->
   <script src="invitation-info.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body class="theme-light">
 
-  <!-- Floating Jasmine Petals & Golden Shimmer Ambient Layer -->
-  <div id="petals-container" class="petals-canvas" aria-hidden="true"></div>
+  <!-- One-Time Celebratory Shower of Jasmine Petals (Runs Once on Load and Finishes) -->
+  <div id="petals-container" class="petals-canvas-single" aria-hidden="true"></div>
 
-  <!-- Background Rotating Kolam Mandala -->
-  <div class="bg-rotating-kolam" aria-hidden="true">
-    <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-watermark">
+  <!-- Luxury Floating Audio / Music Player Placeholder (Top Right) -->
+  <div class="audio-player-wrap" id="audio-player-widget">
+    <button class="music-disc-btn" id="music-toggle-btn" aria-label="Play or Mute Traditional Wedding Nadaswaram Music" title="Background Music">
+      <div class="disc-vinyl" id="disc-vinyl-elem">
+        <div class="disc-center-dot"></div>
+      </div>
+      <div class="music-waves" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+    <!-- Background Audio Element Placeholder -->
+    <audio id="wedding-audio-track" loop preload="none">
+      <!-- Placeholder audio source; client can add their own audio file here -->
+      <source src="assets/audio/traditional-nadaswaram.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
-  <!-- Traditional Swaying Hanging Bells & Garlands Flanking the Screen (Reel Style) -->
-  <div class="hanging-decor left-decor" aria-hidden="true">
-    <img src="assets/illustrations/hanging-garland.svg" alt="" class="decor-garland sway-delay-1">
-    <img src="assets/illustrations/hanging-bell.svg" alt="" class="decor-bell sway-delay-2">
-  </div>
-  <div class="hanging-decor right-decor" aria-hidden="true">
-    <img src="assets/illustrations/hanging-bell.svg" alt="" class="decor-bell sway-delay-3">
-    <img src="assets/illustrations/hanging-garland.svg" alt="" class="decor-garland sway-delay-4">
+  <!-- Background Decorative Watermark (Traditional South Indian Kolam Mandala) -->
+  <div class="bg-kolam-watermark" aria-hidden="true">
+    <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-spin">
   </div>
 
-  <!-- Main Mobile-First E-Invitation Reel Container -->
-  <main class="invite-reel-wrapper" id="invite-reel">
+  <!-- Main Mobile-First & Desktop-Compatible E-Invitation Container -->
+  <div class="desktop-screen-center">
+    <main class="invite-card-main" id="invite-main">
 
-    <!-- ==========================================
-         SCENE 1: TRADITIONAL CHETTINAD ENTRANCE & NAMES
-         ========================================== -->
-    <section class="reel-card card-opening" id="scene-opening">
-      <!-- Temple Gopuram / Toranam Arch -->
-      <div class="temple-arch-wrap">
-        <img src="assets/illustrations/temple-arch.svg" alt="Traditional South Indian Temple Toranam Arch" class="temple-arch-svg">
-      </div>
-
-      <!-- Sacred Diya Blessing -->
-      <div class="blessing-pill anim-item">
-        <span class="blessing-star">❖</span>
-        <span class="blessing-txt">With the blessings of our families</span>
-        <span class="blessing-star">❖</span>
-      </div>
-
-      <p class="tagline-kicker anim-item">Together in Every Season</p>
-
-      <!-- Couple Names Calligraphy -->
-      <h1 class="couple-names-headline">
-        <span class="name-text groom anim-item">Dr. Sasidharan</span>
-        <span class="name-ampersand anim-item">&</span>
-        <span class="name-text bride anim-item">Dr. Abinaya</span>
-      </h1>
-
-      <div class="hashtag-chip anim-item">
-        <span>#LoveGotPrescribed</span>
-      </div>
-
-      <p class="invitation-phrase anim-item">
-        Cordially invite you to celebrate our Engagement ceremony
-      </p>
-
-      <!-- Date Summary Ribbon -->
-      <div class="date-ribbon anim-item">
-        <div class="ribbon-col">
-          <span class="ribbon-lbl">Date</span>
-          <span class="ribbon-val">15 Nov 2026</span>
+      <!-- ==========================================
+           SCENE 1: SACRED TORANAM & OPENING COVER
+           Animation: Gentle drop-in + gold shimmer unveil
+           ========================================== -->
+      <section class="story-section section-cover" id="scene-cover">
+        <!-- South Indian Sacred Mango Leaves Toranam & Kalasam (Maavilai Thoranam) -->
+        <div class="sacred-toranam-box">
+          <img src="assets/illustrations/traditional-toranam.svg" alt="Traditional South Indian Sacred Mango Leaves Toranam" class="toranam-svg-img">
         </div>
-        <div class="ribbon-sep">•</div>
-        <div class="ribbon-col">
-          <span class="ribbon-lbl">Day</span>
-          <span class="ribbon-val">Sunday</span>
+
+        <div class="cover-body text-center">
+          <!-- Traditional Invocation -->
+          <div class="shree-invocation">
+            <span class="om-symbol">|| ஸ்ரீ ||</span>
+            <span class="invocation-text">With the divine blessings of our families</span>
+          </div>
+
+          <p class="season-kicker">Together in Every Season</p>
+
+          <!-- Couple Names -->
+          <h1 class="couple-names-block">
+            <span class="c-name groom-text">Dr. Sasidharan</span>
+            <span class="c-weds">weds</span>
+            <span class="c-name bride-text">Dr. Abinaya</span>
+          </h1>
+
+          <div class="hashtag-pill-gold">
+            <span>#LoveGotPrescribed</span>
+          </div>
+
+          <p class="invite-lead-text">
+            Cordially invite you to celebrate our Engagement ceremony
+          </p>
+
+          <!-- Date & Time Summary Card -->
+          <div class="date-summary-gold-strip">
+            <div class="sum-item">
+              <span class="sum-lbl">Date</span>
+              <span class="sum-val">15 Nov 2026</span>
+            </div>
+            <div class="sum-sep">•</div>
+            <div class="sum-item">
+              <span class="sum-lbl">Day</span>
+              <span class="sum-val">Sunday</span>
+            </div>
+            <div class="sum-sep">•</div>
+            <div class="sum-item">
+              <span class="sum-lbl">Time</span>
+              <span class="sum-val">6:00 PM</span>
+            </div>
+          </div>
+
+          <!-- Gentle Scroll Cue -->
+          <div class="scroll-indicator-wrap">
+            <span class="scroll-txt">Scroll to Celebrate</span>
+            <div class="scroll-line-anim"></div>
+          </div>
         </div>
-        <div class="ribbon-sep">•</div>
-        <div class="ribbon-col">
-          <span class="ribbon-lbl">Time</span>
-          <span class="ribbon-val">6:00 PM</span>
+      </section>
+
+      <!-- ==========================================
+           SCENE 2: THE COUPLE ARTWORK
+           Animation: 3D Perspective Tilt + Golden Glow Expansion
+           ========================================== -->
+      <section class="story-section section-couple" id="scene-couple">
+        <div class="section-heading text-center">
+          <span class="kicker-tag">The Couple</span>
+          <h2 class="title-serif">Two Hearts • A Beautiful Journey</h2>
+          <div class="zari-ornament-line"></div>
         </div>
-      </div>
 
-      <!-- Subtle automated scroll cue -->
-      <div class="scroll-down-hint">
-        <span class="hint-label">Scroll to Celebrate</span>
-        <div class="hint-chevron"></div>
-      </div>
-    </section>
+        <div class="couple-art-stage">
+          <div class="couple-art-frame-gold">
+            <picture>
+              <source srcset="assets/images/couple-leaning.webp" type="image/webp">
+              <img src="assets/images/couple-leaning.jpg" alt="South Indian Engagement Painting of Dr. Sasidharan and Dr. Abinaya" class="couple-featured-art" width="682" height="1024" loading="eager">
+            </picture>
+            <div class="couple-caption-glass">
+              <span class="caption-names">Dr. Sasidharan & Dr. Abinaya</span>
+              <span class="caption-place">Thiruvarur, 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- ==========================================
-         SCENE 2: THE COUPLE ARTWORK
-         ========================================== -->
-    <section class="reel-card card-couple" id="scene-couple">
-      <div class="section-title-wrap text-center">
-        <span class="card-kicker">The Couple</span>
-        <h2 class="card-title">Two Hearts • One Lifelong Promise</h2>
-        <div class="gold-zari-line"></div>
-      </div>
+      <!-- ==========================================
+           SCENE 3: ENGAGEMENT & SACRED RINGS
+           Animation: Realistic Gold Rings Reveal + Solitaire Sparkle + Ceremony Painting
+           ========================================== -->
+      <section class="story-section section-rings" id="scene-rings">
+        <div class="section-heading text-center">
+          <span class="kicker-tag">Sacred Ceremony</span>
+          <!-- Heading strictly as "Engagement" as requested -->
+          <h2 class="title-serif">Engagement</h2>
+          <div class="zari-ornament-line"></div>
+          <p class="subtitle-text">
+            The auspicious exchange of rings, uniting two healing souls in love, shared dreams, and lifelong companionship.
+          </p>
+        </div>
 
-      <!-- Framed Transformed Digital Couple Painting -->
-      <div class="couple-art-container anim-item">
-        <div class="couple-art-frame">
+        <!-- Realistic, Natural Engagement Rings Showcase -->
+        <div class="rings-natural-card" id="rings-natural-box">
+          <div class="rings-img-frame">
+            <picture>
+              <source srcset="assets/images/engagement-rings-natural.webp" type="image/webp">
+              <img src="assets/images/engagement-rings-natural.jpg" alt="Natural South Indian Gold Engagement Rings on Pooja Thali with Jasmine and Lotus" class="rings-natural-img" width="600" height="600" loading="lazy">
+            </picture>
+            <!-- Animated Diamond Light Ray Sparkle -->
+            <div class="diamond-sparkle-shine" id="diamond-shine-elem" aria-hidden="true"></div>
+          </div>
+          <div class="rings-card-desc">
+            <span class="rings-tagline">Two Golden Bands of Devotion</span>
+          </div>
+        </div>
+
+        <!-- Ceremony Ring Exchange Painting Reveal -->
+        <div class="ceremony-exchange-frame" id="exchange-art-box">
           <picture>
-            <source srcset="assets/images/couple-leaning.webp" type="image/webp">
-            <img src="assets/images/couple-leaning.jpg" alt="South Indian Engagement Painting of Dr. Sasidharan and Dr. Abinaya" class="couple-art-img" width="682" height="1024" loading="eager">
+            <source srcset="assets/images/ring-exchange.webp" type="image/webp">
+            <img src="assets/images/ring-exchange.jpg" alt="Sacred South Indian Engagement Ring Exchange Painting" class="ceremony-img" width="900" height="600" loading="lazy">
           </picture>
-          <div class="couple-art-tag">
-            <span class="tag-title">Dr. Sasidharan & Dr. Abinaya</span>
-            <span class="tag-sub">Thiruvarur, 2026</span>
+          <div class="ceremony-overlay-caption">
+            <span>The Sacred Moment of Exchange</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ==========================================
-         SCENE 3: AUTOMATED RING-EXCHANGE MOMENT
-         (Mothiram Mathuthal — Rings glide together & sparkle on scroll)
-         ========================================== -->
-    <section class="reel-card card-rings" id="scene-rings">
-      <div class="section-title-wrap text-center">
-        <span class="card-kicker">Sacred Ritual</span>
-        <h2 class="card-title">Mothiram Mathuthal</h2>
-        <div class="gold-zari-line"></div>
-        <p class="section-subtitle">
-          The auspicious exchange of engagement rings, sealing two devoted souls in eternal love and blessings.
-        </p>
-      </div>
-
-      <!-- Automated Rings Meeting & Sparkling Stage -->
-      <div class="rings-animation-stage" id="rings-stage">
-        <!-- Groom's Gold Ring (Slides in from Left) -->
-        <div class="ring-glide ring-groom-glide" id="ring-groom-elem">
-          <svg viewBox="0 0 80 80" class="ring-svg-side">
-            <defs>
-              <linearGradient id="goldGroomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FEF3C7" />
-                <stop offset="50%" stop-color="#D4AF37" />
-                <stop offset="100%" stop-color="#78350F" />
-              </linearGradient>
-            </defs>
-            <circle cx="40" cy="40" r="28" stroke="url(#goldGroomGrad)" stroke-width="7" fill="none" />
-            <circle cx="40" cy="40" r="28" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="8 30" fill="none" opacity="0.8"/>
-          </svg>
+      <!-- ==========================================
+           SCENE 4: BELOVED FAMILIES & BLESSINGS
+           Animation: Dual Staggered Fold-In from Left & Right
+           ========================================== -->
+      <section class="story-section section-family" id="scene-family">
+        <div class="section-heading text-center">
+          <span class="kicker-tag">With Family Blessings</span>
+          <h2 class="title-serif">Our Beloved Parents</h2>
+          <div class="zari-ornament-line"></div>
         </div>
 
-        <!-- Sparkle Flare Centerpiece -->
-        <div class="rings-sparkle-center" id="ring-sparkle-center" aria-hidden="true"></div>
-
-        <!-- Bride's Solitaire Diamond Ring (Slides in from Right) -->
-        <div class="ring-glide ring-bride-glide" id="ring-bride-elem">
-          <svg viewBox="0 0 80 80" class="ring-svg-side">
-            <defs>
-              <linearGradient id="goldBrideGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#FEF3C7" />
-                <stop offset="40%" stop-color="#F59E0B" />
-                <stop offset="80%" stop-color="#B45309" />
-                <stop offset="100%" stop-color="#78350F" />
-              </linearGradient>
-            </defs>
-            <circle cx="40" cy="45" r="26" stroke="url(#goldBrideGrad)" stroke-width="6.5" fill="none" />
-            <!-- Solitaire Diamond Crown -->
-            <polygon points="40,8 48,18 40,22 32,18" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="1"/>
-            <polygon points="40,8 44,18 40,22 36,18" fill="#FFFFFF"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Illustrated Ceremony Painting (Fades in smoothly after rings meet) -->
-      <div class="ring-exchange-art-frame anim-item" id="ring-art-reveal">
-        <picture>
-          <source srcset="assets/images/ring-exchange.webp" type="image/webp">
-          <img src="assets/images/ring-exchange.jpg" alt="Sacred South Indian Engagement Ring Exchange Painting" class="ring-art-img" width="900" height="600" loading="lazy">
-        </picture>
-        <div class="ring-art-caption">
-          <span>The Blessed Moment of Exchange</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SCENE 4: BELOVED FAMILIES & INVITATION MESSAGE
-         ========================================== -->
-    <section class="reel-card card-family" id="scene-family">
-      <div class="section-title-wrap text-center">
-        <span class="card-kicker">With Family Blessings</span>
-        <h2 class="card-title">Our Beloved Parents</h2>
-        <div class="gold-zari-line"></div>
-      </div>
-
-      <div class="family-pillars-container">
-        <!-- Groom Family -->
-        <div class="family-pillar anim-item">
-          <div class="pillar-tag">Groom's Side</div>
-          <h3 class="pillar-child-name">Dr. Sasidharan S</h3>
-          <div class="parent-row">
-            <span class="parent-role">Father</span>
-            <span class="parent-full-name">Shri D. Sakthikumar</span>
+        <div class="family-pillars-grid">
+          <!-- Groom's Family -->
+          <div class="family-pillar-box groom-side" id="family-groom-box">
+            <div class="pillar-label">Groom's Side</div>
+            <h3 class="pillar-son-title">Dr. Sasidharan S</h3>
+            <div class="parents-detail">
+              <div class="parent-item">
+                <span class="rel-label">Father</span>
+                <span class="rel-name">Shri D. Sakthikumar</span>
+              </div>
+              <div class="parent-item">
+                <span class="rel-label">Mother</span>
+                <span class="rel-name">Smt. S. Parimala</span>
+              </div>
+            </div>
           </div>
-          <div class="parent-row">
-            <span class="parent-role">Mother</span>
-            <span class="parent-full-name">Smt. S. Parimala</span>
+
+          <!-- Bride's Family -->
+          <div class="family-pillar-box bride-side" id="family-bride-box">
+            <div class="pillar-label">Bride's Side</div>
+            <h3 class="pillar-son-title">Dr. Abinaya M</h3>
+            <div class="parents-detail">
+              <div class="parent-item">
+                <span class="rel-label">Father</span>
+                <span class="rel-name">Shri K.N.Murugesan</span>
+              </div>
+              <div class="parent-item">
+                <span class="rel-label">Mother</span>
+                <span class="rel-name">Smt. M.Anitha devi</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Bride Family -->
-        <div class="family-pillar anim-item">
-          <div class="pillar-tag">Bride's Side</div>
-          <h3 class="pillar-child-name">Dr. Abinaya M</h3>
-          <div class="parent-row">
-            <span class="parent-role">Father</span>
-            <span class="parent-full-name">Shri K.N.Murugesan</span>
-          </div>
-          <div class="parent-row">
-            <span class="parent-role">Mother</span>
-            <span class="parent-full-name">Smt. M.Anitha devi</span>
+        <!-- Formal Invitation Wording -->
+        <div class="formal-wording-panel text-center">
+          <p class="formal-invitation-quote">
+            “We heartily invite you and your family to grace the auspicious engagement ceremony of our children and shower your blessings for their joyous future together.”
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SCENE 5: CEREMONY DETAILS, COUNTDOWN & VENUE
+           Animation: Staggered 3D Elevation + Live Digit Flip
+           ========================================== -->
+      <section class="story-section section-details" id="scene-details">
+        <div class="section-heading text-center">
+          <span class="kicker-tag">Auspicious Occasion</span>
+          <h2 class="title-serif">Date & Venue</h2>
+          <div class="zari-ornament-line"></div>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-gold-card" id="countdown-card-elem">
+          <span class="countdown-badge">Counting Down to the Muhurtham</span>
+          <div class="countdown-display">
+            <div class="digit-cell">
+              <span class="d-num" id="count-days">--</span>
+              <span class="d-label">Days</span>
+            </div>
+            <span class="d-sep">:</span>
+            <div class="digit-cell">
+              <span class="d-num" id="count-hours">--</span>
+              <span class="d-label">Hours</span>
+            </div>
+            <span class="d-sep">:</span>
+            <div class="digit-cell">
+              <span class="d-num" id="count-minutes">--</span>
+              <span class="d-label">Mins</span>
+            </div>
+            <span class="d-sep">:</span>
+            <div class="digit-cell">
+              <span class="d-num" id="count-seconds">--</span>
+              <span class="d-label">Secs</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Traditional Formal Invitation Quote -->
-      <div class="formal-quote-box anim-item text-center">
-        <p class="formal-quote-text">
-          “We heartily invite you and your family to grace our engagement ceremony with your loving presence and blessings as we start this divine new chapter.”
-        </p>
-      </div>
-    </section>
+        <!-- Event Details Cards -->
+        <div class="event-rows-stack">
+          <!-- Date & Time -->
+          <div class="event-tile-gold" id="event-date-tile">
+            <div class="tile-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="tile-texts">
+              <span class="tile-caption">Auspicious Date & Time</span>
+              <h3 class="tile-title">Sunday, 15th November 2026</h3>
+              <span class="tile-time">6:00 PM – 7:30 PM (Evening Muhurtham)</span>
+            </div>
+          </div>
 
-    <!-- ==========================================
-         SCENE 5: CEREMONY DETAILS, COUNTDOWN & VENUE
-         ========================================== -->
-    <section class="reel-card card-details" id="scene-details">
-      <div class="section-title-wrap text-center">
-        <span class="card-kicker">Auspicious Occasion</span>
-        <h2 class="card-title">Date & Venue</h2>
-        <div class="gold-zari-line"></div>
-      </div>
-
-      <!-- Live Animated Countdown Clock -->
-      <div class="countdown-strip anim-item">
-        <span class="countdown-heading-txt">Counting Down to the Muhurtham</span>
-        <div class="countdown-digits-wrap">
-          <div class="count-box">
-            <span class="count-num" id="count-days">--</span>
-            <span class="count-txt">Days</span>
-          </div>
-          <span class="count-colon">:</span>
-          <div class="count-box">
-            <span class="count-num" id="count-hours">--</span>
-            <span class="count-txt">Hours</span>
-          </div>
-          <span class="count-colon">:</span>
-          <div class="count-box">
-            <span class="count-num" id="count-minutes">--</span>
-            <span class="count-txt">Mins</span>
-          </div>
-          <span class="count-colon">:</span>
-          <div class="count-box">
-            <span class="count-num" id="count-seconds">--</span>
-            <span class="count-txt">Secs</span>
+          <!-- Venue Address -->
+          <div class="event-tile-gold" id="event-venue-tile">
+            <div class="tile-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="tile-texts">
+              <span class="tile-caption">Ceremony Venue</span>
+              <h3 class="tile-title">Amman Sakthi Mahal</h3>
+              <p class="tile-address">
+                No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur – 610001.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Essential Event Info Blocks -->
-      <div class="event-details-stack">
-        <!-- Date Block -->
-        <div class="event-info-block anim-item">
-          <div class="info-icon-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
+        <!-- Single Smooth, Refined Navigation Link (No Thick Buttons!) -->
+        <div class="smooth-navigation-wrap" id="nav-action-box">
+          <a href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer" class="btn-smooth-maps">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="maps-pin-icon">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
             </svg>
-          </div>
-          <div class="info-content">
-            <span class="info-sub">Engagement Date</span>
-            <h3 class="info-title">Sunday, 15th November 2026</h3>
-            <span class="info-meta">6:00 PM – 7:30 PM (Evening Muhurtham)</span>
-          </div>
-        </div>
-
-        <!-- Venue Block -->
-        <div class="event-info-block anim-item">
-          <div class="info-icon-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
+            <span>Navigate in Google Maps</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-forward-icon">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </div>
-          <div class="info-content">
-            <span class="info-sub">Ceremony Venue</span>
-            <h3 class="info-title">Amman Sakthi Mahal</h3>
-            <p class="info-address">
-              No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur – 610001.
-            </p>
-          </div>
+          </a>
         </div>
-      </div>
+      </section>
 
-      <!-- Action Buttons (Google Maps & Calendar Download) -->
-      <div class="action-buttons-wrap anim-item">
-        <a href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer" class="btn-primary-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
-            <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-          </svg>
-          <span>Navigate in Google Maps</span>
-        </a>
+      <!-- ==========================================
+           SCENE 6: CLOSING BLESSINGS
+           Animation: Elegant Fade-In + Traditional Kolam
+           ========================================== -->
+      <footer class="story-section section-closing text-center" id="scene-closing">
+        <div class="closing-mandala-wrap">
+          <img src="assets/illustrations/kolam-mandala.svg" alt="" class="closing-kolam-svg">
+        </div>
+        <h3 class="closing-couple-title">Dr. Sasidharan & Dr. Abinaya</h3>
+        <span class="closing-hashtag-gold">#LoveGotPrescribed</span>
+        <p class="closing-blessing-quote">
+          “Your gracious presence, love, and prayers are our greatest blessings as we begin our forever.”
+        </p>
+        <div class="closing-location-line">
+          <span>Amman Sakthi Mahal • Thiruvarur</span>
+        </div>
+      </footer>
 
-        <button id="add-to-calendar-btn" class="btn-outline-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-            <path d="M12 14v4M10 16h4"/>
-          </svg>
-          <span>Save to Calendar (.ics)</span>
-        </button>
-
-        <button id="whatsapp-share-btn" class="btn-whatsapp-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-          </svg>
-          <span>Share on WhatsApp</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- ==========================================
-         SCENE 6: CLOSING BLESSING
-         ========================================== -->
-    <footer class="reel-card card-closing text-center anim-item">
-      <div class="closing-mandala-icon" aria-hidden="true">
-        <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-closing-svg">
-      </div>
-      <h3 class="closing-title">Dr. Sasidharan & Dr. Abinaya</h3>
-      <div class="closing-hashtag">#LoveGotPrescribed</div>
-      <p class="closing-blessing-text">
-        “Your presence and blessings are our greatest joy as we step into forever together.”
-      </p>
-      <div class="closing-venue-tag">Amman Sakthi Mahal • Thiruvarur</div>
-    </footer>
-
-  </main>
-
-  <!-- Interactive Toast Notification -->
-  <div id="toast-notification" class="toast-popup" role="status" aria-live="polite">
-    <span id="toast-message">Event saved to calendar!</span>
+    </main>
   </div>
 
 </body>

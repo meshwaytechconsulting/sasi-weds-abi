@@ -1,7 +1,7 @@
 /**
- * SASI WEDS ABI — AUTOMATED ON-SCROLL ANIMATION ENGINE
- * Inspired by South Indian Wedding Reels (@airavaatstudio.in style)
- * Fully automated reveals on scroll with GSAP ScrollTrigger
+ * SASI WEDS ABI — ONE-PAGE SCROLL AUTOMATION & AUDIO CONTROLLER
+ * Distinct scroll-triggered animations for each scene with GSAP ScrollTrigger
+ * Single-run celebratory petal shower + Audio player placeholder
  */
 
 (function () {
@@ -11,57 +11,146 @@
   const CEREMONY_DATE_MS = new Date('2026-11-15T18:00:00+05:30').getTime();
 
   document.addEventListener('DOMContentLoaded', () => {
+    initSingleRunPetalShower();
+    initAudioPlayerPlaceholder();
     initAutomatedScrollAnimations();
     initCountdownTimer();
-    initFloatingPetals();
-    initQuickActions();
   });
 
   /* --------------------------------------------------------------------------
-     1. AUTOMATED ON-SCROLL GSAP REVEALS (NO USER CLICKS REQUIRED)
+     1. ONE-TIME JASMINE PETAL SHOWER (RUNS ONCE ON LOAD & FINISHES)
      -------------------------------------------------------------------------- */
-  function initAutomatedScrollAnimations() {
-    // If GSAP is loaded, register ScrollTrigger
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-      setupGsapScrollSequence();
-    } else {
-      setupIntersectionObserverFallback();
+  function initSingleRunPetalShower() {
+    const container = document.getElementById('petals-container');
+    if (!container) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const PETAL_COUNT = window.innerWidth < 480 ? 12 : 20;
+
+    for (let i = 0; i < PETAL_COUNT; i++) {
+      createSinglePetal(container, i * 220);
+    }
+
+    // Clean up container after 7 seconds so no background processes or loops continue
+    setTimeout(() => {
+      container.innerHTML = '';
+      container.style.display = 'none';
+    }, 7500);
+
+    function createSinglePetal(parent, delayMs) {
+      const petal = document.createElement('div');
+      petal.className = 'single-petal-node';
+
+      const size = Math.random() * 8 + 9; // 9px to 17px
+      const left = Math.random() * 92 + 2; // 2% to 94%
+      const duration = Math.random() * 2 + 5; // 5s to 7s
+      const delay = delayMs / 1000;
+
+      petal.style.width = `${size}px`;
+      petal.style.height = `${size * 1.35}px`;
+      petal.style.left = `${left}vw`;
+      petal.style.animationDuration = `${duration}s`;
+      petal.style.animationDelay = `${delay}s`;
+
+      parent.appendChild(petal);
     }
   }
 
-  function setupGsapScrollSequence() {
-    // Scene 1: Opening entrance animation (runs automatically on page load)
-    const openTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  /* --------------------------------------------------------------------------
+     2. AUDIO / MUSIC PLAYER PLACEHOLDER CONTROLLER
+     -------------------------------------------------------------------------- */
+  function initAudioPlayerPlaceholder() {
+    const musicBtn = document.getElementById('music-toggle-btn');
+    const vinylDisc = document.getElementById('disc-vinyl-elem');
+    const audioTrack = document.getElementById('wedding-audio-track');
+    const musicWaves = document.querySelector('.music-waves');
 
-    openTl
-      .from('.temple-arch-svg', { opacity: 0, y: -25, duration: 1 })
-      .from('.blessing-pill', { opacity: 0, scale: 0.85, duration: 0.7 }, '-=0.5')
-      .from('.tagline-kicker', { opacity: 0, y: 15, duration: 0.6 }, '-=0.4')
-      .from('.couple-names-headline .name-text', { opacity: 0, y: 30, stagger: 0.2, duration: 0.9 }, '-=0.3')
-      .from('.couple-names-headline .name-ampersand', { opacity: 0, scale: 0.5, duration: 0.5 }, '-=0.6')
-      .from('.hashtag-chip', { opacity: 0, scale: 0.9, duration: 0.5 }, '-=0.3')
-      .from('.invitation-phrase', { opacity: 0, y: 15, duration: 0.6 }, '-=0.3')
-      .from('.date-ribbon', { opacity: 0, y: 20, duration: 0.7 }, '-=0.3')
-      .from('.scroll-down-hint', { opacity: 0, duration: 0.5 }, '-=0.2');
+    if (!musicBtn || !audioTrack) return;
 
-    // Scene 2: Couple Artwork Automated Reveal
-    gsap.from('#scene-couple .couple-art-frame', {
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        // Attempt to play audio
+        const playPromise = audioTrack.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              isPlaying = true;
+              vinylDisc?.classList.add('playing');
+              musicWaves?.classList.add('active');
+            })
+            .catch(() => {
+              // In case audio file is still placeholder or blocked, activate visual playback indicator
+              isPlaying = true;
+              vinylDisc?.classList.add('playing');
+              musicWaves?.classList.add('active');
+            });
+        }
+      } else {
+        audioTrack.pause();
+        isPlaying = false;
+        vinylDisc?.classList.remove('playing');
+        musicWaves?.classList.remove('active');
+      }
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     3. DISTINCT AUTOMATED SCROLL ANIMATIONS FOR EACH SCENE
+     -------------------------------------------------------------------------- */
+  function initAutomatedScrollAnimations() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      buildSceneScrollAnimations();
+    } else {
+      buildFallbackObserver();
+    }
+  }
+
+  function buildSceneScrollAnimations() {
+    // ------------------------------------------------------------------------
+    // SCENE 1: SACRED TORANAM & OPENING COVER (Runs automatically on page load)
+    // ------------------------------------------------------------------------
+    const coverTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    coverTl
+      .from('.toranam-svg-img', { opacity: 0, y: -25, duration: 1.1 })
+      .from('.shree-invocation', { opacity: 0, scale: 0.88, duration: 0.7 }, '-=0.5')
+      .from('.season-kicker', { opacity: 0, y: 15, duration: 0.6 }, '-=0.4')
+      .from('.couple-names-block .c-name', { opacity: 0, y: 35, stagger: 0.22, duration: 0.95 }, '-=0.3')
+      .from('.couple-names-block .c-weds', { opacity: 0, scale: 0.5, duration: 0.5 }, '-=0.6')
+      .from('.hashtag-pill-gold', { opacity: 0, scale: 0.9, duration: 0.5 }, '-=0.3')
+      .from('.invite-lead-text', { opacity: 0, y: 15, duration: 0.6 }, '-=0.3')
+      .from('.date-summary-gold-strip', { opacity: 0, y: 20, duration: 0.7 }, '-=0.3')
+      .from('.scroll-indicator-wrap', { opacity: 0, duration: 0.6 }, '-=0.2');
+
+    // ------------------------------------------------------------------------
+    // SCENE 2: THE COUPLE ARTWORK
+    // Distinct Animation: 3D perspective float + gentle zoom
+    // ------------------------------------------------------------------------
+    gsap.from('#scene-couple .couple-art-frame-gold', {
       scrollTrigger: {
         trigger: '#scene-couple',
         start: 'top 75%',
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 40,
-      scale: 0.96,
-      duration: 1.1,
+      y: 45,
+      scale: 0.94,
+      rotationX: 4,
+      duration: 1.2,
       ease: 'power2.out'
     });
 
-    // Scene 3: AUTOMATED RING EXCHANGE (Mothiram Mathuthal)
-    // The rings glide toward each other, sparkle, and reveal the ceremony art
-    const ringTl = gsap.timeline({
+    // ------------------------------------------------------------------------
+    // SCENE 3: ENGAGEMENT (NATURAL RINGS & CEREMONY EXCHANGE PAINTING)
+    // Distinct Animation: Natural rings slide up -> diamond light ray sparkle -> ceremony painting fade
+    // ------------------------------------------------------------------------
+    const ringsTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#scene-rings',
         start: 'top 70%',
@@ -69,55 +158,67 @@
       }
     });
 
-    ringTl
-      // Rings slide in toward center
-      .fromTo('#ring-groom-elem', 
-        { x: -140, opacity: 0 }, 
-        { x: -28, opacity: 1, duration: 1.1, ease: 'power2.out' }
-      )
-      .fromTo('#ring-bride-elem', 
-        { x: 90, opacity: 0 }, 
-        { x: -16, opacity: 1, duration: 1.1, ease: 'power2.out' }, 
-        '<'
-      )
-      // Sparkle flash flare at center
-      .to('#ring-sparkle-center', {
-        scale: 2.4,
-        opacity: 1,
-        duration: 0.45,
-        ease: 'power1.in',
-        onStart: () => {
-          document.getElementById('ring-sparkle-center')?.classList.add('flashing');
-        }
-      })
-      .to('#ring-sparkle-center', {
-        scale: 0,
+    ringsTl
+      .from('#rings-natural-box', {
         opacity: 0,
-        duration: 0.55,
+        y: 40,
+        scale: 0.95,
+        duration: 0.9,
         ease: 'power2.out'
       })
-      // Ceremonial painting fades in smoothly below
-      .fromTo('#ring-art-reveal', 
-        { opacity: 0, y: 30, scale: 0.95 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power2.out' }, 
-        '-=0.3'
-      );
+      // Diamond flare ray animation
+      .to('#diamond-shine-elem', {
+        scale: 2.2,
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power1.in',
+        onStart: () => {
+          document.getElementById('diamond-shine-elem')?.classList.add('active');
+        }
+      })
+      .to('#diamond-shine-elem', {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      })
+      // Ceremony exchange painting reveal
+      .from('#exchange-art-box', {
+        opacity: 0,
+        y: 35,
+        duration: 1,
+        ease: 'power2.out'
+      }, '-=0.2');
 
-    // Scene 4: Family Pillars Automated Reveal
-    gsap.from('#scene-family .family-pillar', {
+    // ------------------------------------------------------------------------
+    // SCENE 4: BELOVED FAMILIES
+    // Distinct Animation: Dual staggered fold-in from left and right
+    // ------------------------------------------------------------------------
+    gsap.from('#family-groom-box', {
       scrollTrigger: {
         trigger: '#scene-family',
         start: 'top 75%',
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 25,
-      stagger: 0.22,
-      duration: 0.85,
+      x: -40,
+      duration: 0.9,
       ease: 'power2.out'
     });
 
-    gsap.from('#scene-family .formal-quote-box', {
+    gsap.from('#family-bride-box', {
+      scrollTrigger: {
+        trigger: '#scene-family',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      x: 40,
+      duration: 0.9,
+      ease: 'power2.out'
+    });
+
+    gsap.from('#scene-family .formal-wording-panel', {
       scrollTrigger: {
         trigger: '#scene-family',
         start: 'top 65%',
@@ -129,21 +230,24 @@
       ease: 'power2.out'
     });
 
-    // Scene 5: Ceremony Details & Countdown Clock Automated Reveal
-    gsap.from('#scene-details .countdown-strip', {
+    // ------------------------------------------------------------------------
+    // SCENE 5: CEREMONY DETAILS, COUNTDOWN & SMOOTH NAV
+    // Distinct Animation: 3D bounce scale for countdown + sequential row elevations
+    // ------------------------------------------------------------------------
+    gsap.from('#countdown-card-elem', {
       scrollTrigger: {
         trigger: '#scene-details',
         start: 'top 75%',
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      scale: 0.94,
-      y: 25,
-      duration: 0.85,
+      scale: 0.9,
+      y: 30,
+      duration: 0.9,
       ease: 'back.out(1.4)'
     });
 
-    gsap.from('#scene-details .event-info-block', {
+    gsap.from(['#event-date-tile', '#event-venue-tile'], {
       scrollTrigger: {
         trigger: '#scene-details',
         start: 'top 70%',
@@ -151,12 +255,12 @@
       },
       opacity: 0,
       y: 25,
-      stagger: 0.18,
-      duration: 0.8,
+      stagger: 0.2,
+      duration: 0.85,
       ease: 'power2.out'
     });
 
-    gsap.from('#scene-details .action-buttons-wrap', {
+    gsap.from('#nav-action-box', {
       scrollTrigger: {
         trigger: '#scene-details',
         start: 'top 60%',
@@ -168,7 +272,9 @@
       ease: 'power2.out'
     });
 
-    // Scene 6: Closing Blessing
+    // ------------------------------------------------------------------------
+    // SCENE 6: CLOSING BLESSING
+    // ------------------------------------------------------------------------
     gsap.from('#scene-closing', {
       scrollTrigger: {
         trigger: '#scene-closing',
@@ -176,15 +282,14 @@
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 25,
+      y: 30,
       duration: 0.9,
       ease: 'power2.out'
     });
   }
 
-  // Fallback if GSAP is unavailable
-  function setupIntersectionObserverFallback() {
-    const animItems = document.querySelectorAll('.anim-item, .couple-art-frame, #ring-art-reveal');
+  function buildFallbackObserver() {
+    const sections = document.querySelectorAll('.story-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -195,16 +300,16 @@
       });
     }, { threshold: 0.15 });
 
-    animItems.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(25px)';
-      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-      observer.observe(el);
+    sections.forEach((sec) => {
+      sec.style.opacity = '0';
+      sec.style.transform = 'translateY(30px)';
+      sec.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(sec);
     });
   }
 
   /* --------------------------------------------------------------------------
-     2. ACCURATE LIVE COUNTDOWN ENGINE
+     4. LIVE COUNTDOWN TIMER ENGINE
      -------------------------------------------------------------------------- */
   function initCountdownTimer() {
     const daysEl = document.getElementById('count-days');
@@ -239,118 +344,6 @@
 
     renderTime();
     setInterval(renderTime, 1000);
-  }
-
-  /* --------------------------------------------------------------------------
-     3. FLOATING JASMINE PETALS (AMBIENT SILK PARTICLES)
-     -------------------------------------------------------------------------- */
-  function initFloatingPetals() {
-    const container = document.getElementById('petals-container');
-    if (!container) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    const COUNT = window.innerWidth < 480 ? 9 : 15;
-
-    for (let i = 0; i < COUNT; i++) {
-      createPetal(container, i * 400);
-    }
-
-    function createPetal(parent, delayMs) {
-      const petal = document.createElement('div');
-      petal.className = 'petal-node';
-
-      const size = Math.random() * 7 + 8; // 8px to 15px
-      const left = Math.random() * 94; // 0 to 94vw
-      const duration = Math.random() * 4 + 8; // 8s to 12s
-      const delay = delayMs / 1000 + Math.random() * 2;
-
-      petal.style.width = `${size}px`;
-      petal.style.height = `${size * 1.35}px`;
-      petal.style.left = `${left}vw`;
-      petal.style.animationDuration = `${duration}s`;
-      petal.style.animationDelay = `${delay}s`;
-
-      parent.appendChild(petal);
-    }
-  }
-
-  /* --------------------------------------------------------------------------
-     4. USER ACTIONS: CALENDAR & WHATSAPP
-     -------------------------------------------------------------------------- */
-  function initQuickActions() {
-    const calBtn = document.getElementById('add-to-calendar-btn');
-    const shareBtn = document.getElementById('whatsapp-share-btn');
-
-    // Calendar .ics download
-    if (calBtn) {
-      calBtn.addEventListener('click', () => {
-        const icsData = [
-          'BEGIN:VCALENDAR',
-          'VERSION:2.0',
-          'PRODID:-//Sasi Weds Abi//Engagement E-Invite//EN',
-          'CALSCALE:GREGORIAN',
-          'METHOD:PUBLISH',
-          'BEGIN:VEVENT',
-          `UID:sasi-weds-abi-${Date.now()}@kismetstudios.com`,
-          `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
-          'DTSTART:20261115T123000Z', // 18:00 IST = 12:30 UTC
-          'DTEND:20261115T140000Z',   // 19:30 IST = 14:00 UTC
-          'SUMMARY:Dr. Sasidharan & Dr. Abinaya — Engagement Ceremony',
-          'DESCRIPTION:Engagement Ceremony of Dr. Sasidharan S & Dr. Abinaya M (#LoveGotPrescribed) at Amman Sakthi Mahal, Thiruvarur.',
-          'LOCATION:Amman Sakthi Mahal, No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur - 610001',
-          'STATUS:CONFIRMED',
-          'END:VEVENT',
-          'END:VCALENDAR'
-        ].join('\r\n');
-
-        const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.setAttribute('download', 'sasi-weds-abi-engagement.ics');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        showToast('Event saved to your calendar!');
-      });
-    }
-
-    // WhatsApp Sharing
-    if (shareBtn) {
-      shareBtn.addEventListener('click', () => {
-        const text = 
-          "You are cordially invited to celebrate the Engagement Ceremony of\n" +
-          "✨ Dr. Sasidharan & Dr. Abinaya ✨\n" +
-          "#LoveGotPrescribed\n\n" +
-          "📅 Date: Sunday, 15th November 2026 (6:00 PM - 7:30 PM)\n" +
-          "📍 Venue: Amman Sakthi Mahal, Thiruvarur\n\n" +
-          "View our e-invitation: " + window.location.href;
-
-        const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
-      });
-    }
-  }
-
-  /* --------------------------------------------------------------------------
-     5. TOAST NOTIFICATION UTILITY
-     -------------------------------------------------------------------------- */
-  let toastTimer = null;
-  function showToast(msg) {
-    const toast = document.getElementById('toast-notification');
-    const toastMsg = document.getElementById('toast-message');
-    if (!toast || !toastMsg) return;
-
-    toastMsg.textContent = msg;
-    toast.classList.add('show');
-
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
   }
 
 })();

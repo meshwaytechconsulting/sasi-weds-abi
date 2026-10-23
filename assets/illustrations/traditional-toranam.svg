@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 90" fill="none">
+  <!-- Center Sacred Kalasam & Mango Leaves -->
+  <g transform="translate(250, 28)">
+    <!-- Kalasam Pot -->
+    <path d="M-14 18 C-14 10, -8 4, 0 4 C8 4, 14 10, 14 18 C14 26, 8 32, 0 32 C-8 32, -14 26, -14 18 Z" fill="#D4AF37" stroke="#92400E" stroke-width="1"/>
+    <!-- Coconut & Mango Leaves (Maavilai) -->
+    <path d="M0 -4 C-6 2, -7 8, 0 10 C7 8, 6 2, 0 -4 Z" fill="#15803D"/>
+    <path d="M-7 0 C-14 4, -12 10, -5 10 Z" fill="#16A34A"/>
+    <path d="M7 0 C14 4, 12 10, 5 10 Z" fill="#16A34A"/>
+    <circle cx="0" cy="18" r="4" fill="#B91C1C"/>
+  </g>
+  
+  <!-- Left Toranam Garland with Mango leaves & Jasmine -->
+  <path d="M220 28 C160 38, 90 38, 20 20" stroke="#C99824" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <path d="M220 24 C160 34, 90 34, 20 16" stroke="#B8860B" stroke-width="1.2"/>
+  
+  <!-- Right Toranam Garland -->
+  <path d="M280 28 C340 38, 410 38, 480 20" stroke="#C99824" stroke-width="1.8" stroke-dasharray="3,3"/>
+  <path d="M280 24 C340 34, 410 34, 480 16" stroke="#B8860B" stroke-width="1.2"/>
+
+  <!-- Hanging Mango Leaves (Maavilai) Left -->
+  <path d="M60 26 C57 38, 60 48, 62 52 C64 48, 67 38, 64 26 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+  <path d="M110 32 C107 44, 110 54, 112 58 C114 54, 117 44, 114 32 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+  <path d="M160 34 C157 46, 160 56, 162 60 C164 56, 167 46, 164 34 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+  
+  <!-- Hanging Mango Leaves (Maavilai) Right -->
+  <path d="M440 26 C437 38, 440 48, 442 52 C444 48, 447 38, 444 26 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+  <path d="M390 32 C387 44, 390 54, 392 58 C394 54, 397 44, 394 32 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+  <path d="M340 34 C337 46, 340 56, 342 60 C344 56, 347 46, 344 34 Z" fill="#16A34A" stroke="#15803D" stroke-width="0.8"/>
+
+  <!-- Little Gold Bells (Mani) at ends -->
+  <circle cx="20" cy="20" r="3" fill="#D4AF37"/>
+  <circle cx="480" cy="20" r="3" fill="#D4AF37"/>
+  <circle cx="62" cy="54" r="2.5" fill="#D4AF37"/>
+  <circle cx="112" cy="60" r="2.5" fill="#D4AF37"/>
+  <circle cx="162" cy="62" r="2.5" fill="#D4AF37"/>
+  <circle cx="342" cy="62" r="2.5" fill="#D4AF37"/>
+  <circle cx="392" cy="60" r="2.5" fill="#D4AF37"/>
+  <circle cx="442" cy="54" r="2.5" fill="#D4AF37"/>
+</svg>
