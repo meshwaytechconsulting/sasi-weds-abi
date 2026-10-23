@@ -11,12 +11,14 @@ A premium, cinematic, mobile-first animated engagement e-invitation website crea
 
 ## 🌟 Visual Direction & Cultural Highlights
 
-- **Heritage Palette:** Royal Kanchipuram silk aubergine (`#260b24`), shimmering temple gold zari (`#d4af37`), sacred kumkum maroon (`#831826`), and soft ivory silk (`#faf5eb`).
-- **Original Couple Art:** Transformed client-supplied reference photographs into masterclass digital paintings that honor the bride's champagne gold and royal purple silk saree, temple jewelry, the groom's lilac shirt, and their genuine expressions.
-- **Signature Ring Exchange Sequence (*Mothiram Mathuthal*):** An emotional and culturally authentic sequence celebrating the engagement ring exchange with gold solitaire brilliance, bridal henna (mehendi), traditional bangles (*valayal*), and floating jasmine petals (*mallipoo*).
-- **Physician Touch:** Subtle, affectionate nod to the couple's medical doctor background with the hashtag **`#LoveGotPrescribed`**.
-- **Mobile-First Responsiveness:** Flawless rendering from 320px, 360px, 390px, to 430px up to 4K displays with 0 horizontal overflow.
-- **Motion Accessibility:** Fully supports `prefers-reduced-motion` and includes an on-page interactive **Motion Toggle** to ensure comfort for all guests.
+- **Airavaat Studio-Inspired Chettinad Reel Aesthetic:** Pure light ivory and silk cream theme (`#FBF7EE`), rich kumkum maroon typography (`#6E1522`), and polished temple gold zari accents (`#C99824`).
+- **Swaying Temple Bells & Garlands:** Traditional brass temple bells (*mani*) and fresh marigold & jasmine flower garlands (*malligai & sevvanthi*) gracefully swaying on the screen flanks.
+- **100% Automated On-Scroll Animations:** Zero manual buttons or toggles required. As the guest naturally scrolls down on their phone, scenes unfold sequentially:
+  - Auspicious Temple Toranam Arch and golden calligraphy reveals.
+  - Couple digital painting with glowing aura entrance.
+  - **Automated Ring Exchange (*Mothiram Mathuthal*):** Gold and diamond solitaire rings automatically glide in from both sides, meet with a brilliant diamond sparkle flare, and seamlessly reveal the ceremonial painting.
+  - Beloved family pillars and wedding countdown clock.
+- **Mobile-First Compact Format:** Optimized for standard smartphones (360px–430px) with comfortable, continuous scrolling (no project-like tabular columns).
 
 ---
 
