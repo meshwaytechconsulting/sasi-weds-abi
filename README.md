@@ -23,36 +23,63 @@ the design rather than a thumbnail inside a card.
 | Body | Outfit |
 | Tamil | Noto Serif Tamil |
 
-## One scroll, one scene
+## How it moves
 
-The whole invitation is a deck of seven cards. `scroll-snap-type: y mandatory`
-plus `scroll-snap-stop: always` means **one flick moves exactly one scene** —
-a fast swipe cannot skip past one, and nothing ever halts half-way between two.
+The invitation plays itself. On opening, a guided tour walks the whole story
+and then stops; the moment a guest scrolls, swipes or presses a key it stands
+down and never fights them for control again. The floating controls (pause,
+mute) surface on any touch and fade out after a few seconds.
 
-Every scene is built to fit a single screen; verified down to 360 × 640, where
-the tallest needs 496 px of 640. If a scene ever did outgrow the screen it
-would simply get taller and take two flicks — nothing is clipped.
+**The pacing rule:** a page finishes animating, *then* two seconds of
+stillness, *then* it travels. The animation length is measured off the DOM at
+runtime rather than hard-coded, so a scene that takes longer to settle
+automatically gets a later departure. Travel itself is a 1.7s float with a
+soft bank of cloud passing across, so a change of scene reads as weather
+rather than a cut.
 
-| # | Scene | Backdrop | Reveal |
-|---|-------|----------|--------|
-| — | **The Gate** | plain, unbroken | kolam draws itself, flame lights; on tap the carved doors appear, *then* part |
-| 01 | Hero — names | `couple-leaning` | names rise letter by letter |
-| 02 | Invitation words | `urli-decor` | lines wipe in left→right over a slow lamp-glow |
-| 03 | The Couple | `couple-standing` | portraits unfold upward in temple-arch frames, gold sheen sweeps across |
-| 04 | Engagement | `ring-exchange` | full-bleed ken-burns, diamond sparkle fires every 2.6 s |
-| 05 | Date & countdown | `urli-decor` | live countdown, each digit pops on change |
-| 06 | Venue | `couple-leaning` | temple arch draws in, map link |
-| 07 | Blessings | `couple-standing` | closing kolam draws, names and blessing fade up |
+Measured walk (mobile, 375x812):
 
-The two portraits sit **side by side at every width**, phone included — the
-pairing is the point, so it never stacks into two separate people. The figures
-use `display: contents` so the frames share one grid row and the captions
-share another; the portraits then line up exactly however long the parents'
-names run.
+```
+0.2s  names        6.2s  families
+12.2s story p1    18.2s  story p2    24.2s story p3
+29.1s couple      36.2s  the day     ...  venue -> blessings, then stops
+```
 
-Running throughout: drifting jasmine petals, rising lamp embers, film grain,
-and gold scene dots down the right edge showing which card you are on (tap one
-to jump). The first scene carries a single chevron that fades after you move.
+The tour is built from one flat itinerary of stops, where **Our Story
+contributes one stop per panel**. Sideways movement is therefore ordinary
+tour progress rather than a special case inside the step function - which is
+what kept breaking it.
+
+**Our Story moves sideways.** A scroll or swipe on that scene pages the strip
+horizontally; only once the last panel is reached does the gesture pass
+through to the page, and scrolling back up pages left again before releasing
+upward. The scene rewinds to its first panel whenever it leaves the screen,
+so it is never re-entered half-told - on a refresh, from the dots, or when
+the tour comes back round. Rewinding on *exit* rather than on entry means it
+never yanks under a guest who is mid-way through reading it.
+
+Every scene is built to fit a single screen; verified down to 360x640.
+
+### A different arrival for every page
+
+| # | Scene | Arrival |
+|---|-------|---------|
+| - | **Cover** | card breathes in, warm bloom, 18-28 gold motes scatter, cover lifts away |
+| 01 | Names | rises and focuses, like a photograph developing |
+| 02 | Families | the two cards fold in from their own sides |
+| 03 | Our Story | each panel settles upward as it becomes the live one |
+| 04 | The Couple | the pair lean in toward each other |
+| 05 | The Day | the counter drops in, cell by cell |
+| 06 | Venue | the mandapam draws itself, words arrive beneath |
+| 07 | Blessings | everything eases back, like closing a book |
+
+Photographs use the **framed arch card** everywhere except **The Couple**,
+which is the one page that stays blended into the paper.
+
+Running throughout: drifting petals, clouds crossing on 90-170s cycles, a
+travelling highlight on the names, a slowly turning leaf on every divider,
+floating countdown cells, breathing underlines, and photographs that never
+sit perfectly still.
 
 ## Files
 
