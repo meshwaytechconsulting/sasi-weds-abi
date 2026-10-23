@@ -1,181 +1,126 @@
-# Sasi Weds Abi — Animated South Indian Engagement E-Invitation 💍
+# Sasi weds Abi — Engagement E-Invitation
 
-[![GitHub Pages Deployment](https://img.shields.io/badge/deployment-GitHub%20Pages-brightgreen?style=flat-square&logo=github)](https://docs.github.com/en/pages)
-[![Hashtag](https://img.shields.io/badge/hashtag-%23LoveGotPrescribed-gold?style=flat-square)](#)
-[![Theme](https://img.shields.io/badge/theme-South%20Indian%20Engagement-purple?style=flat-square)](#)
-[![Mobile First](https://img.shields.io/badge/design-Mobile%20First-blue?style=flat-square)](#)
-
-A premium, cinematic, mobile-first animated engagement e-invitation website created for **Dr. Sasidharan S** and **Dr. Abinaya M** celebrating their Engagement on **Sunday, 15th November 2026** at **Amman Sakthi Mahal, Thiruvarur**.
+A single-page, mobile-first invitation for the engagement of
+**Dr. Sasidharan S** and **Dr. Abinaya M** — Sunday, 15 November 2026,
+Amman Sakthi Mahal, Thiruvarur. `#LoveGotPrescribed`
 
 ---
 
-## 🌟 Visual Direction & Cultural Highlights
+## Theme — "Deepam" (temple at dusk)
 
-- **Airavaat Studio-Inspired Chettinad Reel Aesthetic:** Pure light ivory and silk cream theme (`#FBF7EE`), rich kumkum maroon typography (`#6E1522`), and polished temple gold zari accents (`#C99824`).
-- **Swaying Temple Bells & Garlands:** Traditional brass temple bells (*mani*) and fresh marigold & jasmine flower garlands (*malligai & sevvanthi*) gracefully swaying on the screen flanks.
-- **100% Automated On-Scroll Animations:** Zero manual buttons or toggles required. As the guest naturally scrolls down on their phone, scenes unfold sequentially:
-  - Auspicious Temple Toranam Arch and golden calligraphy reveals.
-  - Couple digital painting with glowing aura entrance.
-  - **Automated Ring Exchange (*Mothiram Mathuthal*):** Gold and diamond solitaire rings automatically glide in from both sides, meet with a brilliant diamond sparkle flare, and seamlessly reveal the ceremonial painting.
-  - Beloved family pillars and wedding countdown clock.
-- **Mobile-First Compact Format:** Optimized for standard smartphones (360px–430px) with comfortable, continuous scrolling (no project-like tabular columns).
+Deep plum ink, lamp gold and silk violet, taken from the violet-and-gold
+Kanchipuram saree in the artwork. Every section is a **full-bleed scene**
+with one of the commissioned paintings faded behind it, so the artwork is
+the design rather than a thumbnail inside a card.
 
----
+| | |
+|---|---|
+| Ink | `#140812` → `#2e1129` |
+| Lamp gold | `#e0bd74`, highlight `#f8e7b8` |
+| Ivory | `#f4ead9` |
+| Display | Cormorant Garamond |
+| Headings | Marcellus |
+| Body | Outfit |
+| Tamil | Noto Serif Tamil |
 
-## 📋 Verified Invitation Info (Single Source of Truth)
+## One scroll, one scene
 
-All event information has been extracted and cross-verified from the source Canva page:
+The whole invitation is a deck of seven cards. `scroll-snap-type: y mandatory`
+plus `scroll-snap-stop: always` means **one flick moves exactly one scene** —
+a fast swipe cannot skip past one, and nothing ever halts half-way between two.
 
-| Field | Verified Detail | Audit Status |
-| :--- | :--- | :--- |
-| **Project Name** | Sasi Weds Abi (`#LoveGotPrescribed`) | **Confirmed** |
-| **Groom** | Dr. Sasidharan S | **Confirmed** |
-| **Bride** | Dr. Abinaya M | **Confirmed** |
-| **Invitation Headline** | Together in Every Season | **Confirmed** |
-| **Invitation Message** | *“With the blessings of our families, we heartily invite you to celebrate our Engagement. With your blessings, we begin a new chapter.”* | **Confirmed** |
-| **Groom's Parents** | Father: Shri D. Sakthikumar • Mother: Smt. S. Parimala | **Confirmed** |
-| **Bride's Parents** | Father: Shri K.N.Murugesan • Mother: Smt. M.Anitha devi | **Confirmed** |
-| **Date & Day** | **15th November, 2026 (Sunday)** — *Day verified against Gregorian calendar* | **Confirmed** |
-| **Time** | **6:00 PM – 7:30 PM** | **Confirmed** |
-| **Venue** | **Amman Sakthi Mahal** | **Confirmed** |
-| **Address** | No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur – 610001 | **Confirmed** |
-| **Directions** | [Google Maps Navigation Link](https://maps.app.goo.gl/AVTojszWfjC1NAFr6) | **Confirmed** |
-| **RSVP** | Digital Wishes & WhatsApp sharing enabled (phone contact unlisted in Canva source) | **Confirmed / Phone Missing in Source** |
-| **Language** | English (as presented in source) | **Confirmed** |
+Every scene is built to fit a single screen; verified down to 360 × 640, where
+the tallest needs 496 px of 640. If a scene ever did outgrow the screen it
+would simply get taller and take two flicks — nothing is clipped.
 
----
+| # | Scene | Backdrop | Reveal |
+|---|-------|----------|--------|
+| — | **The Gate** | plain, unbroken | kolam draws itself, flame lights; on tap the carved doors appear, *then* part |
+| 01 | Hero — names | `couple-leaning` | names rise letter by letter |
+| 02 | Invitation words | `urli-decor` | lines wipe in left→right over a slow lamp-glow |
+| 03 | The Couple | `couple-standing` | portraits unfold upward in temple-arch frames, gold sheen sweeps across |
+| 04 | Engagement | `ring-exchange` | full-bleed ken-burns, diamond sparkle fires every 2.6 s |
+| 05 | Date & countdown | `urli-decor` | live countdown, each digit pops on change |
+| 06 | Venue | `couple-leaning` | temple arch draws in, map link |
+| 07 | Blessings | `couple-standing` | closing kolam draws, names and blessing fade up |
 
-## 🗂️ Project Structure
+The two portraits sit **side by side at every width**, phone included — the
+pairing is the point, so it never stacks into two separate people. The figures
+use `display: contents` so the frames share one grid row and the captions
+share another; the portraits then line up exactly however long the parents'
+names run.
 
-```text
-Wedding Invite Project/
-├── index.html                   # Semantic HTML5, meta tags, and 8 connected scenes
-├── styles.css                   # Mobile-first design system with CSS custom properties
-├── script.js                    # Interactive controller (countdown, ring sequence, sharing, .ics)
-├── invitation-info.js           # Single source of truth configuration file
-├── README.md                    # Project documentation & GitHub Pages deployment guide
-└── assets/
-    ├── images/                  # Optimized WebP and fallback JPEG artwork
-    │   ├── couple-leaning.webp  # Hero couple portrait painting
-    │   ├── couple-standing.webp # Standing celebration couple painting
-    │   ├── ring-exchange.webp   # Sacred ring exchange ceremony painting
-    │   ├── bride-portrait.webp  # Dr. Abinaya solo portrait painting
-    │   ├── groom-portrait.webp  # Dr. Sasidharan solo portrait painting
-    │   └── urli-decor.webp      # Brass urli with floating jasmine & lamps
-    ├── illustrations/           # Scalable SVG cultural motifs
-    │   ├── kolam-mandala.svg    # Geometric 8-petal traditional kolam
-    │   ├── kuthu-vilakku.svg    # South Indian brass five-face oil lamp
-    │   ├── temple-arch.svg      # Temple toranam entrance arch
-    │   └── rings-pair.svg       # Interlocking gold & diamond engagement rings
-    └── icons/                   # Action icons
+Running throughout: drifting jasmine petals, rising lamp embers, film grain,
+and gold scene dots down the right edge showing which card you are on (tap one
+to jump). The first scene carries a single chevron that fades after you move.
+
+## Files
+
+```
+index.html          markup — one section per scene
+styles.css          all styling, tokens at the top
+script.js           reveal engine, parallax, countdown, gate, music
+invitation-info.js  single source of truth for names/date/venue — edit here
+assets/images/      the commissioned paintings (.webp + .jpg fallback)
+assets/illustrations/  toranam, kolam, kuthu vilakku, temple arch, rings
 ```
 
-> **Privacy Note:** In strict compliance with the project specifications, original client reference photographs are kept in private archive outside the public assets directory. Only approved artistic transformations are deployed.
+**No framework and no CDN for behaviour** — GSAP was dropped in favour of
+`IntersectionObserver` + CSS transitions, so the invitation works offline
+and cannot be broken by a CDN outage. Google Fonts is the only external
+request and it degrades to Georgia / system fonts.
 
----
+## Changing the details
 
-## 🚀 How to Run Locally
+Edit **`invitation-info.js`** — the countdown, the Google Calendar link and
+the WhatsApp share text all read from it. Names and copy that appear in the
+page itself are in `index.html`.
 
-Because this project is built on standard static web technologies (HTML5, Vanilla CSS, and modern JavaScript), no complex build process is required!
+## Background music
 
-### Option 1: Python HTTP Server (Recommended)
-Open a terminal in the project directory:
+Put the file here:
+
+```
+D:\Wedding Invite Project\assets\audio\traditional-nadaswaram.mp3
+```
+
+The folder already exists. The name must match exactly, or update the
+`<source>` in `index.html`.
+
+> **Windows gotcha.** File Explorer hides known extensions, so renaming a file
+> to `traditional-nadaswaram.mp3` actually produces `traditional-nadaswaram.mp3.mp3`
+> and the page silently finds nothing. Turn on **View → Show → File name
+> extensions** before renaming, or check the real name with:
+>
+> ```bash
+> ls assets/audio/
+> ```
+
+There is no floating player. The music starts on the tap of **Open the
+Invitation** — that tap is the user gesture browsers require before audio may
+play, so this is the one moment it can begin. Volume starts at 55%. With no
+file present the call fails silently and nothing on the page breaks.
+
+Note: with the player removed there is no way for a guest to mute it from
+inside the page — only their phone's own volume control.
+
+## Notes
+
+- **`assets/images/engagement-rings-natural.jpg` is deliberately unused.**
+  The rings in that image are engraved *"SNEHA & VISHAL 10-10-2025"*. It was
+  on display in the previous version. `ring-exchange.jpg` carries that scene
+  instead.
+- Respects `prefers-reduced-motion`: snap scrolling, petals, grain and music
+  all switch off, the gate opens straight away, and every reveal renders in
+  its final state.
+- Prints cleanly — the gate, music disc and ambient layers drop out.
+
+## Local preview
+
 ```bash
-python -m http.server 8080
-```
-Then visit [http://localhost:8080](http://localhost:8080) in your web browser.
-
-### Option 2: Node.js `npx serve`
-```bash
-npx serve .
+python -m http.server 5178
 ```
 
-### Option 3: VS Code Live Server
-Right-click on `index.html` and select **"Open with Live Server"**.
-
----
-
-## 🛠️ How to Customize & Update Details
-
-### 1. Update Event Information
-All content is centralized in [`invitation-info.js`](invitation-info.js). To edit any names, dates, or venue details, simply modify the configuration object:
-```javascript
-const INVITATION_INFO = {
-  event: {
-    date: {
-      formatted: "15th November, 2026",
-      dayOfWeek: "Sunday",
-      isoDate: "2026-11-15"
-    },
-    venue: {
-      name: "Amman Sakthi Mahal",
-      address: "No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur - 610001."
-    }
-  }
-  // ...
-};
-```
-
-### 2. Replace or Update Artwork
-Place optimized images into `assets/images/`:
-- `couple-leaning.webp` / `couple-leaning.jpg` (Hero composition)
-- `couple-standing.webp` / `couple-standing.jpg` (Celebration composition)
-- `ring-exchange.webp` / `ring-exchange.jpg` (Ring exchange ceremony)
-- `bride-portrait.webp` / `groom-portrait.webp` (Portraits)
-
----
-
-## 🌐 GitHub Pages Deployment Guide
-
-Follow these steps to deploy the website live on GitHub Pages for free:
-
-### Step 1: Initialize Git Repository
-In your project directory:
-```bash
-git init
-git add .
-git commit -m "feat: Initial commit for Sasi Weds Abi animated engagement invitation"
-```
-
-### Step 2: Push to GitHub
-Create a new repository on GitHub (e.g., `sasi-weds-abi`) and push:
-```bash
-git branch -M main
-git remote add origin https://github.com/<your-username>/sasi-weds-abi.git
-git push -u origin main
-```
-
-### Step 3: Enable GitHub Pages
-1. Go to your repository on GitHub.
-2. Click **Settings** > **Pages** (under "Code and automation" in the left sidebar).
-3. Under **Build and deployment**:
-   - **Source:** Select `Deploy from a branch`.
-   - **Branch:** Select `main` branch and `/ (root)` folder.
-   - Click **Save**.
-4. GitHub Pages will build and deploy the site in approximately 1-2 minutes.
-5. Your live invitation URL will be:
-   ```text
-   https://<your-username>.github.io/sasi-weds-abi/
-   ```
-
-### Step 4: Verify Subpath Compatibility
-All asset references in `index.html`, `styles.css`, and `script.js` use **relative paths** (e.g., `assets/images/...`), ensuring seamless functionality on GitHub Pages subpaths without broken links.
-
----
-
-## 🧪 Acceptance & Verification Report
-
-- **Mobile Viewport Testing:** Inspected on 360px and 390px (iPhone 12/13/14/15 profile). Verified 0 horizontal overflow (`scrollWidth === clientWidth`).
-- **Interactive Ring Exchange:** Validated both Act I (interlocking vector rings) and Act II (sacred exchange painting with gold halo bloom), as well as manual step switching and replay controls.
-- **Countdown Engine:** Live calculation based on `2026-11-15T18:00:00+05:30`.
-- **Calendar Download:** Tested `.ics` generation; produces standard iCalendar file with title, location, and UTC timestamps.
-- **Console Integrity:** Verified **zero console errors or warnings** during browser audits.
-- **Reduced Motion:** Verified `@media (prefers-reduced-motion)` and header Motion Toggle.
-
----
-
-## 💖 Credits & Acknowledgments
-- **Couple:** Dr. Sasidharan S & Dr. Abinaya M
-- **Hashtag:** `#LoveGotPrescribed`
-- **Location:** Thiruvarur, Tamil Nadu
-- **Celebration Date:** 15th November 2026
+Then open <http://localhost:5178>. Opening `index.html` straight off disk
+works too; only the WhatsApp share link behaves differently (it omits the
+page URL, since `file://` paths mean nothing to a recipient).

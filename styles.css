@@ -1,966 +1,813 @@
-/* ==========================================================================
-   SASI WEDS ABI — LUXURY SOUTH INDIAN ENGAGEMENT E-INVITATION
-   Airavaat Studio-Inspired • Rich Silk & Temple Gold • One-Page Scroll Experience
-   ========================================================================== */
+/* ══════════════════════════════════════════════════════════════════════════
+   SASI WEDS ABI — ENGAGEMENT INVITATION
+   Theme: "Deepam" — temple at dusk. Deep plum ink, lamp gold, silk violet.
+   Mobile-first, full-bleed cinematic scenes. No framework, no CDN.
+   ══════════════════════════════════════════════════════════════════════════ */
 
-/* --------------------------------------------------------------------------
-   1. DESIGN TOKENS (WARM IVORY & TEMPLE GOLD LUXURY)
-   -------------------------------------------------------------------------- */
+/* ─── 1 · TOKENS ────────────────────────────────────────────────────────── */
 :root {
-  /* Rich Cream & Silk Canvas */
-  --bg-page: #fbf7ee;
-  --bg-card: #ffffff;
-  --bg-card-subtle: #fdfaf3;
-  --bg-gold-tint: #fcf6e8;
-  
-  /* Traditional South Indian Royal Tones */
-  --color-maroon: #68131e;
-  --color-maroon-dark: #4a0b14;
-  --color-gold-main: #c99824;
-  --color-gold-rich: #ad7d13;
-  --color-gold-light: #f7e6b5;
-  --color-gold-border: rgba(201, 152, 36, 0.32);
-  --color-gold-zari: #d4af37;
+  /* night temple */
+  --ink:        #140812;
+  --ink-2:      #1e0c1b;
+  --plum:       #2e1129;
+  --plum-lit:   #43183b;
+  --violet:     #7b5aa6;
 
-  /* Text Typography */
-  --text-primary: #381e26;
-  --text-heading: #68131e;
-  --text-secondary: #5a4b44;
-  --text-muted: #8c7e75;
+  /* lamp gold */
+  --gold:       #e0bd74;
+  --gold-hi:    #f8e7b8;
+  --gold-deep:  #a87f33;
+  --gold-faint: rgba(224, 189, 116, .22);
 
-  /* Fonts */
-  --font-heading: 'Marcellus', Georgia, serif;
-  --font-accent: 'Playfair Display', Georgia, serif;
-  --font-title: 'Cinzel', Georgia, serif;
-  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ivory:      #f4ead9;
+  --ivory-dim:  rgba(244, 234, 217, .62);
+  --ivory-soft: rgba(244, 234, 217, .40);
 
-  /* Shadows */
-  --shadow-card: 0 12px 32px -8px rgba(104, 19, 30, 0.08), 0 0 0 1px rgba(201, 152, 36, 0.22);
-  --shadow-desktop-frame: 0 20px 60px -15px rgba(104, 19, 30, 0.12), 0 0 0 1px rgba(201, 152, 36, 0.28);
-  --shadow-smooth-btn: 0 4px 14px rgba(201, 152, 36, 0.22);
+  --f-display: 'Cormorant Garamond', 'Marcellus', Georgia, serif;
+  --f-head:    'Marcellus', Georgia, serif;
+  --f-tamil:   'Noto Serif Tamil', 'Latha', 'Nirmala UI', serif;
+  --f-body:    'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --ease:      cubic-bezier(.22, 1, .36, 1);
+  --ease-soft: cubic-bezier(.45, .05, .25, 1);
+
+  --pad: clamp(1.25rem, 6vw, 3rem);
 }
 
-/* --------------------------------------------------------------------------
-   2. GLOBAL RESET & BASE STYLES
-   -------------------------------------------------------------------------- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ─── 2 · RESET ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* One flick = one scene. scroll-snap-stop:always stops a fast swipe from
+   skipping past a scene, which is what makes it feel like a deck of cards
+   rather than a long page. */
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-family: var(--f-body);
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--ivory);
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body.is-locked { overflow: hidden; height: 100vh; }
+
+img, svg, picture { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+sup { font-size: .55em; vertical-align: super; }
+
+/* ─── 3 · AMBIENT LAYERS ────────────────────────────────────────────────── */
+
+/* fine film grain so the flat colour never looks like cheap CSS */
+.grain {
+  position: fixed; inset: -50%;
+  pointer-events: none; z-index: 60; opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainShift 7s steps(6) infinite;
+}
+@keyframes grainShift {
+  0%,100% { transform: translate(0,0); }
+  20%  { transform: translate(-3%, 2%); }
+  40%  { transform: translate(2%, -3%); }
+  60%  { transform: translate(-2%, -2%); }
+  80%  { transform: translate(3%, 1%); }
 }
 
-body.theme-light {
-  font-family: var(--font-body);
-  background-color: var(--bg-page);
-  /* Pure traditional South Indian raw silk texture background */
-  background-image: 
-    radial-gradient(circle at 10% 10%, rgba(201, 152, 36, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 90% 90%, rgba(104, 19, 30, 0.06) 0%, transparent 45%),
-    linear-gradient(180deg, #fdfaf3 0%, #f7f0e3 50%, #faf5ec 100%);
-  color: var(--text-primary);
-  min-height: 100vh;
-  line-height: 1.55;
-  overflow-x: hidden;
-  position: relative;
+/* drifting jasmine petals — continuous, very soft */
+.petal-field, .ember-field {
+  position: fixed; inset: 0; pointer-events: none; overflow: hidden;
 }
+.petal-field { z-index: 55; }
+.ember-field { z-index: 2; }
 
-img, svg, picture, video, canvas {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* --------------------------------------------------------------------------
-   3. DESKTOP & MOBILE WRAPPER
-   -------------------------------------------------------------------------- */
-.desktop-screen-center {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0.75rem 0.6rem 3rem;
-}
-
-@media (min-width: 600px) {
-  .desktop-screen-center {
-    padding: 2rem 1.5rem 4rem;
-  }
-}
-
-.invite-card-main {
-  width: 100%;
-  max-width: 450px; /* Primary mobile card portrait width */
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  position: relative;
-  z-index: 2;
-}
-
-@media (min-width: 500px) {
-  .invite-card-main {
-    max-width: 480px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   4. SECTION CARD ARCHITECTURE & GOLD ZARI BORDER
-   -------------------------------------------------------------------------- */
-.story-section {
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-gold-border);
-  box-shadow: var(--shadow-card);
-  padding: 1.6rem 1.2rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-@media (min-width: 420px) {
-  .story-section {
-    padding: 1.9rem 1.45rem;
-  }
-}
-
-/* Top Zari Pattern Bar on Every Card */
-.story-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
-    #ad7d13 0%,
-    #d4af37 25%,
-    #f7e6b5 50%,
-    #d4af37 75%,
-    #ad7d13 100%
-  );
-}
-
-/* Common Section Heading */
-.section-heading {
-  margin-bottom: 1.25rem;
-}
-
-.kicker-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-gold-rich);
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.title-serif {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--color-maroon);
-  line-height: 1.25;
-}
-
-.subtitle-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.45;
-  margin-top: 0.45rem;
-}
-
-.zari-ornament-line {
-  width: 48px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-gold-main), transparent);
-  margin: 0.45rem auto 0;
-}
-
-/* --------------------------------------------------------------------------
-   5. SINGLE-RUN JASMINE PETAL CELEBRATION SHOWER
-   Runs only ONE time on initial load, drops down and finishes!
-   -------------------------------------------------------------------------- */
-.petals-canvas-single {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999;
-  overflow: hidden;
-}
-
-.single-petal-node {
-  position: absolute;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fffbf0 60%, #eaddc5 100%);
-  border-radius: 65% 0 65% 0;
+.petal {
+  position: absolute; top: -8vh;
+  width: 9px; height: 6px;
+  background: linear-gradient(130deg, rgba(255,250,240,.9) 0%, rgba(246,234,211,.7) 52%, rgba(224,189,116,.35) 100%);
+  border-radius: 80% 20% 72% 28% / 70% 64% 36% 30%;
   opacity: 0;
-  filter: drop-shadow(0 2px 4px rgba(180, 140, 60, 0.15));
-  will-change: transform, opacity;
-  animation: singlePetalFall 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  filter: blur(.25px);
+  animation: petalFall linear infinite;
+}
+@keyframes petalFall {
+  0%   { opacity: 0; transform: translate3d(0,0,0) rotate(0deg) scale(.8); }
+  10%  { opacity: .38; }
+  50%  { transform: translate3d(26px, 52vh, 0) rotate(190deg) scale(1); }
+  85%  { opacity: .26; }
+  100% { opacity: 0; transform: translate3d(-16px, 108vh, 0) rotate(400deg) scale(.78); }
 }
 
-@keyframes singlePetalFall {
-  0% {
-    transform: translateY(-30px) rotate(0deg) scale(0.7);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.85;
-  }
-  75% {
-    opacity: 0.75;
-  }
-  100% {
-    transform: translateY(105vh) rotate(320deg) scale(1);
-    opacity: 0;
-  }
+/* lamp-light embers floating up behind content */
+.ember {
+  position: absolute; bottom: -4vh;
+  width: 2px; height: 2px; border-radius: 50%;
+  background: var(--gold-hi);
+  box-shadow: 0 0 6px 1.5px rgba(224,189,116,.35);
+  opacity: 0;
+  animation: emberRise linear infinite;
+}
+@keyframes emberRise {
+  0%   { opacity: 0; transform: translate3d(0,0,0) scale(.5); }
+  12%  { opacity: .42; }
+  70%  { opacity: .26; }
+  100% { opacity: 0; transform: translate3d(22px, -102vh, 0) scale(1.05); }
 }
 
-/* --------------------------------------------------------------------------
-   6. BACKGROUND ROTATING KOLAM WATERMARK
-   -------------------------------------------------------------------------- */
-.bg-kolam-watermark {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 580px;
-  height: 580px;
-  transform: translate(-50%, -50%);
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.kolam-spin {
-  width: 100%;
-  height: 100%;
-  animation: slowKolamSpin 75s linear infinite;
-}
-
-@keyframes slowKolamSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* --------------------------------------------------------------------------
-   7. LUXURY FLOATING AUDIO / MUSIC PLAYER PLACEHOLDER
-   -------------------------------------------------------------------------- */
-.audio-player-wrap {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 100;
-}
-
-.music-disc-btn {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--color-gold-main);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(201, 152, 36, 0.28);
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.25s ease;
-}
-.music-disc-btn:hover {
-  transform: scale(1.08);
-}
-
-.disc-vinyl {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #381e26 0%, #1f0b12 80%);
-  border: 1.5px solid var(--color-gold-main);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: discSpin 4s linear infinite;
-  animation-play-state: paused;
-}
-.disc-vinyl.playing {
-  animation-play-state: running;
-}
-
-@keyframes discSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.disc-center-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-gold-main);
-  border: 1px solid #ffffff;
-}
-
-.music-waves {
-  position: absolute;
-  bottom: -4px;
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-  height: 8px;
-}
-.music-waves span {
-  width: 2px;
-  height: 3px;
-  background: var(--color-gold-rich);
-  border-radius: 2px;
-  animation: waveBounce 0.8s ease-in-out infinite alternate;
-  animation-play-state: paused;
-}
-.music-waves.active span {
-  animation-play-state: running;
-}
-.music-waves span:nth-child(2) { animation-delay: 0.2s; height: 6px; }
-.music-waves span:nth-child(3) { animation-delay: 0.4s; height: 4px; }
-
-@keyframes waveBounce {
-  0% { transform: scaleY(0.4); }
-  100% { transform: scaleY(1.3); }
-}
-
-/* --------------------------------------------------------------------------
-   8. SCENE 1: OPENING COVER (SACRED TORANAM & NAMES)
-   -------------------------------------------------------------------------- */
-.section-cover {
-  text-align: center;
-  padding-top: 1.25rem;
-  padding-bottom: 1.85rem;
-  background: linear-gradient(180deg, #ffffff 0%, #fdfaf3 100%);
-}
-
-.sacred-toranam-box {
-  max-width: 320px;
-  margin: 0 auto 0.75rem;
-}
-
-.toranam-svg-img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 2px 5px rgba(201, 152, 36, 0.22));
-}
-
-.shree-invocation {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--bg-gold-tint);
-  border: 1px solid rgba(201, 152, 36, 0.35);
-  color: var(--color-maroon);
-  padding: 0.25rem 0.85rem;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.65rem;
-}
-
-.om-symbol {
-  color: var(--color-gold-main);
-  font-weight: 700;
-}
-
-.season-kicker {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  font-style: italic;
-  font-family: var(--font-accent);
-  margin-bottom: 0.4rem;
-}
-
-/* Couple Names Headline */
-.couple-names-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.1rem;
-  margin-bottom: 0.85rem;
-}
-
-.c-name {
-  font-family: var(--font-heading);
-  font-size: 2.15rem;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--color-maroon);
-  letter-spacing: 0.02em;
-}
-
-@media (min-width: 400px) {
-  .c-name {
-    font-size: 2.45rem;
-  }
-}
-
-.c-weds {
-  font-family: var(--font-accent);
-  font-size: 1.25rem;
-  font-style: italic;
-  color: var(--color-gold-rich);
-}
-
-.hashtag-pill-gold {
-  display: inline-block;
-  background: rgba(104, 19, 30, 0.07);
-  border: 1px solid rgba(104, 19, 30, 0.2);
-  color: var(--color-maroon);
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 0.22rem 0.75rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.85rem;
-}
-
-.invite-lead-text {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  max-width: 320px;
-  margin: 0 auto 1.25rem;
-  line-height: 1.45;
-}
-
-/* Date Summary Ribbon */
-.date-summary-gold-strip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  background: var(--bg-card-subtle);
-  border: 1px dashed var(--color-gold-border);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 0.9rem;
-  margin-bottom: 1.1rem;
-}
-
-.sum-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sum-lbl {
-  font-size: 0.64rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.sum-val {
-  font-family: var(--font-heading);
-  font-size: 0.96rem;
-  font-weight: 700;
-  color: var(--color-maroon);
-}
-
-.sum-sep {
-  color: var(--color-gold-main);
-  opacity: 0.6;
-}
-
-.scroll-indicator-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--color-gold-rich);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  opacity: 0.85;
-}
-
-.scroll-line-anim {
-  width: 1.5px;
-  height: 20px;
-  background: linear-gradient(180deg, var(--color-gold-rich) 0%, transparent 100%);
-  animation: lineDrop 1.8s ease-in-out infinite;
-}
-
-@keyframes lineDrop {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  50.1% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* --------------------------------------------------------------------------
-   9. SCENE 2: COUPLE ARTWORK STAGE
-   -------------------------------------------------------------------------- */
-.couple-art-frame-gold {
-  position: relative;
-  border-radius: var(--radius-sm);
+/* ─── 4 · THE GATE (carved doors) ───────────────────────────────────────── */
+.gate {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center;
   overflow: hidden;
-  border: 1.5px solid var(--color-gold-border);
-  box-shadow: 0 8px 24px rgba(104, 19, 30, 0.12);
-  max-height: 380px;
+}
+.gate.is-open { pointer-events: none; }
+
+/* The gate's own surface is one unbroken cloth. No seam, no centre line
+   across the names. */
+.gate {
+  background:
+    radial-gradient(130% 90% at 50% 38%, var(--plum-lit) 0%, var(--plum) 46%, var(--ink-2) 100%);
 }
 
-.couple-featured-art {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+/* The carved doors do not exist yet. They are summoned on the tap, then part
+   — so nothing cuts through the opening screen. */
+.gate-leaf {
+  position: absolute; top: 0; bottom: 0; width: 50.6%;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.16) 0 1px, transparent 1px 34px),
+    linear-gradient(180deg, var(--plum-lit) 0%, var(--plum) 42%, var(--ink-2) 100%);
+  box-shadow: inset 0 0 90px rgba(0,0,0,.6);
+  border-color: transparent;
+  opacity: 0;
+  transition: opacity .5s ease, transform 1.5s var(--ease), filter 1.5s var(--ease), border-color .5s ease;
+}
+.gate-leaf--l { left: 0;  border-right: 1px solid transparent; }
+.gate-leaf--r { right: 0; border-left:  1px solid transparent; }
+
+/* carved gold band near the meeting edge */
+.gate-leaf::before {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 18px;
+  background: linear-gradient(90deg, transparent, rgba(224,189,116,.30), rgba(248,231,184,.55), rgba(224,189,116,.30), transparent);
+  opacity: 0; transition: opacity .5s ease;
+}
+.gate-leaf--l::before { right: 0; }
+.gate-leaf--r::before { left: 0; }
+
+/* brass studs down the doors */
+.gate-stud {
+  position: absolute; width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, var(--gold-hi), var(--gold) 46%, var(--gold-deep) 100%);
+  box-shadow: 0 2px 5px rgba(0,0,0,.5);
+  opacity: 0; transform: scale(.4);
+  transition: opacity .45s ease, transform .55s cubic-bezier(.34,1.56,.64,1);
+}
+.gate-leaf--l .gate-stud { right: 34px; }
+.gate-leaf--r .gate-stud { left: 34px; }
+.gate-stud:nth-child(1) { top: 20%; transition-delay: .04s; }
+.gate-stud:nth-child(2) { top: 50%; transition-delay: .12s; }
+.gate-stud:nth-child(3) { top: 80%; transition-delay: .20s; }
+
+/* beat one — the doors materialise */
+.gate.is-arming .gate-leaf,
+.gate.is-open   .gate-leaf { opacity: 1; }
+.gate.is-arming .gate-leaf--l,
+.gate.is-open   .gate-leaf--l { border-right-color: rgba(224,189,116,.35); }
+.gate.is-arming .gate-leaf--r,
+.gate.is-open   .gate-leaf--r { border-left-color: rgba(224,189,116,.35); }
+.gate.is-arming .gate-leaf::before,
+.gate.is-open   .gate-leaf::before { opacity: 1; }
+.gate.is-arming .gate-stud,
+.gate.is-open   .gate-stud { opacity: 1; transform: none; }
+
+/* beat two — they part */
+.gate.is-open .gate-leaf--l { transform: translateX(-102%); filter: brightness(.5); }
+.gate.is-open .gate-leaf--r { transform: translateX(102%);  filter: brightness(.5); }
+
+.gate-core {
+  position: relative; z-index: 2; text-align: center;
+  padding: 0 var(--pad);
+  transition: opacity .55s ease, transform .9s var(--ease);
+}
+.gate.is-open .gate-core { opacity: 0; transform: scale(1.12); }
+
+/* self-drawing kolam */
+.gate-kolam { position: relative; width: 134px; margin: 0 auto 1.4rem; }
+.kolam-draw { fill: none; stroke: var(--gold); stroke-width: 1.4; opacity: .9; }
+.kolam-draw circle, .kolam-draw path {
+  stroke-dasharray: 700; stroke-dashoffset: 700;
+  animation: kolamDraw 2.6s var(--ease-soft) forwards;
+}
+.kolam-draw :nth-child(2) { animation-delay: .18s; }
+.kolam-draw :nth-child(3) { animation-delay: .34s; }
+.kolam-draw :nth-child(4) { animation-delay: .5s;  }
+.kolam-draw :nth-child(5) { animation-delay: .66s; }
+.kolam-draw :nth-child(6) { animation-delay: .82s; }
+@keyframes kolamDraw { to { stroke-dashoffset: 0; } }
+
+.gate-flame {
+  position: absolute; left: 50%; top: 50%;
+  width: 16px; height: 22px; margin: -11px 0 0 -8px;
+  border-radius: 50% 50% 48% 48% / 62% 62% 38% 38%;
+  background: radial-gradient(ellipse at 50% 72%, #fff6d8 0%, var(--gold-hi) 36%, var(--gold) 68%, rgba(224,189,116,0) 100%);
+  filter: blur(.4px);
+  animation: flicker 2.4s ease-in-out infinite, fadeUp .8s 1.6s both;
+}
+@keyframes flicker {
+  0%,100% { transform: scale(1) rotate(-1deg); opacity: .95; }
+  33%     { transform: scale(1.1, .94) rotate(2deg); opacity: 1; }
+  66%     { transform: scale(.94, 1.08) rotate(-2deg); opacity: .88; }
 }
 
-.couple-caption-glass {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(46, 9, 15, 0.88) 75%);
-  padding: 1.25rem 0.85rem 0.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  color: #ffffff;
+.gate-sri {
+  font-family: var(--f-tamil); font-size: 1.05rem; letter-spacing: .22em;
+  color: var(--gold); opacity: 0; animation: fadeUp .9s 1.1s both;
+}
+.gate-names {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(2.9rem, 13vw, 5.4rem); line-height: 1.02;
+  margin: .5rem 0 .2rem; color: var(--ivory);
+}
+.gate-names .gate-n { opacity: 0; display: inline-block; animation: fadeUp 1s both; }
+.gate-names .gate-n:nth-of-type(1) { animation-delay: 1.3s; }
+.gate-names .gate-n:nth-of-type(2) { animation-delay: 1.75s; }
+.gate-amp {
+  display: block; font-family: var(--f-head); font-style: normal;
+  font-size: .26em; letter-spacing: .4em; text-transform: lowercase;
+  color: var(--gold); opacity: 0; animation: fadeUp .8s 1.55s both;
+  margin: .12em 0;
+}
+.gate-tag {
+  font-size: .72rem; letter-spacing: .36em; text-transform: uppercase;
+  color: var(--ivory-soft); margin-top: .9rem;
+  opacity: 0; animation: fadeUp .9s 2.05s both;
 }
 
-.caption-names {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.caption-place {
-  font-size: 0.72rem;
-  opacity: 0.85;
-}
-
-/* --------------------------------------------------------------------------
-   10. SCENE 3: ENGAGEMENT (NATURAL RINGS & CEREMONY PAINTING)
-   -------------------------------------------------------------------------- */
-.rings-natural-card {
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--color-gold-border);
-  border-radius: var(--radius-sm);
-  padding: 0.85rem;
-  margin-bottom: 1.25rem;
-}
-
-.rings-img-frame {
-  position: relative;
-  border-radius: var(--radius-sm);
+.gate-key {
+  position: relative; margin-top: 2.2rem;
+  padding: .9rem 2rem .9rem 3.3rem;
+  border: 1px solid var(--gold-faint); border-radius: 999px;
+  font-size: .76rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--gold-hi);
+  background: rgba(224,189,116,.05);
+  opacity: 0; animation: fadeUp .9s 2.35s both;
+  transition: background .4s, border-color .4s, letter-spacing .4s;
   overflow: hidden;
-  border: 1px solid rgba(201, 152, 36, 0.35);
-  max-height: 230px;
 }
+.gate-key:hover { background: rgba(224,189,116,.13); border-color: rgba(224,189,116,.5); letter-spacing: .3em; }
+.gate-key-ring {
+  position: absolute; left: 1.4rem; top: 50%; width: 15px; height: 15px;
+  margin-top: -7.5px; border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  animation: ringSpin 3.4s linear infinite;
+}
+.gate-key-ring::after {
+  content: ''; position: absolute; top: -3px; left: 50%; margin-left: -2px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 6px 2px rgba(255,255,255,.75);
+}
+@keyframes ringSpin { to { transform: rotate(360deg); } }
 
-.rings-natural-img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
+/* ─── 5 · SCENE SHELL ───────────────────────────────────────────────────── */
+.story { position: relative; z-index: 3; }
 
-/* Diamond Light Ray Sparkle Flare */
-.diamond-sparkle-shine {
-  position: absolute;
-  top: 42%;
-  left: 49%;
-  width: 32px;
-  height: 32px;
-  transform: translate(-50%, -50%) scale(0);
-  background: radial-gradient(circle, #ffffff 0%, #fef3c7 40%, rgba(212, 175, 55, 0.8) 70%, transparent 100%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 5;
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.diamond-sparkle-shine.active {
-  transform: translate(-50%, -50%) scale(2.2);
-  filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.9));
-}
-
-.rings-card-desc {
-  text-align: center;
-  padding-top: 0.6rem;
-}
-
-.rings-tagline {
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  color: var(--color-maroon);
-  font-weight: 600;
-}
-
-.ceremony-exchange-frame {
+.scene {
   position: relative;
-  border-radius: var(--radius-sm);
+  min-height: 100svh;
+  display: grid; align-items: center;
+  padding: clamp(2.5rem, 7vh, 5rem) var(--pad);
   overflow: hidden;
-  border: 1px solid var(--color-gold-border);
-  box-shadow: 0 6px 18px rgba(104, 19, 30, 0.1);
-  max-height: 220px;
+  isolation: isolate;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
-.ceremony-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+/* faded full-bleed artwork backdrop */
+.scene-bg {
+  position: absolute; inset: -12% 0; z-index: -2;
+  will-change: transform;
+}
+/* picture is a shrink-to-fit box: without an explicit height the img's
+   height:100% resolves to auto and the backdrop renders as a band. */
+.scene-bg picture { display: block; width: 100%; height: 100%; }
+.scene-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: .62;
+  filter: saturate(.86) contrast(1.02) brightness(.86);
+}
+.scene-bg--soft    img { opacity: .50; filter: saturate(.78) blur(1.5px) brightness(.8); }
+.scene-bg--whisper img { opacity: .30; filter: saturate(.7) blur(3px) brightness(.68); }
+.scene-bg--rich    img { opacity: .80; filter: saturate(.95) brightness(.9); }
+
+/* ink wash — dark only where sections meet, so the artwork stays visible */
+.scene-veil {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, var(--ink) 0%, rgba(20,8,18,.52) 20%, rgba(20,8,18,.48) 80%, var(--ink) 100%),
+    radial-gradient(135% 85% at 50% 50%, rgba(20,8,18,.08) 0%, rgba(20,8,18,.5) 70%, rgba(20,8,18,.84) 100%);
+}
+.scene-veil--hero {
+  background:
+    linear-gradient(180deg, rgba(20,8,18,.72) 0%, rgba(20,8,18,.12) 24%, rgba(20,8,18,.55) 58%, rgba(20,8,18,.94) 88%, var(--ink) 100%),
+    radial-gradient(110% 70% at 50% 46%, rgba(20,8,18,0) 0%, rgba(20,8,18,.42) 100%);
+}
+/* the ring scene stays lit almost edge to edge — only the seams go dark.
+   The title block carries its own scrim instead of crushing half the frame. */
+.scene-veil--ring {
+  background:
+    linear-gradient(180deg, var(--ink) 0%, rgba(20,8,18,.30) 10%, rgba(20,8,18,.14) 38%, rgba(20,8,18,.30) 66%, rgba(20,8,18,.72) 88%, var(--ink) 100%);
+}
+.scene-veil--end {
+  background:
+    linear-gradient(180deg, var(--ink) 0%, rgba(20,8,18,.5) 28%, rgba(20,8,18,.6) 72%, var(--ink) 100%),
+    radial-gradient(100% 70% at 50% 42%, rgba(46,17,41,.25) 0%, rgba(20,8,18,.82) 78%);
 }
 
-.ceremony-overlay-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(46, 9, 15, 0.85) 75%);
-  padding: 1rem 0.75rem 0.45rem;
-  text-align: center;
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
+/* keep copy readable over artwork without crushing the image */
+.scene-in { text-shadow: 0 1px 14px rgba(20,8,18,.75), 0 0 36px rgba(20,8,18,.55); }
+.scene-in img, .scene-in svg { text-shadow: none; }
+
+.kenburns { animation: kb 26s ease-in-out infinite alternate; }
+.kenburns--slow { animation-duration: 38s; }
+@keyframes kb {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to   { transform: scale(1.16) translate3d(-1.5%, -2%, 0); }
 }
 
-/* --------------------------------------------------------------------------
-   11. SCENE 4: BELOVED PARENTS & BLESSINGS
-   -------------------------------------------------------------------------- */
-.family-pillars-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+/* the two portraits want the full width of a phone screen */
+.scene--pair { padding-inline: clamp(.75rem, 3vw, 3rem); }
+
+.scene-in { position: relative; width: 100%; max-width: 760px; margin: 0 auto; }
+.scene-in.narrow { max-width: 580px; }
+.scene-in.center { text-align: center; }
+
+/* ─── 6 · SHARED TYPE PIECES ────────────────────────────────────────────── */
+.eyebrow {
+  font-size: .68rem; letter-spacing: .34em; text-transform: uppercase;
+  color: var(--ivory-soft); text-align: center;
 }
 
-.family-pillar-box {
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--color-gold-border);
-  border-radius: var(--radius-sm);
-  padding: 0.85rem 0.75rem;
-  text-align: center;
+.display {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(2.5rem, 11.5vw, 5rem); line-height: 1.04;
+  text-align: center; margin: 1rem 0 .4rem;
+}
+.display-l { display: block; color: var(--ivory); }
+/* solid gold, not background-clip: per-letter spans would knock a clipped
+   gradient out entirely. The glow carries the shimmer instead. */
+.display-l--b { color: var(--gold-hi); animation: goldGlow 5.5s ease-in-out infinite; }
+@keyframes goldGlow {
+  0%,100% { text-shadow: 0 1px 14px rgba(20,8,18,.75), 0 0 22px rgba(224,189,116,.18); }
+  50%     { text-shadow: 0 1px 14px rgba(20,8,18,.75), 0 0 34px rgba(248,231,184,.42); }
+}
+.display-join {
+  display: flex; align-items: center; justify-content: center; gap: .9rem;
+  font-family: var(--f-head); font-size: .2em; letter-spacing: .4em;
+  text-transform: lowercase; color: var(--gold); margin: .18em 0;
+}
+.display-join i {
+  flex: 0 1 56px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-faint), var(--gold));
+}
+.display-join i:last-child { background: linear-gradient(270deg, transparent, var(--gold-faint), var(--gold)); }
+
+.shead { text-align: center; margin-bottom: 2.4rem; }
+.shead-k {
+  display: block; font-size: .66rem; letter-spacing: .4em;
+  text-transform: uppercase; color: var(--gold); opacity: .85;
+}
+.shead-t {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(1.75rem, 6.6vw, 2.9rem); line-height: 1.2;
+  margin-top: .5rem; color: var(--ivory);
 }
 
-.pillar-label {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  background: rgba(104, 19, 30, 0.08);
-  color: var(--color-maroon);
-  padding: 0.15rem 0.55rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.3rem;
+.zari {
+  display: block; width: 132px; height: 9px; margin: 1.1rem auto 0;
+  background:
+    radial-gradient(circle at 50% 50%, var(--gold) 0 2.6px, transparent 2.6px),
+    linear-gradient(90deg, transparent, var(--gold-faint) 18%, var(--gold) 50%, var(--gold-faint) 82%, transparent);
+  background-size: 100% 100%, 100% 1px;
+  background-position: center, center;
+  background-repeat: no-repeat;
 }
 
-.pillar-son-title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  color: var(--color-maroon);
-  margin-bottom: 0.6rem;
+.hash {
+  display: flex; justify-content: center; margin-top: 1.5rem;
+}
+.hash span {
+  position: relative; overflow: hidden;
+  padding: .5rem 1.4rem; border-radius: 999px;
+  border: 1px solid var(--gold-faint);
+  background: rgba(224,189,116,.07);
+  font-size: .74rem; letter-spacing: .14em; color: var(--gold-hi);
+}
+.hash span::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(248,231,184,.4) 50%, transparent 62%);
+  transform: translateX(-130%);
+  animation: sheen 4.5s 1.2s ease-in-out infinite;
+}
+@keyframes sheen { 0% { transform: translateX(-130%); } 36%,100% { transform: translateX(130%); } }
+.hash--sm span { font-size: .68rem; padding: .42rem 1.1rem; }
+
+/* ─── 7 · SCENE 01 · HERO ───────────────────────────────────────────────── */
+.hero-in { text-align: center; }
+
+.hero-sub {
+  font-family: var(--f-display); font-style: italic; font-weight: 300;
+  font-size: clamp(1.05rem, 4.4vw, 1.5rem);
+  color: var(--ivory-dim); margin-top: .7rem;
 }
 
-.parents-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+.hero-strip {
+  display: flex; align-items: stretch; justify-content: center;
+  gap: clamp(.9rem, 4vw, 2rem);
+  margin-top: 2.1rem; padding-top: 1.5rem;
+  border-top: 1px solid rgba(224,189,116,.16);
+}
+.hs { display: grid; gap: .2rem; min-width: 62px; }
+.hs b {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(1.1rem, 4.6vw, 1.5rem); color: var(--gold-hi); letter-spacing: .02em;
+}
+.hs--big b { font-size: clamp(1.35rem, 5.8vw, 1.9rem); }
+.hs s { display: block; height: 1px; background: var(--gold-faint); text-decoration: none; margin: .18rem auto; width: 60%; }
+.hs span { font-size: .6rem; letter-spacing: .24em; text-transform: uppercase; color: var(--ivory-soft); }
+
+/* ─── 8 · SCENE 02 · WORDS ──────────────────────────────────────────────── */
+/* No ornament here — the verse is the whole scene, so it gets the room and
+   a soft lamp-glow behind the type instead of an object above it. */
+.scene--words .scene-in::before {
+  content: ''; position: absolute; left: 50%; top: 42%;
+  width: min(120%, 460px); aspect-ratio: 1; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(248,231,184,.10) 0%, rgba(224,189,116,.05) 38%, transparent 68%);
+  pointer-events: none; z-index: -1;
+  animation: glowPulse 7s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100% { opacity: .7; transform: translate(-50%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.08); } }
+
+.wipe {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(1.6rem, 7vw, 2.6rem); line-height: 1.42;
+  text-align: center; color: var(--ivory);
+}
+.wipe--gold { color: var(--gold-hi); font-style: italic; }
+
+/* a thread of zari between the verse and the formal wording */
+.words-foot {
+  position: relative;
+  margin-top: 2.6rem; padding-top: 2.1rem; text-align: center;
+  font-size: .9rem; line-height: 1.85; color: var(--ivory-dim);
+  max-width: 44ch; margin-inline: auto;
+}
+.words-foot::before {
+  content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+  width: 112px; height: 7px;
+  background:
+    radial-gradient(circle at 50% 50%, var(--gold) 0 2.4px, transparent 2.4px),
+    linear-gradient(90deg, transparent, var(--gold-faint) 20%, var(--gold) 50%, var(--gold-faint) 80%, transparent);
+  background-size: 100% 100%, 100% 1px;
+  background-position: center, center;
+  background-repeat: no-repeat;
 }
 
-.parent-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  font-size: 0.88rem;
+/* ─── 9 · SCENE 03 · THE PAIR ───────────────────────────────────────────── */
+/* Side by side at every width — the pairing IS the point, so it never
+   stacks into two separate people on a phone.
+   The figures become `display: contents` so frames share one grid row and
+   captions share another: the two portraits then line up exactly, however
+   long the parents' names run. */
+.pair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: clamp(.4rem, 2.2vw, 3rem);
+  row-gap: .85rem;
+  align-items: start;
+}
+.port { display: contents; }
+
+.port .port-frame   { grid-row: 1; justify-self: end;   width: 100%; max-width: 330px; }
+.port figcaption    { grid-row: 2; justify-self: end;   width: 100%; max-width: 330px; text-align: center; }
+.port--b .port-frame,
+.port--b figcaption { justify-self: start; }
+.port .port-frame   { grid-column: 1; }
+.port figcaption    { grid-column: 1; }
+.port--b .port-frame,
+.port--b figcaption { grid-column: 3; }
+
+.pair-knot { grid-column: 2; grid-row: 1; align-self: center; }
+
+/* temple-arch silhouette frame */
+.port-frame {
+  position: relative; overflow: hidden;
+  border-radius: 50% 50% 14px 14px / 42% 42% 6px 6px;
+  border: 1px solid rgba(224,189,116,.42);
+  box-shadow: 0 18px 48px -14px rgba(0,0,0,.8), inset 0 0 0 5px rgba(20,8,18,.55);
+  background: var(--plum);
+}
+.port-frame img {
+  width: 100%; aspect-ratio: 1 / 1.3; object-fit: cover; object-position: center 20%;
+  filter: saturate(.92) contrast(1.03);
+  transition: transform 1.2s var(--ease);
+}
+.port-frame:hover img { transform: scale(1.05); }
+
+.port-sheen {
+  position: absolute; inset: 0;
+  background: linear-gradient(118deg, transparent 36%, rgba(248,231,184,.28) 49%, transparent 60%);
+  transform: translateX(-120%);
+}
+.port-frame.rv-in .port-sheen { animation: sheenOnce 1.5s .55s ease-out forwards; }
+@keyframes sheenOnce { to { transform: translateX(120%); } }
+
+.port figcaption { display: grid; gap: .3rem; align-content: start; }
+.port figcaption b {
+  font-family: var(--f-display); font-weight: 500;
+  font-size: clamp(.98rem, 4.2vw, 1.6rem); color: var(--gold-hi); letter-spacing: .01em;
+  line-height: 1.2;
+}
+.port figcaption span {
+  font-size: clamp(.6rem, 2.7vw, .74rem); line-height: 1.55;
+  letter-spacing: .04em; color: var(--ivory-soft);
 }
 
-.rel-label {
-  color: var(--text-muted);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  min-width: 50px;
-  text-align: right;
+.pair-knot { width: clamp(34px, 11vw, 86px); opacity: .95; }
+.pair-knot img { animation: knotFloat 5s ease-in-out infinite; filter: drop-shadow(0 6px 14px rgba(0,0,0,.55)); }
+@keyframes knotFloat { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-9px) rotate(3deg); } }
+
+/* ─── 10 · SCENE 04 · RING ──────────────────────────────────────────────── */
+/* film-title framing: the hands stay lit up top, the words sit in the dark
+   lower third rather than sitting on the ring itself */
+.scene--ring { align-items: end; }
+.scene--ring .scene-bg img { object-position: center 42%; }
+.scene--ring .scene-in {
+  padding: 1.8rem 1.2rem 2rem;
+  border-radius: 20px;
+  background: radial-gradient(70% 90% at 50% 55%, rgba(20,8,18,.82) 0%, rgba(20,8,18,.55) 58%, rgba(20,8,18,0) 100%);
+}
+.ring-title { margin: .6rem 0 0; }
+.ring-title .display-l {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(2.6rem, 13vw, 5rem); line-height: 1;
+  color: var(--gold-hi);
+  animation: goldGlow 5.5s ease-in-out infinite;
+}
+.ring-line {
+  margin-top: 1.4rem; font-size: .92rem; line-height: 1.9;
+  color: var(--ivory-dim); max-width: 36ch; margin-inline: auto;
+}
+.ring-spark {
+  position: absolute; left: 50%; top: 42%; width: 7px; height: 7px;
+  margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 10px 3px rgba(255,255,255,.9), 0 0 26px 9px rgba(248,231,184,.45);
+  opacity: 0; z-index: 1;
+}
+.ring-spark.flash { animation: sparkFlash 1.5s ease-out; }
+@keyframes sparkFlash {
+  0%   { opacity: 0; transform: scale(.2) rotate(0deg); }
+  22%  { opacity: 1; transform: scale(1.5) rotate(45deg); }
+  52%  { opacity: .55; transform: scale(.9) rotate(90deg); }
+  100% { opacity: 0; transform: scale(2.2) rotate(140deg); }
 }
 
-.rel-name {
-  color: var(--text-primary);
-  font-weight: 600;
+/* ─── 11 · SCENE 05 · WHEN ──────────────────────────────────────────────── */
+.when-time {
+  margin-top: 1rem; font-size: .76rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--ivory-dim);
 }
 
-.formal-wording-panel {
-  border-top: 1px dashed var(--color-gold-border);
-  padding-top: 1rem;
+.count {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: .5rem; margin-top: .6rem;
+}
+.count-c {
+  padding: 1rem .3rem .75rem; text-align: center;
+  border: 1px solid rgba(224,189,116,.18); border-radius: 12px;
+  background: linear-gradient(180deg, rgba(67,24,59,.45), rgba(20,8,18,.35));
+  backdrop-filter: blur(3px);
+}
+.count-c b {
+  display: block; font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(1.6rem, 8vw, 2.4rem); line-height: 1; color: var(--gold-hi);
+  font-variant-numeric: tabular-nums;
+}
+.count-c b.tick { animation: tickPop .4s var(--ease); }
+@keyframes tickPop { 0% { transform: translateY(-7px) scale(1.1); opacity: .35; } 100% { transform: none; opacity: 1; } }
+.count-c span {
+  display: block; margin-top: .45rem;
+  font-size: .55rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ivory-soft);
+}
+.count-note {
+  text-align: center; margin-top: .85rem;
+  font-family: var(--f-display); font-style: italic; font-size: .95rem; color: var(--ivory-soft);
 }
 
-.formal-invitation-quote {
-  font-family: var(--font-accent);
-  font-size: 0.92rem;
-  font-style: italic;
-  color: var(--color-maroon-dark);
-  line-height: 1.55;
+.acts { display: grid; gap: .7rem; margin-top: 2.2rem; }
+.act {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: .95rem 1.4rem; border-radius: 999px;
+  border: 1px solid rgba(224,189,116,.26);
+  font-size: .74rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ivory); background: rgba(224,189,116,.05);
+  transition: background .35s, border-color .35s, transform .35s var(--ease);
+}
+.act svg { width: 17px; height: 17px; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.act:hover { background: rgba(224,189,116,.14); border-color: rgba(224,189,116,.55); transform: translateY(-2px); }
+.act--pri {
+  color: var(--ink); border-color: transparent;
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-hi) 48%, var(--gold) 100%);
+  font-weight: 500;
+}
+.act--pri svg { stroke: var(--ink); }
+.act--pri:hover { filter: brightness(1.08); background: linear-gradient(100deg, var(--gold-hi), var(--gold-hi)); }
+.act--wide { margin-top: 2rem; }
+
+/* ─── 12 · SCENE 06 · WHERE ─────────────────────────────────────────────── */
+.arch-mark { width: min(86%, 320px); margin: 0 auto 1.6rem; opacity: .8; color: var(--gold); }
+.venue-name {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(2rem, 8.5vw, 3rem); margin-top: .6rem; color: var(--gold-hi);
+}
+.venue-addr {
+  margin-top: .9rem; font-size: .88rem; line-height: 1.95; color: var(--ivory-dim);
+  letter-spacing: .03em;
 }
 
-/* --------------------------------------------------------------------------
-   12. SCENE 5: CEREMONY DETAILS, COUNTDOWN & SMOOTH NAV
-   -------------------------------------------------------------------------- */
-.countdown-gold-card {
-  background: linear-gradient(135deg, #fffbf2 0%, #f7edd7 100%);
-  border: 1px solid rgba(201, 152, 36, 0.4);
-  border-radius: var(--radius-sm);
-  padding: 0.9rem 0.75rem;
-  text-align: center;
-  margin-bottom: 1.25rem;
+/* ─── 13 · SCENE 07 · END ───────────────────────────────────────────────── */
+.end-kolam { width: 150px; margin: 0 auto 1.8rem; opacity: .75; }
+.end-sri { font-family: var(--f-tamil); letter-spacing: .2em; color: var(--gold); font-size: 1.05rem; }
+.end-names {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(2.4rem, 11vw, 4rem); margin: .4rem 0 0; color: var(--ivory);
+}
+.end-names em { font-style: normal; color: var(--gold); }
+.end-quote {
+  margin: 1.5rem auto 0; max-width: 34ch;
+  font-family: var(--f-display); font-style: italic; font-weight: 300;
+  font-size: clamp(1rem, 4.4vw, 1.25rem); line-height: 1.75; color: var(--ivory-dim);
+}
+.end-foot {
+  margin-top: 1.8rem; font-size: .62rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--ivory-soft);
 }
 
-.countdown-badge {
-  display: block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-maroon);
-  font-weight: 700;
-  margin-bottom: 0.6rem;
+/* ─── 14 · SCENE DOTS ───────────────────────────────────────────────────── */
+/* Replaces the old "scroll" cue and the progress rail: with snap scrolling
+   what you want to know is which card you are on and how many are left. */
+.dots {
+  position: fixed; right: max(.5rem, env(safe-area-inset-right)); top: 50%;
+  transform: translateY(-50%);
+  z-index: 70; display: flex; flex-direction: column;
+  align-items: center; gap: .55rem;
+  padding: .55rem .4rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity .8s ease .3s;
+}
+body.is-open .dots { opacity: 1; pointer-events: auto; }
+
+.dot {
+  position: relative; display: block;
+  width: 22px; height: 16px;            /* generous tap target */
+  border: 0; background: none; padding: 0; cursor: pointer;
+}
+.dot::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px;
+  border-radius: 99px; background: var(--gold);
+  opacity: .32;
+  transition: opacity .45s var(--ease), height .45s var(--ease), margin-top .45s var(--ease), box-shadow .45s;
+}
+.dot.on::after {
+  opacity: 1; height: 16px; margin-top: -8px;
+  box-shadow: 0 0 9px rgba(224,189,116,.65);
 }
 
-.countdown-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
+/* label slides out on hover, desktop only */
+.dot-label {
+  position: absolute; right: 140%; top: 50%; transform: translateY(-50%);
+  white-space: nowrap; font-size: .58rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold-hi);
+  background: rgba(20,8,18,.8); padding: .25rem .55rem; border-radius: 4px;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+@media (hover: hover) {
+  .dot:hover .dot-label { opacity: 1; }
 }
 
-.digit-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid var(--color-gold-border);
-  border-radius: 4px;
-  padding: 0.35rem 0.55rem;
-  min-width: 48px;
+/* the one gentle nudge that the page moves, on the first scene only */
+.nudge {
+  position: absolute; left: 50%; bottom: clamp(1rem, 3.5vh, 2.2rem);
+  transform: translateX(-50%);
+  width: 26px; height: 26px; z-index: 4;
+  opacity: 0; animation: fadeUp .8s 2.6s forwards;
+  transition: opacity .5s ease;
+}
+.nudge.gone { opacity: 0 !important; }
+.nudge::before, .nudge::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 11px; height: 11px; margin: -7px 0 0 -5.5px;
+  border-right: 1.4px solid var(--gold);
+  border-bottom: 1.4px solid var(--gold);
+  transform: rotate(45deg);
+  animation: nudgeBob 2.2s ease-in-out infinite;
+}
+.nudge::after { animation-delay: .22s; opacity: .45; margin-top: -1px; }
+@keyframes nudgeBob {
+  0%, 100% { transform: rotate(45deg) translate(-2px, -2px); opacity: .25; }
+  50%      { transform: rotate(45deg) translate(2px, 2px);   opacity: .9; }
 }
 
-.d-num {
-  font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--color-maroon);
-  line-height: 1;
+/* ─── 15 · REVEAL ENGINE ────────────────────────────────────────────────── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+[data-rv] { will-change: transform, opacity, clip-path; }
+
+[data-rv="up"]    { opacity: 0; transform: translateY(34px); transition: opacity .95s var(--ease), transform .95s var(--ease); }
+[data-rv="drop"]  { opacity: 0; transform: translateY(-34px) scaleX(.9); transition: opacity 1.1s var(--ease), transform 1.1s var(--ease); }
+[data-rv="pop"]   { opacity: 0; transform: scale(.72); transition: opacity .8s var(--ease), transform .9s cubic-bezier(.34,1.56,.64,1); }
+[data-rv="wipe"]  { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(12px);
+                    transition: opacity .7s var(--ease), clip-path 1.15s var(--ease-soft), transform .9s var(--ease); }
+[data-rv="arch"]  { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(26px) scale(.97);
+                    transition: opacity .8s var(--ease), clip-path 1.25s var(--ease-soft), transform 1.1s var(--ease); }
+[data-rv="letters"] { }
+[data-rv="draw"]  { opacity: 0; transform: scale(.86) rotate(-8deg); transition: opacity 1s var(--ease), transform 1.3s var(--ease); }
+
+[data-rv].rv-in {
+  opacity: 1; transform: none; clip-path: inset(0 0 0 0);
 }
 
-.d-label {
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-top: 0.15rem;
+/* per-letter name reveal */
+.ltr {
+  display: inline-block; opacity: 0;
+  transform: translateY(44px) rotate(5deg);
+  transition: opacity .75s var(--ease), transform .95s var(--ease);
+}
+.rv-in .ltr { opacity: 1; transform: none; }
+
+/* ─── 16 · DESKTOP ──────────────────────────────────────────────────────── */
+@media (min-width: 760px) {
+  .scene { padding-inline: clamp(2rem, 7vw, 6rem); }
+  .scene-in { max-width: 880px; }
+  .scene-in.narrow { max-width: 640px; }
+
+  .acts { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .act--wide { grid-column: 1 / -1; }
+
+  .count { gap: .9rem; }
+  .count-c { padding: 1.5rem .5rem 1.1rem; border-radius: 16px; }
+
+  .hero-strip { gap: 3rem; }
+
+  .dots { right: 1.4rem; gap: .75rem; }
+  .dot { width: 26px; height: 18px; }
+
+  /* keep the pair scene inside a 768px-tall laptop, not just a 800px one */
+  .port .port-frame, .port figcaption { max-width: 280px; }
+  .port-frame img { aspect-ratio: 1 / 1.22; }
 }
 
-.d-sep {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  color: var(--color-gold-rich);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+@media (min-width: 1200px) {
+  .scene-in { max-width: 980px; }
+  .scene-bg img { opacity: .34; }
+  .scene-bg--rich img { opacity: .5; }
 }
 
-.event-rows-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.35rem;
+/* every scene has to fit one screen for the snap to feel right, so short
+   phones tighten the vertical rhythm rather than overflowing */
+@media (max-height: 700px) {
+  .scene { padding-block: 2rem; }
+  .shead { margin-bottom: 1.4rem; }
+  .words-foot { margin-top: 1.7rem; padding-top: 1.4rem; font-size: .82rem; line-height: 1.7; }
+  .hero-strip { margin-top: 1.4rem; padding-top: 1rem; }
+  .end-kolam { width: 108px; margin-bottom: 1.1rem; }
+  .arch-mark { margin-bottom: 1rem; }
+  .count-c { padding: .7rem .25rem .55rem; }
+  .acts { margin-top: 1.4rem; }
+  .nudge { display: none; }
 }
 
-.event-tile-gold {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--color-gold-border);
-  border-radius: var(--radius-sm);
-  padding: 0.85rem;
-}
-
-.tile-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  background: rgba(201, 152, 36, 0.12);
-  color: var(--color-gold-rich);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.tile-icon-box svg {
-  width: 19px;
-  height: 19px;
-}
-
-.tile-texts {
-  display: flex;
-  flex-direction: column;
-}
-
-.tile-caption {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-}
-
-.tile-title {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  color: var(--color-maroon);
-  margin: 0.1rem 0;
-}
-
-.tile-time, .tile-address {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* Single Smooth, Refined Navigation Link (Smooth, not thick!) */
-.smooth-navigation-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
-.btn-smooth-maps {
-  width: 100%;
-  background: linear-gradient(135deg, rgba(201, 152, 36, 0.12) 0%, rgba(201, 152, 36, 0.05) 100%);
-  border: 1.5px solid var(--color-gold-main);
-  color: var(--color-maroon);
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  padding: 0.75rem 1.25rem;
-  border-radius: 100px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(201, 152, 36, 0.1);
-  min-height: 44px;
-}
-
-.btn-smooth-maps:hover {
-  background: var(--color-gold-main);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(201, 152, 36, 0.3);
-}
-
-.maps-pin-icon {
-  width: 17px;
-  height: 17px;
-  color: var(--color-gold-rich);
-  transition: color 0.3s ease;
-}
-.btn-smooth-maps:hover .maps-pin-icon {
-  color: #ffffff;
-}
-
-.arrow-forward-icon {
-  width: 15px;
-  height: 15px;
-  transition: transform 0.25s ease;
-}
-.btn-smooth-maps:hover .arrow-forward-icon {
-  transform: translateX(4px);
-}
-
-/* --------------------------------------------------------------------------
-   13. SCENE 6: CLOSING BLESSING CARD
-   -------------------------------------------------------------------------- */
-.section-closing {
-  background: linear-gradient(180deg, #ffffff 0%, #fbf5ea 100%);
-  padding: 1.85rem 1.25rem;
-}
-
-.closing-mandala-wrap {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto 0.6rem;
-}
-.closing-kolam-svg {
-  width: 100%;
-  height: 100%;
-  color: var(--color-gold-main);
-}
-
-.closing-couple-title {
-  font-family: var(--font-heading);
-  font-size: 1.45rem;
-  color: var(--color-maroon);
-  margin-bottom: 0.2rem;
-}
-
-.closing-hashtag-gold {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--color-gold-rich);
-  margin-bottom: 0.6rem;
-}
-
-.closing-blessing-quote {
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
-}
-
-.closing-location-line {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  border-top: 1px solid var(--color-gold-border);
-  padding-top: 0.75rem;
-}
-
-/* --------------------------------------------------------------------------
-   14. REDUCED MOTION PREFERENCES
-   -------------------------------------------------------------------------- */
+/* ─── 17 · ACCESSIBILITY ────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
-  .single-petal-node, .kolam-spin, .disc-vinyl {
-    animation: none !important;
-  }
+  [data-rv], .ltr { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .petal-field, .ember-field, .grain, .nudge { display: none; }
+  .scene-bg { transform: none !important; }
+  html { scroll-snap-type: none; }
+}
+
+@media print {
+  .gate, .dots, .nudge, .petal-field, .ember-field, .grain { display: none !important; }
+  html { scroll-snap-type: none; }
+  body { background: #fff; color: #000; }
+  .scene { min-height: auto; page-break-inside: avoid; }
+  .scene-bg { display: none; }
 }

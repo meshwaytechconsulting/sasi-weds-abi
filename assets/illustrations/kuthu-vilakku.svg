@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 180" fill="none" stroke="currentColor">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 180" fill="none" stroke="#e0bd74">
   <!-- Lamp Finial / Annam Bird Motif -->
-  <path d="M50 12 C53 8, 56 6, 60 7 C62 8, 62 11, 59 13 C56 15, 52 17, 50 20 C48 17, 44 15, 41 13 C38 11, 38 8, 40 7 C44 6, 47 8, 50 12 Z" fill="currentColor"/>
+  <path d="M50 12 C53 8, 56 6, 60 7 C62 8, 62 11, 59 13 C56 15, 52 17, 50 20 C48 17, 44 15, 41 13 C38 11, 38 8, 40 7 C44 6, 47 8, 50 12 Z" fill="#e0bd74"/>
   <!-- Top Tier -->
-  <path d="M42 22 H58 V28 C58 30, 55 32, 50 32 C45 32, 42 30, 42 28 Z" fill="currentColor" fill-opacity="0.3" stroke-width="1.5"/>
+  <path d="M42 22 H58 V28 C58 30, 55 32, 50 32 C45 32, 42 30, 42 28 Z" fill="#e0bd74" fill-opacity="0.3" stroke-width="1.5"/>
   <!-- Oil Bowl (Thattu) with 5 wicks -->
-  <path d="M22 45 C30 42, 70 42, 78 45 C80 50, 72 56, 50 56 C28 56, 20 50, 22 45 Z" fill="currentColor" fill-opacity="0.25" stroke-width="2"/>
+  <path d="M22 45 C30 42, 70 42, 78 45 C80 50, 72 56, 50 56 C28 56, 20 50, 22 45 Z" fill="#e0bd74" fill-opacity="0.25" stroke-width="2"/>
   <!-- Flame center -->
   <path d="M50 36 C52 40, 52 44, 50 45 C48 44, 48 40, 50 36 Z" fill="#F59E0B" stroke="#D97706" stroke-width="1"/>
   <circle cx="50" cy="42" r="1.5" fill="#FEF3C7"/>
@@ -12,11 +12,11 @@
   <path d="M30 40 C31 43, 31 45, 30 46 C29 45, 29 43, 30 40 Z" fill="#F59E0B" stroke="#D97706" stroke-width="1"/>
   <path d="M70 40 C71 43, 71 45, 70 46 C69 45, 69 43, 70 40 Z" fill="#F59E0B" stroke="#D97706" stroke-width="1"/>
   <!-- Central Ornamental Column -->
-  <path d="M47 56 H53 V75 H47 Z" fill="currentColor" stroke-width="1.5"/>
-  <circle cx="50" cy="80" r="8" fill="currentColor" fill-opacity="0.25" stroke-width="1.5"/>
-  <path d="M48 88 H52 V120 H48 Z" fill="currentColor" stroke-width="1.5"/>
-  <ellipse cx="50" cy="125" rx="14" ry="5" fill="currentColor" fill-opacity="0.25" stroke-width="1.5"/>
+  <path d="M47 56 H53 V75 H47 Z" fill="#e0bd74" stroke-width="1.5"/>
+  <circle cx="50" cy="80" r="8" fill="#e0bd74" fill-opacity="0.25" stroke-width="1.5"/>
+  <path d="M48 88 H52 V120 H48 Z" fill="#e0bd74" stroke-width="1.5"/>
+  <ellipse cx="50" cy="125" rx="14" ry="5" fill="#e0bd74" fill-opacity="0.25" stroke-width="1.5"/>
   <path d="M46 130 H54 V150 H46 Z" stroke-width="1.5"/>
   <!-- Pedestal Base (Peedam) -->
-  <path d="M25 168 C35 155, 65 155, 75 168 C76 172, 70 174, 50 174 C30 174, 24 172, 25 168 Z" fill="currentColor" fill-opacity="0.3" stroke-width="2"/>
+  <path d="M25 168 C35 155, 65 155, 75 168 C76 172, 70 174, 50 174 C30 174, 24 172, 25 168 Z" fill="#e0bd74" fill-opacity="0.3" stroke-width="2"/>
 </svg>
