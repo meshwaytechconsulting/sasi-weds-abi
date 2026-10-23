@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none">
+  <defs>
+    <linearGradient id="goldGroom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#78350F" />
+    </linearGradient>
+    <linearGradient id="goldBride" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF3C7" />
+      <stop offset="40%" stop-color="#F59E0B" />
+      <stop offset="80%" stop-color="#B45309" />
+      <stop offset="100%" stop-color="#78350F" />
+    </linearGradient>
+    <filter id="ringGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Groom's Ring (Left) -->
+  <g id="groom-ring" class="ring-svg-elem ring-groom" transform="translate(15, 20)">
+    <ellipse cx="40" cy="40" rx="30" ry="24" stroke="url(#goldGroom)" stroke-width="7" fill="none" filter="url(#ringGlow)" />
+    <ellipse cx="40" cy="40" rx="30" ry="24" stroke="#FFFBEB" stroke-width="1.5" stroke-dasharray="10 40" fill="none" opacity="0.8"/>
+  </g>
+  <!-- Bride's Solitaire Diamond Ring (Right, interlocking) -->
+  <g id="bride-ring" class="ring-svg-elem ring-bride" transform="translate(65, 10)">
+    <ellipse cx="40" cy="45" rx="28" ry="22" stroke="url(#goldBride)" stroke-width="6.5" fill="none" filter="url(#ringGlow)" />
+    <!-- Diamond Mount / Solitaire Crown -->
+    <path d="M40 18 L46 25 L34 25 Z" fill="url(#goldBride)"/>
+    <!-- Sparkling Solitaire Diamond -->
+    <polygon points="40,11 48,20 40,24 32,20" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="1"/>
+    <polygon points="40,11 44,20 40,24 36,20" fill="#FFFFFF"/>
+    <!-- Sparkle rays -->
+    <line x1="40" y1="5" x2="40" y2="9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="33" y1="11" x2="36" y2="13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="47" y1="11" x2="44" y2="13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
+</svg>
