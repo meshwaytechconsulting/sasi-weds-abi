@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 260" fill="none">
+  <!-- String -->
+  <line x1="20" y1="0" x2="20" y2="260" stroke="#15803D" stroke-width="1.5" stroke-opacity="0.4"/>
+  <!-- Top Marigold Blossom -->
+  <circle cx="20" cy="20" r="14" fill="#F59E0B" opacity="0.95"/>
+  <circle cx="20" cy="20" r="9" fill="#D97706"/>
+  <circle cx="20" cy="20" r="4" fill="#FEF3C7"/>
+  <!-- Jasmine Cluster 1 -->
+  <ellipse cx="20" cy="50" rx="10" ry="7" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.8"/>
+  <ellipse cx="20" cy="62" rx="11" ry="7.5" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8"/>
+  <ellipse cx="20" cy="74" rx="10" ry="7" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.8"/>
+  <!-- Middle Orange Marigold Blossom -->
+  <circle cx="20" cy="100" r="15" fill="#EA580C"/>
+  <circle cx="20" cy="100" r="9" fill="#F59E0B"/>
+  <circle cx="20" cy="100" r="4" fill="#FEF3C7"/>
+  <!-- Jasmine Cluster 2 -->
+  <ellipse cx="20" cy="128" rx="10" ry="7" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.8"/>
+  <ellipse cx="20" cy="140" rx="11" ry="7.5" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8"/>
+  <ellipse cx="20" cy="152" rx="10" ry="7" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.8"/>
+  <!-- Golden Yellow Marigold -->
+  <circle cx="20" cy="180" r="15" fill="#F59E0B"/>
+  <circle cx="20" cy="180" r="10" fill="#D97706"/>
+  <!-- Bottom Jasmine Cluster & Tassel -->
+  <ellipse cx="20" cy="208" rx="10" ry="7" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.8"/>
+  <ellipse cx="20" cy="220" rx="10" ry="7" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="0.8"/>
+  <!-- Bell / Golden Bead Finial -->
+  <circle cx="20" cy="242" r="6" fill="#D4AF37"/>
+  <path d="M17 248 C18 255, 22 255, 23 248 Z" fill="#B45309"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 120" fill="none">
+  <!-- Chain / Hanging Rope -->
+  <line x1="30" y1="0" x2="30" y2="45" stroke="#B8860B" stroke-width="2.5" stroke-dasharray="4,2"/>
+  <circle cx="30" cy="48" r="3.5" fill="#D4AF37"/>
+  <!-- Bell Dome -->
+  <path d="M30 52 C24 52, 16 64, 14 78 C12 88, 8 92, 6 95 C5 97, 8 100, 30 100 C52 100, 55 97, 54 95 C52 92, 48 88, 46 78 C44 64, 36 52, 30 52 Z" 
+        fill="url(#bellGrad)" stroke="#8C6D17" stroke-width="1.5"/>
+  <!-- Bell Rim Zari Ornament -->
+  <path d="M7 96 C14 99, 46 99, 53 96" stroke="#FEF3C7" stroke-width="2"/>
+  <!-- Clapper -->
+  <line x1="30" y1="95" x2="30" y2="108" stroke="#8C6D17" stroke-width="3"/>
+  <circle cx="30" cy="112" r="5" fill="#D4AF37" stroke="#78350F" stroke-width="1.5"/>
+  <defs>
+    <linearGradient id="bellGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="40%" stop-color="#FBBF24"/>
+      <stop offset="70%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+  </defs>
+</svg>

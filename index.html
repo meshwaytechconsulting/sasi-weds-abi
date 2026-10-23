@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FAF6EE">
-  <title>Sasi Weds Abi — Engagement Invitation</title>
+  <title>Sasi Weds Abi — Animated Engagement E-Invitation</title>
   
-  <!-- SEO & Social Sharing Meta Tags -->
+  <!-- Meta & Social Sharing -->
   <meta name="description" content="Engagement Invitation of Dr. Sasidharan S & Dr. Abinaya M. Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dr. Sasidharan & Dr. Abinaya — Engagement Invitation">
-  <meta property="og:description" content="We cordially invite you to celebrate our Engagement on Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
+  <meta property="og:description" content="We heartily invite you to celebrate our Engagement on Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
   <meta property="og:image" content="assets/images/couple-leaning.jpg">
   
   <link rel="icon" type="image/svg+xml" href="assets/illustrations/kuthu-vilakku.svg">
   
-  <!-- Google Fonts: Marcellus (Classical Heading), Playfair Display (Luxury Accent), Outfit (Crisp Body) -->
+  <!-- Traditional & Luxury Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,257 +23,274 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
   
-  <!-- GSAP Animation Library CDN (with local fallback) -->
+  <!-- GSAP Animation Library & ScrollTrigger CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   
-  <!-- Central Configuration & Logic -->
+  <!-- Config & Automated Scroll Animation Controller -->
   <script src="invitation-info.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body class="theme-light">
 
-  <!-- Floating Jasmine & Golden Sparkles -->
+  <!-- Floating Jasmine Petals & Golden Shimmer Ambient Layer -->
   <div id="petals-container" class="petals-canvas" aria-hidden="true"></div>
 
-  <!-- Mobile Floating Quick Bar -->
-  <nav class="mobile-quick-bar" aria-label="Quick Actions">
-    <a href="#event-card" class="quick-link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="quick-icon">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-        <line x1="16" y1="2" x2="16" y2="6"></line>
-        <line x1="8" y1="2" x2="8" y2="6"></line>
-        <line x1="3" y1="10" x2="21" y2="10"></line>
-      </svg>
-      <span>Date</span>
-    </a>
-    <a href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer" class="quick-link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="quick-icon">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
-      <span>Map</span>
-    </a>
-    <button id="quick-cal-btn" class="quick-link" aria-label="Add to Calendar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="quick-icon">
-        <path d="M12 8v4l3 3"></path>
-        <circle cx="12" cy="12" r="10"></circle>
-      </svg>
-      <span>Calendar</span>
-    </button>
-    <button id="quick-share-btn" class="quick-link highlight" aria-label="Share on WhatsApp">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="quick-icon">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-      </svg>
-      <span>Share</span>
-    </button>
-  </nav>
+  <!-- Background Rotating Kolam Mandala -->
+  <div class="bg-rotating-kolam" aria-hidden="true">
+    <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-watermark">
+  </div>
 
-  <!-- Interactive Invitation Container -->
-  <main class="invite-wrapper" id="invite-wrapper">
+  <!-- Traditional Swaying Hanging Bells & Garlands Flanking the Screen (Reel Style) -->
+  <div class="hanging-decor left-decor" aria-hidden="true">
+    <img src="assets/illustrations/hanging-garland.svg" alt="" class="decor-garland sway-delay-1">
+    <img src="assets/illustrations/hanging-bell.svg" alt="" class="decor-bell sway-delay-2">
+  </div>
+  <div class="hanging-decor right-decor" aria-hidden="true">
+    <img src="assets/illustrations/hanging-bell.svg" alt="" class="decor-bell sway-delay-3">
+    <img src="assets/illustrations/hanging-garland.svg" alt="" class="decor-garland sway-delay-4">
+  </div>
+
+  <!-- Main Mobile-First E-Invitation Reel Container -->
+  <main class="invite-reel-wrapper" id="invite-reel">
 
     <!-- ==========================================
-         CARD 1: ROYAL ENVELOPE / OPENING COVER
+         SCENE 1: TRADITIONAL CHETTINAD ENTRANCE & NAMES
          ========================================== -->
-    <header class="invite-card card-cover reveal-on-scroll">
-      <!-- Traditional Arch Top -->
-      <div class="card-arch-header" aria-hidden="true">
-        <img src="assets/illustrations/temple-arch.svg" alt="" class="temple-arch-gold">
+    <section class="reel-card card-opening" id="scene-opening">
+      <!-- Temple Gopuram / Toranam Arch -->
+      <div class="temple-arch-wrap">
+        <img src="assets/illustrations/temple-arch.svg" alt="Traditional South Indian Temple Toranam Arch" class="temple-arch-svg">
       </div>
 
-      <div class="cover-content text-center">
-        <!-- Traditional Diya & Blessing -->
-        <div class="sacred-pill">
-          <span class="sacred-dot">❖</span>
-          <span class="sacred-text">With the blessings of our families</span>
-          <span class="sacred-dot">❖</span>
+      <!-- Sacred Diya Blessing -->
+      <div class="blessing-pill anim-item">
+        <span class="blessing-star">❖</span>
+        <span class="blessing-txt">With the blessings of our families</span>
+        <span class="blessing-star">❖</span>
+      </div>
+
+      <p class="tagline-kicker anim-item">Together in Every Season</p>
+
+      <!-- Couple Names Calligraphy -->
+      <h1 class="couple-names-headline">
+        <span class="name-text groom anim-item">Dr. Sasidharan</span>
+        <span class="name-ampersand anim-item">&</span>
+        <span class="name-text bride anim-item">Dr. Abinaya</span>
+      </h1>
+
+      <div class="hashtag-chip anim-item">
+        <span>#LoveGotPrescribed</span>
+      </div>
+
+      <p class="invitation-phrase anim-item">
+        Cordially invite you to celebrate our Engagement ceremony
+      </p>
+
+      <!-- Date Summary Ribbon -->
+      <div class="date-ribbon anim-item">
+        <div class="ribbon-col">
+          <span class="ribbon-lbl">Date</span>
+          <span class="ribbon-val">15 Nov 2026</span>
         </div>
-
-        <p class="invite-kicker">Together in Every Season</p>
-
-        <!-- Couple Names -->
-        <h1 class="couple-title">
-          <span class="title-name groom-name">Dr. Sasidharan</span>
-          <span class="title-weds">&</span>
-          <span class="title-name bride-name">Dr. Abinaya</span>
-        </h1>
-
-        <div class="hashtag-badge">
-          <span>#LoveGotPrescribed</span>
+        <div class="ribbon-sep">•</div>
+        <div class="ribbon-col">
+          <span class="ribbon-lbl">Day</span>
+          <span class="ribbon-val">Sunday</span>
         </div>
+        <div class="ribbon-sep">•</div>
+        <div class="ribbon-col">
+          <span class="ribbon-lbl">Time</span>
+          <span class="ribbon-val">6:00 PM</span>
+        </div>
+      </div>
 
-        <p class="invite-subtext">
-          Cordially invite you to celebrate our Engagement ceremony
+      <!-- Subtle automated scroll cue -->
+      <div class="scroll-down-hint">
+        <span class="hint-label">Scroll to Celebrate</span>
+        <div class="hint-chevron"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 2: THE COUPLE ARTWORK
+         ========================================== -->
+    <section class="reel-card card-couple" id="scene-couple">
+      <div class="section-title-wrap text-center">
+        <span class="card-kicker">The Couple</span>
+        <h2 class="card-title">Two Hearts • One Lifelong Promise</h2>
+        <div class="gold-zari-line"></div>
+      </div>
+
+      <!-- Framed Transformed Digital Couple Painting -->
+      <div class="couple-art-container anim-item">
+        <div class="couple-art-frame">
+          <picture>
+            <source srcset="assets/images/couple-leaning.webp" type="image/webp">
+            <img src="assets/images/couple-leaning.jpg" alt="South Indian Engagement Painting of Dr. Sasidharan and Dr. Abinaya" class="couple-art-img" width="682" height="1024" loading="eager">
+          </picture>
+          <div class="couple-art-tag">
+            <span class="tag-title">Dr. Sasidharan & Dr. Abinaya</span>
+            <span class="tag-sub">Thiruvarur, 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 3: AUTOMATED RING-EXCHANGE MOMENT
+         (Mothiram Mathuthal — Rings glide together & sparkle on scroll)
+         ========================================== -->
+    <section class="reel-card card-rings" id="scene-rings">
+      <div class="section-title-wrap text-center">
+        <span class="card-kicker">Sacred Ritual</span>
+        <h2 class="card-title">Mothiram Mathuthal</h2>
+        <div class="gold-zari-line"></div>
+        <p class="section-subtitle">
+          The auspicious exchange of engagement rings, sealing two devoted souls in eternal love and blessings.
         </p>
+      </div>
 
-        <!-- Quick Summary Strip -->
-        <div class="date-strip-compact">
-          <div class="strip-item">
-            <span class="strip-label">Date</span>
-            <span class="strip-val">15 Nov 2026</span>
-          </div>
-          <div class="strip-divider" aria-hidden="true">•</div>
-          <div class="strip-item">
-            <span class="strip-label">Day</span>
-            <span class="strip-val">Sunday</span>
-          </div>
-          <div class="strip-divider" aria-hidden="true">•</div>
-          <div class="strip-item">
-            <span class="strip-label">Time</span>
-            <span class="strip-val">6:00 PM</span>
-          </div>
+      <!-- Automated Rings Meeting & Sparkling Stage -->
+      <div class="rings-animation-stage" id="rings-stage">
+        <!-- Groom's Gold Ring (Slides in from Left) -->
+        <div class="ring-glide ring-groom-glide" id="ring-groom-elem">
+          <svg viewBox="0 0 80 80" class="ring-svg-side">
+            <defs>
+              <linearGradient id="goldGroomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FEF3C7" />
+                <stop offset="50%" stop-color="#D4AF37" />
+                <stop offset="100%" stop-color="#78350F" />
+              </linearGradient>
+            </defs>
+            <circle cx="40" cy="40" r="28" stroke="url(#goldGroomGrad)" stroke-width="7" fill="none" />
+            <circle cx="40" cy="40" r="28" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="8 30" fill="none" opacity="0.8"/>
+          </svg>
         </div>
 
-        <!-- Scroll down indicator -->
-        <div class="scroll-prompt">
-          <span class="prompt-text">Scroll to Experience</span>
-          <svg class="prompt-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 13l5 5 5-5M12 4v14"/>
+        <!-- Sparkle Flare Centerpiece -->
+        <div class="rings-sparkle-center" id="ring-sparkle-center" aria-hidden="true"></div>
+
+        <!-- Bride's Solitaire Diamond Ring (Slides in from Right) -->
+        <div class="ring-glide ring-bride-glide" id="ring-bride-elem">
+          <svg viewBox="0 0 80 80" class="ring-svg-side">
+            <defs>
+              <linearGradient id="goldBrideGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FEF3C7" />
+                <stop offset="40%" stop-color="#F59E0B" />
+                <stop offset="80%" stop-color="#B45309" />
+                <stop offset="100%" stop-color="#78350F" />
+              </linearGradient>
+            </defs>
+            <circle cx="40" cy="45" r="26" stroke="url(#goldBrideGrad)" stroke-width="6.5" fill="none" />
+            <!-- Solitaire Diamond Crown -->
+            <polygon points="40,8 48,18 40,22 32,18" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="1"/>
+            <polygon points="40,8 44,18 40,22 36,18" fill="#FFFFFF"/>
           </svg>
         </div>
       </div>
-    </header>
 
-    <!-- ==========================================
-         CARD 2: THE COUPLE & RING EXCHANGE
-         ========================================== -->
-    <section class="invite-card card-couple reveal-on-scroll" id="couple-card">
-      <div class="section-title-wrap text-center">
-        <span class="card-kicker">The Couple</span>
-        <h2 class="card-title">Two Hearts • A Beautiful Journey</h2>
-        <div class="gold-zari-line" aria-hidden="true"></div>
-      </div>
-
-      <!-- Couple Interactive Artwork Showcase -->
-      <div class="couple-artwork-wrapper">
-        <div class="art-frame-gold">
-          <picture>
-            <source srcset="assets/images/couple-leaning.webp" type="image/webp">
-            <img id="main-couple-img" src="assets/images/couple-leaning.jpg" alt="Artistic digital painting of Dr. Sasidharan and Dr. Abinaya in traditional South Indian engagement attire" class="featured-couple-art" width="682" height="1024" loading="eager">
-          </picture>
-          <div class="art-caption-bar">
-            <span class="art-caption-text">Dr. Sasidharan & Dr. Abinaya</span>
-            <span class="art-caption-sub">Thiruvarur, 2026</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- The Signature Moment: Engagement Ring Exchange -->
-      <div class="ring-exchange-box">
-        <div class="ring-box-header text-center">
-          <div class="rings-icon-wrap" aria-hidden="true">
-            <img src="assets/illustrations/rings-pair.svg" alt="" class="rings-svg-small">
-          </div>
-          <span class="ring-kicker">Mothiram Mathuthal</span>
-          <h3 class="ring-title">The Sacred Ring Exchange</h3>
-          <p class="ring-desc">
-            A timeless South Indian tradition solemnizing the union of two devoted hearts with mutual love and sacred vows.
-          </p>
-        </div>
-
-        <div class="ring-moment-artwork">
-          <picture>
-            <source srcset="assets/images/ring-exchange.webp" type="image/webp">
-            <img src="assets/images/ring-exchange.jpg" alt="Close-up painting of the South Indian engagement ring exchange with mehendi and flowers" class="ring-artwork-img" width="900" height="600" loading="lazy">
-          </picture>
-          <div class="ring-sparkle-shine" aria-hidden="true"></div>
+      <!-- Illustrated Ceremony Painting (Fades in smoothly after rings meet) -->
+      <div class="ring-exchange-art-frame anim-item" id="ring-art-reveal">
+        <picture>
+          <source srcset="assets/images/ring-exchange.webp" type="image/webp">
+          <img src="assets/images/ring-exchange.jpg" alt="Sacred South Indian Engagement Ring Exchange Painting" class="ring-art-img" width="900" height="600" loading="lazy">
+        </picture>
+        <div class="ring-art-caption">
+          <span>The Blessed Moment of Exchange</span>
         </div>
       </div>
     </section>
 
     <!-- ==========================================
-         CARD 3: FAMILIES & BLESSINGS
+         SCENE 4: BELOVED FAMILIES & INVITATION MESSAGE
          ========================================== -->
-    <section class="invite-card card-family reveal-on-scroll" id="family-card">
+    <section class="reel-card card-family" id="scene-family">
       <div class="section-title-wrap text-center">
         <span class="card-kicker">With Family Blessings</span>
         <h2 class="card-title">Our Beloved Parents</h2>
-        <div class="gold-zari-line" aria-hidden="true"></div>
+        <div class="gold-zari-line"></div>
       </div>
 
-      <div class="family-cards-flex">
-        <!-- Groom's Family -->
-        <div class="family-pillar-card">
-          <div class="pillar-badge">Groom's Side</div>
-          <h3 class="pillar-title">Dr. Sasidharan S</h3>
-          <div class="parents-list">
-            <div class="parent-entry">
-              <span class="p-relation">Father</span>
-              <span class="p-name">Shri D. Sakthikumar</span>
-            </div>
-            <div class="parent-entry">
-              <span class="p-relation">Mother</span>
-              <span class="p-name">Smt. S. Parimala</span>
-            </div>
+      <div class="family-pillars-container">
+        <!-- Groom Family -->
+        <div class="family-pillar anim-item">
+          <div class="pillar-tag">Groom's Side</div>
+          <h3 class="pillar-child-name">Dr. Sasidharan S</h3>
+          <div class="parent-row">
+            <span class="parent-role">Father</span>
+            <span class="parent-full-name">Shri D. Sakthikumar</span>
+          </div>
+          <div class="parent-row">
+            <span class="parent-role">Mother</span>
+            <span class="parent-full-name">Smt. S. Parimala</span>
           </div>
         </div>
 
-        <!-- Bride's Family -->
-        <div class="family-pillar-card">
-          <div class="pillar-badge">Bride's Side</div>
-          <h3 class="pillar-title">Dr. Abinaya M</h3>
-          <div class="parents-list">
-            <div class="parent-entry">
-              <span class="p-relation">Father</span>
-              <span class="p-name">Shri K.N.Murugesan</span>
-            </div>
-            <div class="parent-entry">
-              <span class="p-relation">Mother</span>
-              <span class="p-name">Smt. M.Anitha devi</span>
-            </div>
+        <!-- Bride Family -->
+        <div class="family-pillar anim-item">
+          <div class="pillar-tag">Bride's Side</div>
+          <h3 class="pillar-child-name">Dr. Abinaya M</h3>
+          <div class="parent-row">
+            <span class="parent-role">Father</span>
+            <span class="parent-full-name">Shri K.N.Murugesan</span>
+          </div>
+          <div class="parent-row">
+            <span class="parent-role">Mother</span>
+            <span class="parent-full-name">Smt. M.Anitha devi</span>
           </div>
         </div>
       </div>
 
-      <!-- Formal Invitation Message -->
-      <div class="formal-wording-box text-center">
-        <p class="formal-quote">
-          “We heartily invite you and your family to grace the auspicious engagement ceremony of our children and shower your blessings for their joyous future together.”
+      <!-- Traditional Formal Invitation Quote -->
+      <div class="formal-quote-box anim-item text-center">
+        <p class="formal-quote-text">
+          “We heartily invite you and your family to grace our engagement ceremony with your loving presence and blessings as we start this divine new chapter.”
         </p>
       </div>
     </section>
 
     <!-- ==========================================
-         CARD 4: CEREMONY DETAILS & COUNTDOWN
+         SCENE 5: CEREMONY DETAILS, COUNTDOWN & VENUE
          ========================================== -->
-    <section class="invite-card card-event reveal-on-scroll" id="event-card">
+    <section class="reel-card card-details" id="scene-details">
       <div class="section-title-wrap text-center">
-        <span class="card-kicker">Save The Date</span>
-        <h2 class="card-title">Engagement Ceremony</h2>
-        <div class="gold-zari-line" aria-hidden="true"></div>
+        <span class="card-kicker">Auspicious Occasion</span>
+        <h2 class="card-title">Date & Venue</h2>
+        <div class="gold-zari-line"></div>
       </div>
 
-      <!-- Live Countdown Clock -->
-      <div class="countdown-card">
-        <span class="countdown-heading">Counting Down To Our Special Day</span>
-        <div class="countdown-timer-grid">
-          <div class="time-cube">
-            <span class="time-digit" id="count-days">--</span>
-            <span class="time-lbl">Days</span>
+      <!-- Live Animated Countdown Clock -->
+      <div class="countdown-strip anim-item">
+        <span class="countdown-heading-txt">Counting Down to the Muhurtham</span>
+        <div class="countdown-digits-wrap">
+          <div class="count-box">
+            <span class="count-num" id="count-days">--</span>
+            <span class="count-txt">Days</span>
           </div>
-          <span class="time-sep">:</span>
-          <div class="time-cube">
-            <span class="time-digit" id="count-hours">--</span>
-            <span class="time-lbl">Hours</span>
+          <span class="count-colon">:</span>
+          <div class="count-box">
+            <span class="count-num" id="count-hours">--</span>
+            <span class="count-txt">Hours</span>
           </div>
-          <span class="time-sep">:</span>
-          <div class="time-cube">
-            <span class="time-digit" id="count-minutes">--</span>
-            <span class="time-lbl">Mins</span>
+          <span class="count-colon">:</span>
+          <div class="count-box">
+            <span class="count-num" id="count-minutes">--</span>
+            <span class="count-txt">Mins</span>
           </div>
-          <span class="time-sep">:</span>
-          <div class="time-cube">
-            <span class="time-digit" id="count-seconds">--</span>
-            <span class="time-lbl">Secs</span>
+          <span class="count-colon">:</span>
+          <div class="count-box">
+            <span class="count-num" id="count-seconds">--</span>
+            <span class="count-txt">Secs</span>
           </div>
         </div>
       </div>
 
-      <!-- Key Details List -->
-      <div class="details-compact-list">
-        <!-- Date & Day -->
-        <div class="detail-row">
-          <div class="detail-row-icon">
+      <!-- Essential Event Info Blocks -->
+      <div class="event-details-stack">
+        <!-- Date Block -->
+        <div class="event-info-block anim-item">
+          <div class="info-icon-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -281,100 +298,80 @@
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
           </div>
-          <div class="detail-row-info">
-            <span class="row-label">Auspicious Date</span>
-            <h3 class="row-main">Sunday, 15th November 2026</h3>
-            <span class="row-sub">Evening Muhurtham</span>
+          <div class="info-content">
+            <span class="info-sub">Engagement Date</span>
+            <h3 class="info-title">Sunday, 15th November 2026</h3>
+            <span class="info-meta">6:00 PM – 7:30 PM (Evening Muhurtham)</span>
           </div>
         </div>
 
-        <!-- Time -->
-        <div class="detail-row">
-          <div class="detail-row-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-          </div>
-          <div class="detail-row-info">
-            <span class="row-label">Ceremony Timing</span>
-            <h3 class="row-main">6:00 PM – 7:30 PM</h3>
-            <span class="row-sub">Followed by Feast</span>
-          </div>
-        </div>
-
-        <!-- Venue -->
-        <div class="detail-row">
-          <div class="detail-row-icon">
+        <!-- Venue Block -->
+        <div class="event-info-block anim-item">
+          <div class="info-icon-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
           </div>
-          <div class="detail-row-info">
-            <span class="row-label">Venue</span>
-            <h3 class="row-main">Amman Sakthi Mahal</h3>
-            <p class="row-address">
+          <div class="info-content">
+            <span class="info-sub">Ceremony Venue</span>
+            <h3 class="info-title">Amman Sakthi Mahal</h3>
+            <p class="info-address">
               No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur – 610001.
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Action Buttons Grid -->
-      <div class="actions-cta-grid">
-        <a href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer" class="btn-gold-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg">
+      <!-- Action Buttons (Google Maps & Calendar Download) -->
+      <div class="action-buttons-wrap anim-item">
+        <a href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer" class="btn-primary-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
             <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
           </svg>
-          <span>Open in Google Maps</span>
+          <span>Navigate in Google Maps</span>
         </a>
 
-        <button id="add-to-calendar-btn" class="btn-outline-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg">
+        <button id="add-to-calendar-btn" class="btn-outline-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
             <path d="M12 14v4M10 16h4"/>
           </svg>
-          <span>Add to Calendar (.ics)</span>
+          <span>Save to Calendar (.ics)</span>
         </button>
 
-        <button id="whatsapp-wishes-btn" class="btn-whatsapp-action">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg">
+        <button id="whatsapp-share-btn" class="btn-whatsapp-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-svg-icon">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
           </svg>
-          <span>Share Invitation on WhatsApp</span>
+          <span>Share on WhatsApp</span>
         </button>
       </div>
     </section>
 
     <!-- ==========================================
-         CARD 5: CLOSING & BLESSINGS
+         SCENE 6: CLOSING BLESSING
          ========================================== -->
-    <footer class="invite-card card-closing text-center reveal-on-scroll">
-      <div class="closing-flourish" aria-hidden="true">
-        <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-gold-mini">
+    <footer class="reel-card card-closing text-center anim-item">
+      <div class="closing-mandala-icon" aria-hidden="true">
+        <img src="assets/illustrations/kolam-mandala.svg" alt="" class="kolam-closing-svg">
       </div>
-      <h3 class="closing-names">Dr. Sasidharan & Dr. Abinaya</h3>
-      <div class="closing-tag">#LoveGotPrescribed</div>
-      <p class="closing-note">
-        “With your heartfelt blessings and warm presence, we embark upon this lifetime of love, joy, and devotion.”
+      <h3 class="closing-title">Dr. Sasidharan & Dr. Abinaya</h3>
+      <div class="closing-hashtag">#LoveGotPrescribed</div>
+      <p class="closing-blessing-text">
+        “Your presence and blessings are our greatest joy as we step into forever together.”
       </p>
-      <p class="closing-rsvp-note">
-        Your gracious presence is our most cherished gift.
-      </p>
-      <div class="closing-footer-line">
-        <span>Amman Sakthi Mahal • Thiruvarur</span>
-      </div>
+      <div class="closing-venue-tag">Amman Sakthi Mahal • Thiruvarur</div>
     </footer>
 
   </main>
 
   <!-- Interactive Toast Notification -->
   <div id="toast-notification" class="toast-popup" role="status" aria-live="polite">
-    <span id="toast-message">Event added to calendar!</span>
+    <span id="toast-message">Event saved to calendar!</span>
   </div>
 
 </body>
