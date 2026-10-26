@@ -1,427 +1,1475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#fcf6ea">
-  <title>Sasi weds Abi — Engagement Invitation</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#140B06">
+<title>Sasidharan &amp; Abinaya — Engagement</title>
+<meta name="description" content="The engagement of Dr. Sasidharan S and Dr. Abinaya M. Sunday, 15 November 2026, Amman Sakthi Mahal, Thiruvarur.">
+<meta property="og:title" content="Dr. Sasidharan &amp; Dr. Abinaya — Engagement">
+<meta property="og:description" content="Sunday, 15 November 2026 · Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
+<meta property="og:image" content="assets/story/couple.webp">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@200;300;400;500&family=Noto+Serif+Tamil:wght@400&display=swap">
+<link rel="preload" as="image" href="assets/story/stage.webp" type="image/webp">
+<link rel="preload" as="image" href="assets/story/couple.webp" type="image/webp">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   SASIDHARAN & ABINAYA — ENGAGEMENT
 
-  <meta name="description" content="Engagement Invitation of Dr. Sasidharan S & Dr. Abinaya M. Sunday, 15th November 2026 at Amman Sakthi Mahal, Thiruvarur. #LoveGotPrescribed">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Dr. Sasidharan &amp; Dr. Abinaya — Engagement Invitation">
-  <meta property="og:description" content="With the blessings of our families, we invite you to our Engagement — Sunday, 15th November 2026, Amman Sakthi Mahal, Thiruvarur.">
-  <meta property="og:image" content="assets/images/couple-leaning.jpg">
+   One tap, then it plays itself: twelve beats on a timed cinematic
+   timeline, about a minute end to end. Nothing is letterboxed — every
+   beat fills the phone, either as a true full-bleed frame or as a
+   torn-edged print standing on a bed of its own defocused colour.
+   When the film ends it settles into the invitation, which snaps one
+   whole page at a time.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  color-scheme:dark;
 
-  <link rel="icon" type="image/svg+xml" href="assets/illustrations/kuthu-vilakku.svg">
+  /* ── THE MEASURED PALETTE ────────────────────────────────────────────
+     Twelve tokens read out of thirty frames rather than chosen. Between
+     60% and 79% of every scene sits in one amber band, which is why the
+     set would go flat without its stubborn minority: garland crimson at
+     4% of the temple frames, and the slate of the far bank under 1%.
+     Those two are spent a teaspoon at a time. */
+  --ink:#140B06;        /* deepest shadow under the mandapam          */
+  --umber:#3A2114;      /* teak desks, the lecture hall               */
+  --gopuram:#6B3119;    /* temple stone out of the light              */
+  --clay:#A8724B;       /* lit stone and skin                         */
+  --amber:#E3A06D;      /* the dominant wash                          */
+  --sun:#FAA765;        /* the sun itself, and its flare              */
+  --gold:#FDE49C;       /* highlight on water and brass               */
+  --jasmine:#F8E3C8;    /* malli strands, white coats                 */
+  --garland:#731016;    /* rose and marigold                          */
+  --dusk:#58688D;       /* cool shadow, the far bank                  */
+  --water:#1F2E3E;      /* the tank and the sea after sundown         */
+  --leaf:#3C4429;       /* banana leaf and canopy                     */
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Karla:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@400;500&family=Sacramento&display=swap" rel="stylesheet">
+  /* working mixes, all derived from the twelve above */
+  --pitch:#0A0503;
+  --line:rgba(227,160,109,.30);
+  --line-lit:rgba(253,228,156,.52);
+  --quiet:#C9A98B;
 
-  <link rel="preload" as="image" href="assets/images/couple-leaning.webp" type="image/webp">
+  /* Cormorant at 300 is the whole identity — high contrast, wide
+     apertures, elegant at display size. Pinyon is the calligraphic hand,
+     used only for the word that joins their names. */
+  --f-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --f-script:'Pinyon Script','Cormorant Garamond',cursive;
+  --f-ui:'Jost',-apple-system,'Segoe UI',Helvetica,sans-serif;
+  --f-tamil:'Noto Serif Tamil','Nirmala UI',serif;
 
-  <link rel="stylesheet" href="styles.css?v=12">
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-io:cubic-bezier(.4,0,.2,1);
 
-  <script src="invitation-info.js?v=8" defer></script>
-  <script src="script.js?v=11" defer></script>
+  --gut:max(22px,env(safe-area-inset-left,0px));
+  --gut-r:max(22px,env(safe-area-inset-right,0px));
+}
+
+*,*::before,*::after{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100%; height:100% }
+body{
+  margin:0; background:var(--ink); color:var(--jasmine);
+  font-family:var(--f-ui); font-weight:300; line-height:1.7;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  min-height:100%;
+}
+body.film-on{ overflow:hidden; height:100%; position:fixed; width:100%; inset:0 }
+img{ display:block; max-width:100% }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer }
+a{ color:inherit; text-decoration:none }
+:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; border-radius:3px }
+
+/* ═══ THE ROOM ═════════════════════════════════════════════════════════
+   Warm light from above, the floor falling away into gopuram brown, and
+   one cool breath of dusk at the very bottom so the whole page is not a
+   single orange wash. */
+.room{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(125% 60% at 50% -5%, rgba(250,167,101,.16), transparent 62%),
+    radial-gradient(110% 56% at 50% 108%, rgba(107,49,25,.50), transparent 66%),
+    radial-gradient(80% 36% at 50% 118%, rgba(88,104,141,.16), transparent 70%),
+    var(--ink);
+}
+#motes{ position:fixed; inset:0; width:100%; height:100%; z-index:7; pointer-events:none }
+
+/* Grain sits over everything. It is not decoration — most of these
+   photographs are small, and an even film grain is what lets them be
+   enlarged to fill a phone without reading as soft. */
+.grain{
+  position:fixed; inset:-120px; z-index:9; pointer-events:none;
+  opacity:.13; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* ═══ THE WAY IN ═══════════════════════════════════════════════════════ */
+.gate{
+  position:fixed; inset:0; z-index:60;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:clamp(.5rem,1.9vh,.95rem);
+  padding-left:var(--gut); padding-right:var(--gut-r);
+  text-align:center;
+  background:var(--ink);
+  transition:opacity 1.4s var(--ease), transform 1.4s var(--ease), visibility 0s 1.4s;
+  overflow:hidden; isolation:isolate;
+}
+.gate.up{ opacity:0; transform:scale(1.14); visibility:hidden; pointer-events:none }
+
+/* The mandapam stands behind the title and fills the screen outright —
+   no band, no bars. A 16:9 plate cannot cover a 9:19 phone from its own
+   pixels alone, so the sharp plate is laid on a bed of itself thrown far
+   out of focus. The eye reads one continuous lit room, and the names
+   land in the dark centre of the stage where they are most legible. */
+.gate-bg{ position:absolute; inset:0; z-index:0; overflow:hidden;
+          opacity:0; animation:fade 2.4s var(--ease-io) .1s forwards }
+/* The set fills the screen outright, at every size. A 16:9 plate on a
+   9:19.5 phone shows about a quarter of its width — but this one frame
+   has no subject to lose: it is a symmetrical backdrop, so the crop lands
+   on the dark centre of the stage with the garlands above and the floor
+   below, which is where the names want to be anyway. The one plate that
+   can afford to be cropped is the one that is only a room. */
+.gate-bg .g-bg{ display:none }
+.gate-bg .g-plate{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:50% 48%;
+  animation:stageBreath 30s ease-in-out infinite alternate;
+}
+.gate-bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(66% 46% at 50% 48%, rgba(10,5,3,.80) 12%, rgba(10,5,3,.42) 58%, transparent 88%),
+    linear-gradient(180deg, rgba(10,5,3,.62), transparent 24%, transparent 62%, rgba(10,5,3,.90));
+}
+.gate > :not(.gate-bg){ position:relative; z-index:2 }
+
+.gate-rule{ width:clamp(120px,32vw,190px); height:14px; overflow:visible; opacity:0; animation:fade 1.4s var(--ease) .3s forwards }
+.gate-rule line,.gate-rule path{ fill:none; stroke:var(--clay); stroke-width:1; stroke-dasharray:260; stroke-dashoffset:260; animation:draw 2s var(--ease-io) .5s forwards }
+.gate-rule .dot{ stroke:var(--gold) }
+
+.g-kick{
+  font-size:clamp(.54rem,2.8vw,.62rem); letter-spacing:.42em; text-transform:uppercase;
+  color:var(--sun); margin:0; opacity:0; animation:up 1.4s var(--ease) .8s forwards;
+}
+.g-names{
+  font-family:var(--f-serif); font-weight:300;
+  font-size:clamp(2.5rem,13.5vw,4.4rem); line-height:1.02; letter-spacing:.01em;
+  color:var(--jasmine); margin:0;
+  text-shadow:0 2px 40px rgba(10,5,3,.92);
+}
+.g-names i{
+  display:block; font-family:var(--f-script); font-style:normal;
+  font-size:.46em; letter-spacing:.02em; color:var(--amber);
+  margin:.02em 0; line-height:1;
+}
+.g-occasion{
+  font-family:var(--f-serif); font-style:italic; font-weight:300;
+  font-size:clamp(.95rem,4.4vw,1.2rem); color:var(--amber);
+  margin:.4rem 0 0; opacity:0; animation:up 1.5s var(--ease) 1.95s forwards;
+}
+.g-date{
+  font-size:clamp(.58rem,2.9vw,.66rem); letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold); margin:.5rem 0 0; opacity:0; animation:up 1.4s var(--ease) 2.2s forwards;
+}
+.g-btn{
+  margin-top:1rem; padding:.95rem 2.4rem;
+  border:1px solid var(--clay); border-radius:999px;
+  background:rgba(58,33,20,.62); color:var(--gold);
+  font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; font-weight:400;
+  opacity:0; animation:up 1.4s var(--ease) 2.5s forwards;
+  transition:background .5s,border-color .5s,transform .5s var(--ease);
+}
+.g-btn:hover{ background:rgba(168,114,75,.45); border-color:var(--gold); transform:translateY(-2px) }
+
+/* ═══ THE FILM ═════════════════════════════════════════════════════════ */
+.film{
+  position:fixed; inset:0; z-index:20;
+  overflow:hidden; background:var(--ink);
+  opacity:0; visibility:hidden;
+  transition:opacity 1s var(--ease-io), visibility 0s 1s;
+}
+.film.on{ opacity:1; visibility:visible; transition:opacity 1s var(--ease-io) }
+
+/* A beat has two layers that move independently: the picture, which
+   carries the transition, and the words, which never distort. Entering
+   and leaving are deliberately different gestures, so the film reads as
+   being cut rather than cross-faded. */
+.ch{
+  position:absolute; inset:0; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding-left:var(--gut); padding-right:var(--gut-r);
+  padding-block:clamp(3.4rem,9vh,5rem);
+  text-align:center;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .85s var(--ease-io), visibility 0s .85s;
+}
+.ch.on{ opacity:1; visibility:visible; z-index:3; transition:opacity .85s var(--ease-io) }
+.ch.out{ opacity:0; visibility:visible; z-index:2; transition:opacity 1.15s var(--ease-io), visibility 0s 1.15s }
+
+/* the picture layer — every gesture below drives this and only this */
+.sc{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+  will-change:transform; backface-visibility:hidden;
+  transform:translateZ(0);
+  transition:transform 1.7s var(--ease), clip-path 1.6s var(--ease-io);
+}
+
+/* ── the five gestures ───────────────────────────────────────────────── */
+/* Every gesture below moves ONLY transform and opacity. An animated
+   `filter: blur()` across a full-screen photograph has to be re-rastered
+   on every frame, and on a phone that is what showed up as flicker on the
+   cut. The softness is still there — it lives in the bed behind, which is
+   blurred once and never touched again. */
+
+/* push: a dolly in. The outgoing frame keeps travelling, so the two
+   together read as one continuous move through the room. */
+.ch[data-tr="push"] .sc{ transform:scale(1.14) }
+.ch.on[data-tr="push"] .sc{ transform:scale(1) }
+.ch.out[data-tr="push"] .sc{ transform:scale(.93) }
+
+/* rise: the frame lifts in from below, like a slide dropped into a gate */
+.ch[data-tr="rise"] .sc{ transform:translate3d(0,11%,0) scale(1.1) }
+.ch.on[data-tr="rise"] .sc{ transform:none }
+.ch.out[data-tr="rise"] .sc{ transform:translate3d(0,-9%,0) scale(1.05) }
+
+/* drift: a lateral pan. Direction alternates, set per beat with --from. */
+.ch[data-tr="drift"] .sc{ transform:translate3d(var(--from,18%),0,0) scale(1.1) }
+.ch.on[data-tr="drift"] .sc{ transform:none }
+.ch.out[data-tr="drift"] .sc{ transform:translate3d(calc(var(--from,18%) * -.6),0,0) scale(1.05) }
+
+/* iris: the aperture opens on a face. Kept for the reveal alone. */
+.ch[data-tr="iris"] .sc{ clip-path:circle(0% at 50% 42%); transform:scale(1.14) }
+.ch.on[data-tr="iris"] .sc{ clip-path:circle(145% at 50% 42%); transform:scale(1) }
+.ch.out[data-tr="iris"] .sc{ clip-path:circle(145% at 50% 42%); transform:scale(1.07) }
+
+/* tilt: the frame turns into the room on its own axis */
+.ch[data-tr="tilt"]{ perspective:1600px }
+.ch[data-tr="tilt"] .sc{ transform:rotateY(11deg) translate3d(9%,0,-130px) scale(1.06) }
+.ch.on[data-tr="tilt"] .sc{ transform:none }
+.ch.out[data-tr="tilt"] .sc{ transform:rotateY(-8deg) translate3d(-7%,0,-110px) scale(1.03) }
+
+/* ═══ PICTURE TREATMENTS ═══════════════════════════════════════════════ */
+
+/* ── the bed ─────────────────────────────────────────────────────────── */
+/* Behind every beat lies the same photograph, thrown so far out of focus
+   it is only colour. It is what fills a phone edge to edge without a
+   black bar anywhere, and because it is the picture's own light the join
+   never reads as a join. It is deliberately STATIC: a 40px blur that is
+   also being transformed every frame is the single most expensive thing
+   a phone can be asked to composite, and it was the source of the
+   flicker. Painted once, it costs nothing thereafter. */
+.bed{ position:absolute; inset:0; overflow:hidden; z-index:0 }
+.bed img{
+  position:absolute; inset:-12%; width:124%; height:124%; object-fit:cover;
+  filter:blur(40px) saturate(1.55) brightness(.6);
+  transform:scale(1.18) translateZ(0);
+}
+.bed::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(94% 64% at 50% 44%, transparent 24%, rgba(10,5,3,.50) 100%),
+    linear-gradient(180deg, rgba(10,5,3,.52), transparent 26%, transparent 66%, rgba(10,5,3,.80));
+}
+
+/* ── full bleed ──────────────────────────────────────────────────────── */
+/* A 16:9 plate and a 9:19.5 phone cannot both be satisfied. Covering the
+   screen throws away three quarters of the width — which is how the groom
+   went missing from the tank, and the coat and the motorcycle from the
+   sea wall, when those are the whole caption. So on a portrait screen the
+   sharp plate is shown nearly whole, at --fill of the viewport width, and
+   its top and bottom edges are feathered into the bed of itself behind.
+   The screen is covered corner to corner; nothing of the photograph is
+   lost; and there is no band, because the band dissolves into its own
+   out-of-focus continuation. Past a square viewport it simply covers. */
+.bleed{ position:absolute; inset:0; overflow:hidden; --fill:150% }
+.bleed .bg{
+  position:absolute; inset:-12%; width:124%; height:124%; object-fit:cover;
+  filter:blur(36px) saturate(1.6) brightness(.68);
+  transform:scale(1.14) translateZ(0);
+}
+.bleed .plate{
+  position:absolute; left:50%; top:50%; width:var(--fill); aspect-ratio:16/9;
+  translate:-50% -50%;
+  object-fit:cover; object-position:var(--pos,50% 50%);
+  transform:scale(calc(1.04 - var(--t,0) * .04)) translateZ(0);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.28) 7%,rgba(0,0,0,.78) 16%,#000 25%,#000 75%,rgba(0,0,0,.78) 84%,rgba(0,0,0,.28) 93%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,rgba(0,0,0,.28) 7%,rgba(0,0,0,.78) 16%,#000 25%,#000 75%,rgba(0,0,0,.78) 84%,rgba(0,0,0,.28) 93%,transparent 100%);
+}
+.bleed::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,5,3,.50) 0%, rgba(10,5,3,.04) 26%, rgba(10,5,3,.20) 52%, rgba(10,5,3,.90) 100%),
+    radial-gradient(120% 84% at 50% 42%, transparent 32%, rgba(10,5,3,.54) 100%);
+}
+/* A beat that is asked to fill the phone outright: the plate covers, and
+   --pos decides what survives the crop. Only worth it where the subject
+   sits near the middle of the frame — the tank keeps the fitted treatment
+   above, because there the couple is off to one side and covering would
+   cut the groom in half. */
+.bleed--full .plate{
+  left:0; top:0; translate:none;
+  width:100%; height:100%; aspect-ratio:auto;
+  -webkit-mask-image:none; mask-image:none;
+}
+.bleed--full .bg{ display:none }
+
+/* once the viewport is wider than it is tall the plate simply covers */
+@media (min-aspect-ratio:1/1){
+  .bleed .plate{
+    width:100%; height:100%; aspect-ratio:auto;
+    -webkit-mask-image:none; mask-image:none;
+  }
+  .bleed .bg{ display:none }
+}
+
+/* ── the plates ──────────────────────────────────────────────────────── */
+/* Every frame tried so far — the box, the torn edge, the arch — took a
+   bite out of the photograph to put something of its own around it. The
+   arch was the worst of them, because cropping to portrait threw away
+   whichever half of a wide picture it did not want. So: no frame, and no
+   crop. Each plate is shown whole, at its own aspect ratio, standing on
+   the bed with nothing but its own shadow to lift it off. */
+/* The lead plate runs the full width of the phone — it is breaking out of
+   the chapter's own gutter to do it, which is the point: an uncropped
+   wide photograph has only its width to work with, so it takes all of it. */
+.plates{
+  display:flex; flex-direction:column; align-items:center;
+  gap:clamp(1rem,3.4vh,1.8rem);
+  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  margin-bottom:clamp(1.4rem,4.5vh,2.2rem);
+}
+.pl{
+  position:relative; margin:0;
+  box-shadow:0 24px 52px -24px rgba(10,5,3,.95), 0 0 40px -16px rgba(250,167,101,.22);
+  will-change:transform,opacity;
+}
+/* height:auto is the whole point — the image keeps its own proportions,
+   so nothing of it is ever cut away */
+.pl img{ width:100%; height:auto; display:block }
+.pl--a{ align-self:flex-start; width:100% }
+.pl--b{ align-self:flex-end; width:84%; margin-right:var(--gut-r) }
+.pl--a{
+  opacity:var(--e1,0);
+  transform:translate3d(calc((1 - var(--e1,0)) * -5vw),calc((1 - var(--e1,0)) * 4vh),0)
+            scale(calc(.95 + var(--e1,0) * .05));
+}
+.pl--b{
+  opacity:var(--e2,0);
+  transform:translate3d(calc((1 - var(--e2,0)) * 5vw),calc((1 - var(--e2,0)) * 4vh),0)
+            scale(calc(.95 + var(--e2,0) * .05));
+}
+.stack{ position:relative; z-index:4; width:100%; margin:auto 0 }
+
+/* ── the torn print, kept for the ring alone ─────────────────────────── */
+/* One beat earns it. A displacement map chews the print and its cream
+   mount together, so the edge is a tear rather than a cut — which suits
+   a ring box and a pair of hands and suits nothing else in the film.
+   The filter sits on an inner wrapper and the movement on the outer one,
+   so the ragged edge is rasterised once instead of on every frame. */
+.prints{ position:relative; width:min(88vw,33rem); margin:0 auto clamp(4.5rem,13vh,6rem) }
+.tp{ margin:0; will-change:transform,opacity }   /* figure defaults to 40px side margins */
+.tp-in{
+  background:var(--jasmine); padding:clamp(5px,1.4vw,9px);
+  box-shadow:0 28px 60px -26px rgba(10,5,3,.95);
+}
+.tp-in img{ width:100%; height:100%; object-fit:cover; display:block }
+.tear-1{ filter:url(#tear1) }
+.tear-2{ filter:url(#tear2) }
+.tp--a{
+  position:relative; width:100%;
+  rotate:-1.4deg;
+  opacity:var(--e1,0);
+  transform:translate3d(0,calc((1 - var(--e1,0)) * 5vh),0) scale(calc(.95 + var(--e1,0) * .05));
+}
+/* it clips the corner of the print above it and nothing more */
+.tp--b{
+  position:absolute; height:62%; width:auto; max-width:60%;
+  right:-4%; bottom:-34%;
+  rotate:2.8deg;
+  opacity:var(--e2,0);
+  transform:translate3d(calc((1 - var(--e2,0)) * 7vw),calc((1 - var(--e2,0)) * 4vh),0) scale(calc(.92 + var(--e2,0) * .08));
+}
+.tp--b .tp-in{ height:100% }
+
+/* ── a quiet beat is never a plain one ───────────────────────────────── */
+/* Where a line of text stands alone there is still a room behind it: the
+   photograph it belongs to thrown far back, and the kolam turning at the
+   centre. Both faded almost to nothing. */
+.quiet-bg{ position:absolute; inset:0; overflow:hidden; z-index:0 }
+.quiet-bg img{
+  position:absolute; inset:-14%; width:128%; height:128%; object-fit:cover;
+  filter:blur(22px) saturate(1.35) brightness(.62); opacity:.82;
+  transform:scale(1.1) translateZ(0);
+}
+.quiet-bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(74% 50% at 50% 46%, rgba(10,5,3,.34) 0%, rgba(10,5,3,.78) 72%),
+    linear-gradient(180deg, rgba(10,5,3,.62), transparent 32%, transparent 68%, rgba(10,5,3,.72));
+}
+.kolam{
+  position:absolute; top:50%; left:50%; z-index:1;
+  width:min(126vw,44rem); aspect-ratio:1; translate:-50% -50%;
+  opacity:calc(var(--e1,0) * .18); pointer-events:none;
+  animation:kolamTurn 160s linear infinite;
+}
+.kolam circle,.kolam path,.kolam line{ fill:none; stroke:var(--sun); stroke-width:.6; vector-effect:non-scaling-stroke }
+.kolam .in{ stroke:var(--gold) }
+/* ═══ CHAPTER TYPE ═════════════════════════════════════════════════════ */
+.words{
+  position:relative; z-index:4; width:100%;
+  max-width:34rem; margin-inline:auto;
+  text-shadow:0 2px 28px rgba(10,5,3,.96), 0 1px 5px rgba(10,5,3,.86);
+}
+/* a caption for a full-bleed frame sits at the foot of the page, where
+   the scrim is deepest, rather than over the middle of the picture */
+.words--foot{ margin-top:auto; padding-bottom:clamp(2.6rem,9vh,4.5rem) }
+
+.numeral{
+  font-family:var(--f-serif); font-weight:300;
+  font-size:clamp(.9rem,4vw,1.1rem); letter-spacing:.5em; text-indent:.5em;
+  color:var(--clay); margin:0 0 .85rem;
+}
+.kick{
+  font-family:var(--f-ui); font-weight:400;
+  font-size:clamp(.54rem,2.8vw,.64rem); text-transform:uppercase;
+  color:var(--sun); margin:0 0 1rem; letter-spacing:.4em;
+}
+.line{
+  font-family:var(--f-serif); font-weight:300; font-style:italic;
+  font-size:clamp(1.5rem,7.2vw,2.4rem); line-height:1.34;
+  color:var(--jasmine); margin:0 auto; max-width:18ch; text-wrap:balance;
+}
+.line em{ font-style:italic; color:var(--gold) }
+.note{
+  font-family:var(--f-serif); font-style:italic;
+  font-size:clamp(1.02rem,4.4vw,1.28rem); color:var(--jasmine);
+  margin:0 auto; max-width:26ch; text-wrap:balance;
+}
+.sub{
+  font-size:clamp(.64rem,3vw,.74rem); letter-spacing:.26em; text-transform:uppercase;
+  color:var(--gold); margin:1.2rem 0 0;
+}
+
+/* ── words arrive one at a time ──────────────────────────────────────── */
+/* Each word rises out of its own blur on a short stagger. This is a CSS
+   animation rather than a scrubbed value, so a word always finishes
+   where it belongs: nothing can be left half-revealed or clipped. */
+.w{ display:inline-block; white-space:pre-wrap }
+.ch .w{ opacity:0 }
+.ch.on .w{
+  animation:wordIn .95s var(--ease) both;
+  animation-delay:calc(var(--d,0ms) + var(--wi,0) * 62ms);
+}
+.ch.on .kick,.ch.on .numeral,.ch.on .sub{ animation:softIn 1.1s var(--ease) both }
+.ch.on .numeral{ animation-delay:.1s }
+.ch.on .kick{ animation-delay:.25s }
+.ch.on .sub{ animation-delay:1.1s }
+
+/* ═══ THE REVEAL ═══════════════════════════════════════════════════════ */
+/* Her saree and his shirt are the only lilac in the whole set, so the
+   plate is left alone — no tear, no mount, nothing laid over the faces.
+   The upper left of the frame is deep foliage in shadow and carries
+   nothing, which is exactly where their names go. */
+.hero{ padding:0; justify-content:flex-start; align-items:flex-start; text-align:left }
+/* This one is portrait at 1728x2560, so unlike the landscape plates it
+   genuinely fits a phone: it covers outright and needs no bed. The rule
+   carries three classes so it out-specifies both the shared .bleed .plate
+   and the landscape override, wherever they sit. */
+.hero .bleed .plate{
+  position:absolute; left:0; top:0; translate:none;
+  width:100%; height:100%; aspect-ratio:auto;
+  object-fit:cover; object-position:64% 46%;
+  transform:scale(calc(1.05 - var(--t,0) * .04)) translateZ(0);
+  filter:brightness(1.12) contrast(1.04) saturate(1.06);
+  -webkit-mask-image:none; mask-image:none;
+}
+.hero .bleed::after{
+  background:
+    linear-gradient(180deg, rgba(10,5,3,.86) 0%, rgba(10,5,3,.34) 34%, transparent 54%, rgba(10,5,3,.72) 100%),
+    linear-gradient(100deg, rgba(10,5,3,.74) 0%, rgba(10,5,3,.18) 42%, transparent 66%);
+}
+.hero-glow{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:radial-gradient(58% 38% at 56% 48%, rgba(250,167,101,.24), transparent 66%);
+  opacity:calc(var(--e1,0) * (1 - var(--t,0) * .45));
+  mix-blend-mode:screen;
+}
+.hero-names{
+  position:relative; z-index:4;
+  padding:clamp(3.4rem,12vh,6.5rem) var(--gut-r) 0 var(--gut);
+  width:100%; text-shadow:0 2px 34px rgba(10,5,3,.96);
+}
+.hero-names .nm{
+  display:block; font-family:var(--f-serif); font-weight:300;
+  font-size:clamp(2rem,11vw,3.4rem); line-height:1.04; color:var(--jasmine);
+  letter-spacing:.015em;
+}
+.hero-names i{
+  display:block; font-family:var(--f-script); font-style:normal;
+  font-size:clamp(1.4rem,7vw,2.2rem); color:var(--amber);
+  margin:.04em 0; line-height:1.1;
+}
+.hero-names .occ{
+  display:block; margin-top:.85rem;
+  font-family:var(--f-ui); font-weight:300;
+  font-size:clamp(.58rem,2.8vw,.68rem);
+  letter-spacing:.34em; text-transform:uppercase; color:var(--gold);
+}
+.hero-rule{ display:block; width:clamp(90px,26vw,150px); height:10px; margin:1rem 0 0; overflow:visible }
+.hero-rule line{ stroke:var(--clay); stroke-width:1; stroke-dasharray:160; stroke-dashoffset:160 }
+.ch.on .hero-rule line{ animation:draw 1.6s var(--ease-io) 1.5s forwards }
+
+/* ═══ FILM CHROME ══════════════════════════════════════════════════════ */
+.tapz{ position:fixed; inset:0; z-index:24; display:flex }
+.tapz button{ flex:1; height:100%; -webkit-tap-highlight-color:transparent }
+
+
+.fctl{
+  position:fixed; z-index:27;
+  right:max(14px,env(safe-area-inset-right,0px));
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  display:flex; gap:.5rem; opacity:0; transition:opacity .8s var(--ease);
+}
+.fctl.show{ opacity:1 }
+.fctl button,.dctl button{
+  width:42px; height:42px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:50%;
+  background:rgba(10,5,3,.74); backdrop-filter:blur(8px);
+  color:var(--amber); transition:border-color .3s,color .3s;
+}
+.fctl button:hover,.dctl button:hover{ border-color:var(--gold); color:var(--gold) }
+.fctl svg,.dctl svg{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5 }
+
+.hint{
+  position:fixed; z-index:25; left:0; right:0;
+  bottom:calc(72px + env(safe-area-inset-bottom,0px));
+  text-align:center; font-size:.5rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--clay); opacity:0; pointer-events:none;
+}
+.hint.show{ animation:hintIn 5s var(--ease) forwards }
+
+/* ═══ THE INVITATION ═══════════════════════════════════════════════════ */
+/* One page at a time. The scroller is the document rather than the
+   window, so a snap point is always a whole screen and the ambient
+   layers behind it stay put. */
+.doc{ position:fixed; inset:0; z-index:8; display:none }
+.doc.on{
+  display:block; overflow-y:auto; overflow-x:hidden;
+  scroll-snap-type:y mandatory; scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  animation:fade 1.3s var(--ease-io);
+}
+.doc.on::-webkit-scrollbar{ width:0; height:0 }
+.sec{
+  position:relative; min-height:100svh; scroll-snap-align:start; scroll-snap-stop:always;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding-left:var(--gut); padding-right:var(--gut-r);
+  padding-block:clamp(3.2rem,8vh,5rem);
+  text-align:center; overflow:hidden;
+}
+/* every page keeps a photograph behind it, far back and faded */
+.pg-bg{ position:absolute; inset:0; z-index:0; overflow:hidden }
+.pg-bg img{
+  position:absolute; inset:-8%; width:116%; height:116%; object-fit:cover;
+  filter:blur(15px) saturate(1.35) brightness(.66); opacity:.85;
+  transform:scale(1.08) translateZ(0);
+}
+.pg-bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(84% 56% at 50% 46%, rgba(10,5,3,.30) 0%, rgba(10,5,3,.80) 74%),
+    linear-gradient(180deg, rgba(10,5,3,.68), transparent 28%, transparent 70%, rgba(10,5,3,.80));
+}
+.wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto }
+
+.sec h2{
+  font-family:var(--f-serif); font-weight:300;
+  font-size:clamp(1.9rem,8.4vw,2.9rem); line-height:1.12; letter-spacing:.01em;
+  color:var(--jasmine); margin:.5rem 0 0; text-wrap:balance;
+}
+.sec h2 em{ font-style:italic; color:var(--gold) }
+.eye{ font-size:.54rem; letter-spacing:.38em; text-transform:uppercase; color:var(--sun); margin:0 }
+.tamil{ font-family:var(--f-tamil); color:var(--amber); letter-spacing:normal; font-size:.9em }
+.copy{ color:var(--quiet); font-size:clamp(.92rem,3.7vw,1.02rem); max-width:34ch; margin:1rem auto 0 }
+
+.orn{ display:block; width:clamp(128px,38vw,200px); height:20px; margin:1.1rem auto; overflow:visible }
+.orn line,.orn path{ fill:none; stroke:var(--clay); stroke-width:1; stroke-dasharray:300; stroke-dashoffset:300 }
+.orn .lo{ stroke:var(--gold); stroke-width:1.1 }
+.on-view .orn line,.on-view .orn path{ animation:draw 1.6s var(--ease-io) .3s forwards }
+
+[rv]{ opacity:0; transform:translateY(26px) scale(.99);
+      transition:opacity 1.05s var(--ease), transform 1.05s var(--ease) }
+[rv="l"]{ transform:translateX(-32px) }
+[rv="r"]{ transform:translateX(32px) }
+.on-view [rv]{ opacity:1; transform:none; transition-delay:calc(var(--i,0) * 105ms) }
+.doc .w{ opacity:0 }
+.on-view .w{ animation:wordIn .95s var(--ease) both; animation-delay:calc(var(--d,0ms) + var(--wi,0) * 52ms) }
+
+.fam{ display:grid; gap:clamp(.9rem,3.4vw,1.4rem); margin-top:1.6rem }
+@media (min-width:620px){ .fam{ grid-template-columns:1fr 1fr } }
+.fam div{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(58,33,20,.58),rgba(20,11,6,.34));
+  padding:clamp(1.1rem,4.4vw,1.7rem) 1rem;
+}
+.fam h3{ font-family:var(--f-serif); font-weight:400; font-size:1.3rem; color:var(--gold); margin:0 }
+.fam .rel{ font-size:.5rem; letter-spacing:.3em; text-transform:uppercase; color:var(--sun); margin:.4rem 0 .9rem }
+.fam p{ font-family:var(--f-serif); font-size:clamp(1.02rem,4.1vw,1.18rem); color:var(--jasmine); margin:0; line-height:1.55 }
+.fam .amp{ font-family:var(--f-script); color:var(--amber); font-size:1.1em; margin:.1rem 0 }
+
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(58,33,20,.56),rgba(20,11,6,.3));
+  padding:clamp(1.4rem,5.2vw,2.2rem) clamp(1rem,5vw,2rem);
+  margin-top:1.4rem;
+}
+.card .vn{ font-family:var(--f-serif); font-weight:400; font-size:clamp(1.5rem,7vw,2rem); color:var(--gold); margin:0; letter-spacing:.01em }
+.card .big{ font-family:var(--f-serif); font-size:clamp(1.2rem,5.4vw,1.55rem); color:var(--jasmine); margin:.85rem 0 0 }
+.card .mid{ font-size:clamp(.72rem,3.2vw,.82rem); letter-spacing:.26em; text-transform:uppercase; color:var(--amber); margin:.45rem 0 0 }
+.card .addr{ font-family:var(--f-serif); font-size:clamp(1rem,4.1vw,1.14rem); color:var(--quiet); line-height:1.6; margin:.95rem 0 0 }
+
+.cd{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
+     border:1px solid var(--line); margin:1.3rem auto 0; max-width:30rem }
+.cd div{ background:rgba(20,11,6,.84); padding:.8rem .2rem }
+.cd b{ display:block; font-family:var(--f-serif); font-weight:400;
+       font-size:clamp(1.5rem,7vw,2.2rem); line-height:1; color:var(--gold); font-variant-numeric:tabular-nums }
+.cd span{ display:block; font-size:.44rem; letter-spacing:.24em; text-transform:uppercase; color:var(--sun); margin-top:.4rem }
+
+.acts{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:1.4rem }
+.act{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.85rem 1.45rem; border:1px solid var(--line); border-radius:999px;
+  font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--amber);
+  background:rgba(10,5,3,.42);
+  transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease);
+}
+.act:hover{ background:rgba(168,114,75,.38); border-color:var(--gold); color:var(--gold); transform:translateY(-2px) }
+.act--p{ background:rgba(107,49,25,.52); color:var(--gold); border-color:var(--clay) }
+.act svg{ width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.6; flex:none }
+
+.hash{
+  display:inline-block; margin-top:1.2rem; padding:.6rem 1.45rem;
+  border:1px solid var(--line-lit); border-radius:999px;
+  font-size:.6rem; letter-spacing:.26em; text-transform:uppercase; color:var(--gold);
+}
+.sign{ font-family:var(--f-serif); font-style:italic; font-size:clamp(1.05rem,4.5vw,1.3rem); color:var(--amber); margin:1.3rem auto 0; max-width:30ch }
+.endnames{ font-family:var(--f-serif); font-weight:300; font-size:clamp(1.9rem,9vw,2.9rem); color:var(--jasmine); margin:.6rem 0 0; line-height:1.1 }
+.endnames i{ display:block; font-family:var(--f-script); font-style:normal; font-size:.56em; color:var(--amber); margin:.02em 0; line-height:1.1 }
+.foot{ margin-top:2rem; font-size:.5rem; letter-spacing:.3em; text-transform:uppercase; color:var(--sun) }
+
+.again{
+  margin-top:1.3rem; padding:.78rem 1.7rem;
+  border:1px solid var(--line); border-radius:999px;
+  font-size:.56rem; letter-spacing:.24em; text-transform:uppercase; color:var(--amber);
+  transition:border-color .4s,color .4s;
+}
+.again:hover{ border-color:var(--gold); color:var(--gold) }
+
+/* a drawn cue that there is another page under this one */
+.more{
+  position:absolute; left:50%; translate:-50% 0;
+  bottom:calc(14px + env(safe-area-inset-bottom,0px)); z-index:3;
+  width:18px; height:26px; opacity:0; transition:opacity 1s var(--ease) 1.2s;
+}
+.on-view .more{ opacity:.55 }
+.more svg{ width:100%; height:100%; fill:none; stroke:var(--sun); stroke-width:1.3; animation:nudge 2.4s var(--ease-io) infinite }
+
+.dctl{
+  position:fixed; z-index:27;
+  right:max(14px,env(safe-area-inset-right,0px));
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  opacity:0; transition:opacity .8s var(--ease); pointer-events:none;
+}
+.dctl.show{ opacity:1; pointer-events:auto }
+
+/* ═══ KEYFRAMES ════════════════════════════════════════════════════════ */
+@keyframes wordIn{
+  from{ opacity:0; transform:translate3d(0,.5em,0) scale(.98); filter:blur(4px) }
+  to  { opacity:1; transform:none; filter:blur(0) }
+}
+@keyframes softIn{ from{ opacity:0; transform:translateY(14px) } to{ opacity:1; transform:none } }
+@keyframes stageBreath{
+  from{ transform:scale(1.01) }
+  to  { transform:scale(1.07) }
+}
+@keyframes kolamTurn{ to{ rotate:360deg } }
+@keyframes draw{ to{ stroke-dashoffset:0 } }
+@keyframes up{ from{ opacity:0; transform:translateY(20px) } to{ opacity:1; transform:none } }
+@keyframes fade{ from{ opacity:0 } to{ opacity:1 } }
+@keyframes hintIn{ 0%{ opacity:0 } 14%{ opacity:.9 } 72%{ opacity:.9 } 100%{ opacity:0 } }
+@keyframes nudge{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(5px) } }
+
+/* ═══ WIDE / SHORT ═════════════════════════════════════════════════════ */
+@media (min-width:780px){
+  .line{ max-width:24ch }
+  .note{ max-width:38ch }
+  .hero-names{ padding-left:clamp(3rem,8vw,7rem) }
+  /* side by side once there is width for it, and taller because a wide
+     screen has height to spare where a phone has only one column */
+  .plates{ flex-direction:row; justify-content:center; align-items:center; gap:clamp(1.2rem,3vw,2.4rem);
+           width:min(92vw,60rem); margin-inline:auto }
+  .pl--a{ width:52% } .pl--b{ width:40%; margin-right:0 }
+  .pl--a,.pl--b{ align-self:center }
+  .prints{ width:min(56vw,38rem) }
+}
+@media (max-height:620px){
+  .plates{ gap:.7rem }
+  .pl--b{ width:62% }
+  .ch{ padding-block:2.6rem }
+}
+
+/* ═══ REDUCED MOTION ═══════════════════════════════════════════════════
+   The film still plays — it simply stops moving. Every beat cross-fades
+   on the same timeline with each element at its resting position. */
+@media (prefers-reduced-motion:reduce){
+  .sc,.pl--a,.pl--b,.tp--a,.tp--b{ transform:none !important; clip-path:none !important; opacity:1 !important }
+  .tp--a,.tp--b{ rotate:0deg }
+  .tear-1,.tear-2{ filter:none !important }
+  .bleed .plate,.hero .bleed .plate{ transform:none !important }
+  .w{ opacity:1 !important }
+  .ch.on .w,.on-view .w,.ch.on .kick,.ch.on .numeral,.ch.on .sub{ animation:none !important; opacity:1 !important }
+  .hero-glow{ opacity:.5 !important }
+  [rv]{ opacity:1; transform:none; filter:none; transition:none }
+  .orn line,.orn path,.hero-rule line{ stroke-dashoffset:0 }
+  .doc.on{ scroll-behavior:auto }
+  *{ animation-duration:.001s !important; animation-iteration-count:1 !important }
+}
+</style>
 </head>
+<body>
 
-<body class="is-locked">
+<div class="room" aria-hidden="true"></div>
+<canvas id="motes" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
-<div class="paper-grain" aria-hidden="true"></div>
-<div class="sky" id="sky" aria-hidden="true"></div>
+<!-- ═══ THE TEAR ══════════════════════════════════════════════════════
+     The only SVG filters left in the page, and they are used on exactly
+     two elements, in one beat. Different frequencies and seeds, so the
+     two prints never share an edge.
+     ═══════════════════════════════════════════════════════════════════ -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <filter id="tear1" x="-12%" y="-14%" width="124%" height="128%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.026" numOctaves="4" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="17" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="tear2" x="-14%" y="-16%" width="128%" height="132%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.021 0.017" numOctaves="4" seed="37" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
 
-<!-- drifts in while the tour moves between pages, so each change of scene
-     feels like passing through cloud rather than a jump -->
-<div class="cloudveil" id="cloudveil" aria-hidden="true">
-  <i></i><i></i><i></i>
-</div>
-
-
-<div class="drift" id="drift" aria-hidden="true"></div>
-
-<!-- ═══════════════════════════════════════════════════════════
-     COVER
-     ═══════════════════════════════════════════════════════════ -->
-<div class="cover" id="cover">
-  <div class="cover-in">
-    <div class="cover-art cv">
-
-      <div class="arch">
-        <picture>
-          <source srcset="assets/images/couple-leaning.webp" type="image/webp">
-          <img src="assets/images/couple-leaning.jpg" alt="Dr. Sasidharan and Dr. Abinaya">
-        </picture>
-      </div>
-    </div>
-
-    <p class="cover-kicker cv">Together in every season</p>
-
-    <h1 class="cover-names cv">
-      Sasi
-      <span class="cover-weds">weds</span>
-      Abi
-    </h1>
-
-    <div class="cv">
-      <span class="cover-rule"></span>
-      <p class="cover-date">Sunday &middot; 15 November 2026</p>
-    </div>
-
-    <button class="open-btn cv" id="open-btn" type="button">Open the Invitation</button>
+<!-- ═══ THE WAY IN ═══════════════════════════════════════════════════ -->
+<div class="gate" id="gate">
+  <div class="gate-bg" aria-hidden="true">
+    <img class="g-bg" src="assets/story/stage.webp" alt="">
+    <img class="g-plate" src="assets/story/stage.webp" alt="" fetchpriority="high">
   </div>
+  <svg class="gate-rule" viewBox="0 0 190 14" aria-hidden="true">
+    <line x1="0" y1="7" x2="78" y2="7"/><line x1="112" y1="7" x2="190" y2="7"/>
+    <path class="dot" d="M95,2 C100,4.5 100,9.5 95,12 C90,9.5 90,4.5 95,2 Z"/>
+  </svg>
+  <p class="g-kick">Nitchayathartham &middot; <span class="tamil">நிச்சயதார்த்தம்</span></p>
+  <h1 class="g-names"><span data-split data-delay="1100">Sasidharan</span><i>&amp;</i><span data-split data-delay="1500">Abinaya</span></h1>
+  <p class="g-occasion">are getting engaged</p>
+  <p class="g-date">Sunday &middot; 15 November 2026</p>
+  <button class="g-btn" id="begin" type="button">Begin</button>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<main class="story" id="story">
+<!-- ═══ THE FILM ═════════════════════════════════════════════════════ -->
+<div class="film" id="film" aria-hidden="true">
 
-  <!-- ─────────── 01 · NAMES ─────────── -->
-  <section class="scene scene--names" id="s-names" data-dot="Invitation">
-    <span class="bloom bloom--gold" style="width:62vw;height:62vw;top:-14%;right:-18%"></span>
-    <span class="bloom bloom--viol" style="width:46vw;height:46vw;bottom:-10%;left:-16%"></span>
-
-    <div class="scene-in center names-wrap">
-      <p class="kicker" data-rv="up">With the blessings of our families</p>
-
-      <h2 class="names-big" data-rv="up">
-        Dr. Sasidharan
-        <span class="names-weds">weds</span>
-        Dr. Abinaya
-      </h2>
-
-      <p class="names-sub" data-rv="up">Two hearts, one beautiful journey</p>
-
-      <div class="names-art print print--tilt-r" data-rv="tilt">
-        <span class="tape tape--tl" aria-hidden="true"></span>
-        <span class="tape tape--tr" aria-hidden="true"></span>
-        <div class="arch">
-          <picture>
-            <source srcset="assets/images/couple-standing.webp" type="image/webp">
-            <img src="assets/images/couple-standing.jpg" alt="Dr. Sasidharan and Dr. Abinaya">
-          </picture>
-        </div>
-      </div>
-
-      <div data-rv="up"><span class="hashpill">#LoveGotPrescribed</span></div>
+  <!-- 01 · a quiet beat over the lecture hall, thrown far back -->
+  <section class="ch" data-ch data-tr="push">
+    <div class="sc">
+      <div class="quiet-bg"><img src="assets/story/lecture.webp" alt="" loading="lazy"></div>
+      <svg class="kolam" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="92"/><circle class="in" cx="100" cy="100" r="68"/>
+        <circle cx="100" cy="100" r="44"/><circle class="in" cx="100" cy="100" r="21"/>
+        <path class="in" d="M100 8 L124 100 L100 192 L76 100 Z"/>
+        <path class="in" d="M8 100 L100 76 L192 100 L100 124 Z"/>
+        <path d="M35 35 L112 88 L165 165 L88 112 Z"/>
+        <path d="M165 35 L112 112 L35 165 L88 88 Z"/>
+      </svg>
+    </div>
+    <div class="words">
+      <p class="numeral">I</p>
+      <p class="kick">Their story</p>
+      <p class="line" data-split data-delay="500">Some things begin long before anyone calls them <em>a beginning</em>.</p>
     </div>
   </section>
 
-  <!-- ─────────── 02 · FAMILIES ─────────── -->
-  <section class="scene scene--family" id="s-family" data-dot="Our Families">
-    <span class="bloom bloom--mari" style="width:50vw;height:50vw;top:4%;left:-18%"></span>
-
-    <div class="scene-in center">
-      <span class="kicker" data-rv="up">With great joy</span>
-      <h3 class="script" data-rv="up">Our Families</h3>
-      <span class="rule" data-rv="pop"><i></i></span>
-
-      <div class="fams">
-        <div class="fam" data-rv="up">
-          <span class="fam-side">Groom&rsquo;s Side</span>
-          <p class="fam-child">Dr. Sasidharan S</p>
-          <p class="fam-parent">son of<br><b>Shri D. Sakthikumar</b><br>&amp; <b>Smt. S. Parimala</b></p>
-        </div>
-        <div class="fam" data-rv="up">
-          <span class="fam-side">Bride&rsquo;s Side</span>
-          <p class="fam-child">Dr. Abinaya M</p>
-          <p class="fam-parent">daughter of<br><b>Shri K. N. Murugesan</b><br>&amp; <b>Smt. M. Anitha Devi</b></p>
-        </div>
-      </div>
-
-      <p class="body-t" data-rv="up" style="margin-top:1.3rem;max-width:40ch;margin-inline:auto">
-        request the pleasure of your company as our children begin
-        their life together.
-      </p>
+  <!-- 02 · the lecture hall and the borrowed notes -->
+  <section class="ch" data-ch data-tr="drift" style="--from:24%">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/hall.webp" alt="" loading="lazy"></div>
     </div>
-  </section>
-
-  <!-- ─────────── 03 · OUR STORY — moves sideways ─────────── -->
-  <section class="scene scene--story" id="s-story" data-dot="Our Story">
-    <span class="bloom bloom--terr" style="width:54vw;height:54vw;bottom:-14%;right:-16%"></span>
-
-    <div class="scene-in" style="max-width:none">
-      <div class="story-head">
-        <span class="kicker" data-rv="up">How it happened</span>
-        <h3 class="script" data-rv="up">Our Story</h3>
-        <span class="rule" data-rv="pop"><i></i></span>
-      </div>
-
-      <div class="strip" id="strip">
-        <article class="panel">
-          <div class="panel-media">
-            <span class="panel-no">i.</span>
-            <div class="print print--tilt-l">
-              <span class="tape tape--tl" aria-hidden="true"></span>
-              <div class="arch">
-                <picture>
-                  <source srcset="assets/images/groom-portrait.webp" type="image/webp">
-                  <img src="assets/images/groom-portrait.jpg" alt="Dr. Sasidharan S">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <h4 class="panel-ttl">Two white coats</h4>
-            <p class="panel-txt">
-              Long shifts, shared notes, and a canteen chai that always went cold.
-              Somewhere between rounds, a friendship quietly became something else.
-            </p>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-media">
-            <span class="panel-no">ii.</span>
-            <div class="print print--tilt-r">
-              <span class="tape tape--tr" aria-hidden="true"></span>
-              <div class="arch">
-                <picture>
-                  <source srcset="assets/images/bride-portrait.webp" type="image/webp">
-                  <img src="assets/images/bride-portrait.jpg" alt="Dr. Abinaya M">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <h4 class="panel-ttl">The families met</h4>
-            <p class="panel-txt">
-              Filter coffee, a plate of murukku, and two families who liked each
-              other almost as much as the two of them hoped they would.
-            </p>
-          </div>
-        </article>
-
-        <article class="panel">
-          <div class="panel-media">
-            <span class="panel-no">iii.</span>
-            <div class="print print--tilt-l">
-              <span class="tape tape--tl" aria-hidden="true"></span>
-              <div class="arch">
-                <picture>
-                  <source srcset="assets/images/ring-exchange.webp" type="image/webp">
-                  <img src="assets/images/ring-exchange.jpg" alt="The ring exchange">
-                </picture>
-              </div>
-            </div>
-          </div>
-          <div class="panel-body">
-            <h4 class="panel-ttl">And now, a ring</h4>
-            <p class="panel-txt">
-              On the fifteenth of November, with everyone they love in one room,
-              they say yes to all the ordinary days ahead.
-            </p>
-          </div>
-        </article>
-      </div>
-
-      <div class="strip-dots" id="strip-dots" aria-hidden="true">
-        <b class="on"></b><b></b><b></b>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────── 04 · THE TWO OF THEM ─────────── -->
-  <section class="scene scene--pair" id="s-pair" data-dot="The Couple">
-    <span class="bloom bloom--viol" style="width:58vw;height:58vw;top:-10%;left:-18%"></span>
-
-    <div class="scene-in center">
-      <span class="kicker" data-rv="up">The couple</span>
-      <h3 class="script script--sm" data-rv="up">Sasi &amp; Abi</h3>
-      <span class="rule" data-rv="pop"><i></i></span>
-
-      <div class="two">
-        <figure class="print is-groom" data-rv="tilt">
-          <div class="arch">
-            <picture>
-              <source srcset="assets/images/groom-portrait.webp" type="image/webp">
-              <img src="assets/images/groom-portrait.jpg" alt="Dr. Sasidharan S">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="caption-name">Sasidharan</p>
-            <p class="caption-sub">son of Shri D. Sakthikumar<br>&amp; Smt. S. Parimala</p>
-          </figcaption>
+    <div class="stack">
+      <div class="plates">
+        <figure class="pl pl--a">
+          <img src="assets/story/hall.webp" alt="The two of them in a lecture hall at golden hour" loading="lazy">
         </figure>
-
-        <figure class="print is-bride" data-rv="tilt">
-          <div class="arch">
-            <picture>
-              <source srcset="assets/images/bride-portrait.webp" type="image/webp">
-              <img src="assets/images/bride-portrait.jpg" alt="Dr. Abinaya M">
-            </picture>
-          </div>
-          <figcaption>
-            <p class="caption-name">Abinaya</p>
-            <p class="caption-sub">daughter of Shri K. N. Murugesan<br>&amp; Smt. M. Anitha Devi</p>
-          </figcaption>
+        <figure class="pl pl--b">
+          <img src="assets/story/notes.webp" alt="A hand writing, a stethoscope resting on the open book" loading="lazy">
         </figure>
       </div>
-    </div>
-  </section>
-
-  <!-- ─────────── 05 · WHEN ─────────── -->
-  <section class="scene scene--when" id="s-when" data-dot="The Day">
-    <span class="bloom bloom--gold" style="width:56vw;height:56vw;top:-8%;right:-16%"></span>
-
-    <div class="scene-in narrow center">
-      <span class="kicker" data-rv="up">Save the evening</span>
-      <h3 class="script" data-rv="up">Our Engagement</h3>
-      <span class="rule" data-rv="pop"><i></i></span>
-
-      <p class="when-date" data-rv="up">Sunday, 15<sup>th</sup> November 2026</p>
-      <p class="when-time" data-rv="up">6:00 PM &nbsp;—&nbsp; 7:30 PM</p>
-
-      <div class="count" data-rv="up">
-        <div class="count-c"><b id="cd-d">--</b><span>Days</span></div>
-        <div class="count-c"><b id="cd-h">--</b><span>Hrs</span></div>
-        <div class="count-c"><b id="cd-m">--</b><span>Min</span></div>
-        <div class="count-c"><b id="cd-s">--</b><span>Sec</span></div>
-      </div>
-
-      <div class="acts" data-rv="up">
-        <a class="act act--pri" id="cal-link" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg>
-          <span>Add to Calendar</span>
-        </a>
-        <a class="act" id="wa-link" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
-          <span>Share the Joy</span>
-        </a>
+      <div class="words">
+        <p class="note" data-split data-delay="700">A lecture hall. Two sets of notes — one of them borrowed, often.</p>
       </div>
     </div>
   </section>
 
-  <!-- ─────────── 06 · WHERE ─────────── -->
-  <section class="scene scene--where" id="s-where" data-dot="The Venue">
-    <span class="bloom bloom--mari" style="width:48vw;height:48vw;bottom:-12%;left:-14%"></span>
-
-    <div class="scene-in narrow center">
-      <!-- a drawn mandapam rather than a photograph: it reads as "venue"
-           at a glance and its lamps and kalasam can actually move -->
-      <div class="mandapam" data-rv="pop" aria-hidden="true">
-        <svg viewBox="0 0 300 190" fill="none">
-          <defs>
-            <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#e8c98d"/><stop offset="1" stop-color="#c2924a"/>
-            </linearGradient>
-            <radialGradient id="flame">
-              <stop offset="0" stop-color="#fff6d8"/><stop offset=".5" stop-color="#f3c35d"/>
-              <stop offset="1" stop-color="#e09b3d" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <!-- kalasam finial -->
-          <g class="m-kalasam">
-            <path d="M150 10 C154 15 155 21 150 27 C145 21 146 15 150 10Z" fill="url(#mg)"/>
-            <circle cx="150" cy="30" r="5" fill="url(#mg)"/>
-          </g>
-
-          <!-- roof -->
-          <path class="m-draw" d="M36 70 C74 36 226 36 264 70" stroke="#b4603f" stroke-width="2.6" stroke-linecap="round"/>
-          <path class="m-draw" d="M20 72 H280" stroke="#b4603f" stroke-width="3" stroke-linecap="round"/>
-          <path class="m-draw" d="M52 72 C86 50 214 50 248 72" stroke="#c2924a" stroke-width="1.6" stroke-dasharray="4 4"/>
-
-          <!-- pillars -->
-          <g stroke="#a76629" stroke-width="2.4" stroke-linecap="round">
-            <path class="m-draw" d="M58 76 V162"/><path class="m-draw" d="M110 76 V162"/>
-            <path class="m-draw" d="M190 76 V162"/><path class="m-draw" d="M242 76 V162"/>
-          </g>
-          <g fill="url(#mg)" opacity=".85">
-            <rect x="50" y="160" width="16" height="6" rx="2"/><rect x="102" y="160" width="16" height="6" rx="2"/>
-            <rect x="182" y="160" width="16" height="6" rx="2"/><rect x="234" y="160" width="16" height="6" rx="2"/>
-          </g>
-
-          <!-- inner arch + floor -->
-          <path class="m-draw" d="M124 162 V112 C124 96 176 96 176 112 V162" stroke="#b4603f" stroke-width="2"/>
-          <path class="m-draw" d="M20 166 H280" stroke="#a76629" stroke-width="2.4" stroke-linecap="round"/>
-
-          <!-- hanging lamps that glow -->
-          <g class="m-lamp" style="--d:0s">
-            <path d="M84 76 V96" stroke="#c2924a" stroke-width="1.2"/>
-            <circle cx="84" cy="101" r="5" fill="url(#mg)"/>
-            <circle class="m-flame" cx="84" cy="101" r="9" fill="url(#flame)"/>
-          </g>
-          <g class="m-lamp" style="--d:1.1s">
-            <path d="M216 76 V96" stroke="#c2924a" stroke-width="1.2"/>
-            <circle cx="216" cy="101" r="5" fill="url(#mg)"/>
-            <circle class="m-flame" cx="216" cy="101" r="9" fill="url(#flame)"/>
-          </g>
-          <g class="m-lamp" style="--d:.55s">
-            <path d="M150 96 V118" stroke="#c2924a" stroke-width="1.2"/>
-            <circle cx="150" cy="124" r="6" fill="url(#mg)"/>
-            <circle class="m-flame" cx="150" cy="124" r="11" fill="url(#flame)"/>
-          </g>
-        </svg>
+  <!-- 03 · the rounds -->
+  <section class="ch" data-ch data-tr="tilt">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/corridor.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="stack">
+      <div class="plates">
+        <figure class="pl pl--a">
+          <img src="assets/story/corridor.webp" alt="Two white coats walking a hospital corridor" loading="lazy">
+        </figure>
+        <figure class="pl pl--b">
+          <img src="assets/story/study.webp" alt="Hands, a stethoscope and case notes on a desk" loading="lazy">
+        </figure>
       </div>
-
-      <span class="kicker" data-rv="up">Join us at</span>
-      <h3 class="venue-name" data-rv="up">Amman Sakthi Mahal</h3>
-      <p class="venue-addr" data-rv="up">
-        No. 61c, Thiyagaraja Agraharam,<br>
-        Suntharvilagam Main Road,<br>
-        Thiruvarur — 610001
-      </p>
-
-      <div class="acts" data-rv="up">
-        <a class="act act--pri act--wide" href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.9 0-7 3.1-7 7 0 5.3 7 12 7 12s7-6.7 7-12c0-3.9-3.1-7-7-7z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
-          <span>Open in Google Maps</span>
-        </a>
+      <div class="words">
+        <p class="note" data-split data-delay="700">Then the rounds, the long shifts, and the longer nights.</p>
       </div>
     </div>
   </section>
 
-  <!-- ─────────── 07 · BLESSINGS ─────────── -->
-  <footer class="scene scene--end" id="s-end" data-dot="Blessings">
-    <span class="bloom bloom--gold" style="width:66vw;height:66vw;top:10%;left:50%;transform:translateX(-50%)"></span>
+  <!-- 04 · a quiet beat over the window light -->
+  <section class="ch" data-ch data-tr="rise">
+    <div class="sc">
+      <div class="quiet-bg"><img src="assets/story/window.webp" alt="" loading="lazy"></div>
+      <svg class="kolam" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="88"/><circle class="in" cx="100" cy="100" r="62"/>
+        <circle cx="100" cy="100" r="36"/>
+        <path class="in" d="M100 12 C140 60 140 140 100 188 C60 140 60 60 100 12 Z"/>
+        <path class="in" d="M12 100 C60 60 140 60 188 100 C140 140 60 140 12 100 Z"/>
+      </svg>
+    </div>
+    <div class="words">
+      <p class="numeral">II</p>
+      <p class="kick">The years between</p>
+      <p class="line" data-split data-delay="500">Every journey home became <em>the same journey</em>.</p>
+    </div>
+  </section>
 
-    <div class="scene-in center">
-      <div class="end-art print print--tilt-r" data-rv="tilt">
-        <span class="tape tape--tl" aria-hidden="true"></span>
-        <div class="arch">
-          <picture>
-            <source srcset="assets/images/couple-leaning.webp" type="image/webp">
-            <img src="assets/images/couple-leaning.jpg" alt="Dr. Sasidharan and Dr. Abinaya">
-          </picture>
+  <!-- 05 · the last bus, one umbrella -->
+  <section class="ch" data-ch data-tr="drift" style="--from:-26%">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/journey.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="stack">
+      <div class="plates">
+        <figure class="pl pl--a">
+          <img src="assets/story/journey.webp" alt="The two of them at a bus window, fields and palms at sunset" loading="lazy">
+        </figure>
+        <figure class="pl pl--b">
+          <img src="assets/story/rain.webp" alt="Sharing one umbrella in heavy rain" loading="lazy">
+        </figure>
+      </div>
+      <div class="words">
+        <p class="note" data-split data-delay="700">The last bus. One umbrella. Neither of them in a hurry.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · the long way round -->
+  <section class="ch" data-ch data-tr="push">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/campus.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="stack">
+      <div class="plates">
+        <figure class="pl pl--a">
+          <img src="assets/story/campus.webp" alt="Walking across campus under the trees" loading="lazy">
+        </figure>
+        <figure class="pl pl--b">
+          <img src="assets/story/cycle.webp" alt="Cycling together down an avenue of trees" loading="lazy">
+        </figure>
+      </div>
+      <div class="words">
+        <p class="note" data-split data-delay="700">And always, without ever agreeing to it, the long way round.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · the sea wall — large enough to fill the screen outright -->
+  <section class="ch" data-ch data-tr="rise">
+    <div class="sc">
+      <div class="bleed bleed--full" style="--pos:44% 46%">
+        <img class="bg" src="assets/story/marina.webp" alt="" aria-hidden="true" loading="lazy">
+        <img class="plate" src="assets/story/marina.webp" alt="The two of them on the sea wall at sunset, his white coat over the motorcycle, two glasses of tea beside them" loading="lazy">
+      </div>
+    </div>
+    <div class="words words--foot">
+      <p class="kick">The evenings</p>
+      <p class="line" data-split data-delay="500">A coat on the handlebars. Two teas going <em>cold</em>.</p>
+    </div>
+  </section>
+
+  <!-- 08 · the same stretch of sea -->
+  <section class="ch" data-ch data-tr="drift" style="--from:22%">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/ride.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="stack">
+      <div class="plates">
+        <figure class="pl pl--a">
+          <img src="assets/story/ride.webp" alt="Riding along the shore at sunset, the lighthouse behind" loading="lazy">
+        </figure>
+        <figure class="pl pl--b">
+          <img src="assets/story/shore.webp" alt="Sitting together on the rocks by the sea" loading="lazy">
+        </figure>
+      </div>
+      <div class="words">
+        <p class="note" data-split data-delay="700">The same stretch of sea, at the same hour, for years.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · a quiet beat over the sunset -->
+  <section class="ch" data-ch data-tr="push">
+    <div class="sc">
+      <div class="quiet-bg"><img src="assets/story/sunset.webp" alt="" loading="lazy"></div>
+      <svg class="kolam" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="90"/><circle class="in" cx="100" cy="100" r="58"/>
+        <path class="in" d="M100 10 C150 50 150 150 100 190 C50 150 50 50 100 10 Z"/>
+        <path d="M30 30 L170 170 M170 30 L30 170"/>
+        <circle class="in" cx="100" cy="100" r="26"/>
+      </svg>
+    </div>
+    <div class="words">
+      <p class="numeral">III</p>
+      <p class="kick">The question</p>
+      <p class="line" data-split data-delay="500">One of them had been carrying it for <em>a while</em>.</p>
+    </div>
+  </section>
+
+  <!-- 10 · the ring, and the answer -->
+  <section class="ch" data-ch data-tr="tilt">
+    <div class="sc">
+      <div class="bed"><img src="assets/story/parapet.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="stack">
+      <div class="prints">
+        <figure class="tp tp--a">
+          <div class="tp-in tear-1">
+            <img src="assets/story/parapet.webp" alt="Their hands meeting on a stone parapet, the ring on her finger" loading="lazy">
+          </div>
+        </figure>
+        <figure class="tp tp--b">
+          <div class="tp-in tear-2">
+            <img src="assets/story/ringbox.webp" alt="An open ring box with jasmine beside it" loading="lazy">
+          </div>
+        </figure>
+      </div>
+      <div class="words">
+        <p class="note" data-split data-delay="700">Kept quiet for months. Asked once. Answered immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · THE REVEAL — the plate fills the screen, the names take the
+           empty upper left that the photograph leaves in shadow -->
+  <section class="ch hero" data-ch data-tr="iris">
+    <div class="sc">
+      <div class="bleed hero-bleed">
+        <img class="plate" src="assets/story/couple.webp" alt="Dr. Sasidharan and Dr. Abinaya in the lamplit mandapam — she in a gold tissue saree with a lilac border, he in a lilac shirt, brass lamps burning beside them">
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </div>
+    <div class="hero-names">
+      <span class="nm" data-split data-delay="700">Sasidharan</span>
+      <i>&amp;</i>
+      <span class="nm" data-split data-delay="1150">Abinaya</span>
+      <svg class="hero-rule" viewBox="0 0 150 10" aria-hidden="true"><line x1="0" y1="5" x2="150" y2="5"/></svg>
+      <span class="occ" data-split data-delay="1800">are getting engaged</span>
+    </div>
+  </section>
+
+  <!-- 12 · the tank at sunset -->
+  <section class="ch" data-ch data-tr="rise">
+    <div class="sc">
+      <div class="bleed" style="--fill:158%; --pos:40% 56%">
+        <img class="bg" src="assets/story/tank.webp" alt="" aria-hidden="true" loading="lazy">
+        <img class="plate" src="assets/story/tank.webp" alt="A temple tank at sunset, garlands and lit lamps framing the gopuram" loading="lazy">
+      </div>
+    </div>
+    <div class="words words--foot">
+      <p class="kick">And so, with their families</p>
+      <p class="line" data-split data-delay="500">Come and watch them say <em>yes</em>.</p>
+      <p class="sub">Engagement &middot; Sunday 15 November 2026</p>
+    </div>
+  </section>
+</div>
+
+<div class="tapz" id="tapz" style="display:none">
+  <button id="back" type="button" aria-label="Previous chapter"></button>
+  <button id="fwd" type="button" aria-label="Next chapter"></button>
+</div>
+
+<p class="hint" id="hint" aria-hidden="true">Tap right to skip ahead &middot; hold to pause</p>
+
+<div class="fctl" id="fctl">
+  <button id="sound" type="button" aria-label="Play music" aria-pressed="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+      <path id="wv" d="M15.5 8.5a5 5 0 0 1 0 7"/>
+      <path id="sl" d="M19 9l-4 6" style="display:none"/>
+    </svg>
+  </button>
+  <button id="skip" type="button" aria-label="Skip to the invitation">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5v14M19 5v14M7 12h10M13 8l4 4-4 4"/></svg>
+  </button>
+</div>
+
+<!-- ═══ THE INVITATION ═══════════════════════════════════════════════ -->
+<main class="doc" id="doc">
+
+  <section class="sec" data-view>
+    <div class="pg-bg" aria-hidden="true"><img src="assets/story/lamps.webp" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="eye" rv style="--i:0">With great joy</p>
+      <h2 data-split data-delay="260">Our <em>families</em></h2>
+      <svg class="orn" viewBox="0 0 200 20" aria-hidden="true">
+        <line x1="0" y1="10" x2="74" y2="10"/><line x1="126" y1="10" x2="200" y2="10"/>
+        <path class="lo" d="M100,2 C108,6 108,14 100,18 C92,14 92,6 100,2 Z"/>
+        <path class="lo" d="M85,10 C90,6 95,8 100,10 C95,12 90,14 85,10 Z"/>
+        <path class="lo" d="M115,10 C110,6 105,8 100,10 C105,12 110,14 115,10 Z"/>
+      </svg>
+      <p class="copy" rv style="--i:2">With the blessings of our families, we invite you to share in a day we have waited for.</p>
+      <div class="fam">
+        <div rv="l" style="--i:3">
+          <h3>Dr. Sasidharan S</h3>
+          <p class="rel">Son of</p>
+          <p>Shri D. Sakthikumar</p><p class="amp">&amp;</p><p>Smt. S. Parimala</p>
+        </div>
+        <div rv="r" style="--i:4">
+          <h3>Dr. Abinaya M</h3>
+          <p class="rel">Daughter of</p>
+          <p>Shri K. N. Murugesan</p><p class="amp">&amp;</p><p>Smt. M. Anitha Devi</p>
         </div>
       </div>
-
-      <h3 class="end-names" data-rv="up">Sasi &amp; Abi</h3>
-      <p class="end-quote" data-rv="up">
-        “Your presence, your love and your prayers are the only gifts
-        we wish for as we begin our forever.”
-      </p>
-      <span class="rule" data-rv="pop"><i></i></span>
-      <p class="end-foot" data-rv="up">Amman Sakthi Mahal &middot; Thiruvarur</p>
     </div>
-  </footer>
+    <div class="more" aria-hidden="true"><svg viewBox="0 0 18 26"><path d="M9 2v19M3 15l6 6 6-6"/></svg></div>
+  </section>
 
+  <section class="sec" data-view>
+    <div class="pg-bg" aria-hidden="true"><img src="assets/story/stage.webp" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="eye" rv style="--i:0">Nitchayathartham &middot; <span class="tamil">நிச்சயதார்த்தம்</span></p>
+      <h2 data-split data-delay="260">The <em>engagement</em> ceremony</h2>
+      <svg class="orn" viewBox="0 0 200 20" aria-hidden="true">
+        <line x1="0" y1="10" x2="74" y2="10"/><line x1="126" y1="10" x2="200" y2="10"/>
+        <path class="lo" d="M100,2 C108,6 108,14 100,18 C92,14 92,6 100,2 Z"/>
+        <path class="lo" d="M85,10 C90,6 95,8 100,10 C95,12 90,14 85,10 Z"/>
+        <path class="lo" d="M115,10 C110,6 105,8 100,10 C105,12 110,14 115,10 Z"/>
+      </svg>
+      <div class="card" rv style="--i:2">
+        <p class="vn">Amman Sakthi Mahal</p>
+        <p class="big">Sunday, 15 November 2026</p>
+        <p class="mid">6:00 PM &ndash; 7:30 PM</p>
+        <p class="addr">
+          No. 61c, Thiyagaraja Agraharam,<br>
+          Suntharvilagam Main Road,<br>
+          Thiruvarur &ndash; 610001
+        </p>
+      </div>
+      <div class="cd" rv style="--i:3" role="timer">
+        <div><b id="d">—</b><span>Days</span></div>
+        <div><b id="h">—</b><span>Hours</span></div>
+        <div><b id="m">—</b><span>Minutes</span></div>
+        <div><b id="s">—</b><span>Seconds</span></div>
+      </div>
+      <div class="acts" rv style="--i:4">
+        <a class="act act--p" id="cal" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Add to calendar
+        </a>
+        <a class="act" href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="more" aria-hidden="true"><svg viewBox="0 0 18 26"><path d="M9 2v19M3 15l6 6 6-6"/></svg></div>
+  </section>
+
+  <!-- the blessing: the words alone, over the temple at sunset -->
+  <section class="sec" data-view>
+    <div class="pg-bg" aria-hidden="true"><img src="assets/story/tank.webp" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="eye" rv style="--i:0">Your blessings</p>
+      <h2 data-split data-delay="260">Come, and <em>bless us</em></h2>
+      <svg class="orn" viewBox="0 0 200 20" aria-hidden="true">
+        <line x1="0" y1="10" x2="74" y2="10"/><line x1="126" y1="10" x2="200" y2="10"/>
+        <path class="lo" d="M100,2 C108,6 108,14 100,18 C92,14 92,6 100,2 Z"/>
+        <path class="lo" d="M85,10 C90,6 95,8 100,10 C95,12 90,14 85,10 Z"/>
+        <path class="lo" d="M115,10 C110,6 105,8 100,10 C105,12 110,14 115,10 Z"/>
+      </svg>
+      <p class="copy" rv style="--i:2">Your gracious presence and heartfelt blessings are our greatest gifts. There is no list at the door.</p>
+    </div>
+    <div class="more" aria-hidden="true"><svg viewBox="0 0 18 26"><path d="M9 2v19M3 15l6 6 6-6"/></svg></div>
+  </section>
+
+  <section class="sec" data-view>
+    <div class="pg-bg" aria-hidden="true"><img src="assets/story/couple.webp" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="eye" rv style="--i:0">With your blessings, we begin a new chapter</p>
+      <h2 class="endnames"><span data-split data-delay="300">Sasidharan</span><i>&amp;</i><span data-split data-delay="620">Abinaya</span></h2>
+      <p class="sign" rv style="--i:2">Two hearts, one beautiful journey.</p>
+      <div rv style="--i:3"><span class="hash">#LoveGotPrescribed</span></div>
+      <div rv style="--i:4"><button class="again" id="again" type="button">Watch again</button></div>
+      <p class="foot" rv style="--i:5">15 &middot; 11 &middot; 2026 &nbsp;·&nbsp; Thiruvarur</p>
+    </div>
+  </section>
 </main>
 
-<!-- floating controls — appear on touch, fade away again -->
-<div class="hud" id="hud">
-  <button class="hud-btn" id="btn-auto" type="button" aria-label="Pause auto-play">
-    <svg class="hud-ring" viewBox="0 0 50 50" aria-hidden="true">
-      <circle id="ring-path" cx="25" cy="25" r="23.2"></circle>
-    </svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5v13M14.5 5.5v13"/></svg>
-    <span class="slash" aria-hidden="true"></span>
-  </button>
-
-  <button class="hud-btn" id="btn-mute" type="button" aria-label="Mute music">
+<div class="dctl" id="dctl">
+  <button id="sound2" type="button" aria-label="Play music" aria-pressed="false">
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/>
-      <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/>
+      <path d="M11 5 6 9H3v6h3l5 4V5Z"/>
+      <path id="wv2" d="M15.5 8.5a5 5 0 0 1 0 7"/>
+      <path id="sl2" d="M19 9l-4 6" style="display:none"/>
     </svg>
-    <span class="slash" aria-hidden="true"></span>
   </button>
 </div>
 
-<div class="rail" id="rail" aria-hidden="true"><i></i></div>
+<!-- ─────────────────────────────────────────────────────────────────────
+     MUSIC — drop your file at assets/audio/ and name it below.
+     Anything the browser plays works: .mp3, .m4a, .ogg.
+     ───────────────────────────────────────────────────────────────────── -->
+<audio id="au" loop preload="auto" src="assets/audio/traditional-nadaswaram.mp3"></audio>
 
-<audio id="track" loop preload="none">
-  <source src="assets/audio/traditional-nadaswaram.mp3" type="audio/mpeg">
-</audio>
+<script>
+(function(){
+  "use strict";
+
+  var EV = {
+    s:"20261115T123000Z", e:"20261115T140000Z",
+    iso:"2026-11-15T18:00:00+05:30",
+    t:"Dr. Sasidharan & Dr. Abinaya — Engagement Ceremony",
+    loc:"Amman Sakthi Mahal, No. 61c, Thiyagaraja Agraharam, Suntharvilagam Main Road, Thiruvarur - 610001",
+    d:"Engagement Ceremony of Dr. Sasidharan S and Dr. Abinaya M (#LoveGotPrescribed)."
+  };
+
+  var $ = function(i){ return document.getElementById(i); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  $("cal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(EV.t) + "&dates=" + EV.s + "/" + EV.e
+    + "&details=" + encodeURIComponent(EV.d) + "&location=" + encodeURIComponent(EV.loc);
+
+  /* ═══ WORDS ═══════════════════════════════════════════════════════════
+     Every [data-split] has its text broken into words, each one its own
+     inline-block carrying an index. Markup inside is kept — an <em> keeps
+     its colour, its words simply join the same count. */
+  function splitInto(node, ctr){
+    var kids = Array.prototype.slice.call(node.childNodes);
+    kids.forEach(function(n){
+      if (n.nodeType === 3){
+        var parts = n.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+        parts.forEach(function(p){
+          if (!p) return;
+          if (/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(" ")); return; }
+          var s = document.createElement("span");
+          s.className = "w";
+          s.style.setProperty("--wi", ctr.i++);
+          s.textContent = p;
+          frag.appendChild(s);
+        });
+        node.replaceChild(frag, n);
+      } else if (n.nodeType === 1){
+        splitInto(n, ctr);
+      }
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-split]"), function(el){
+    el.style.setProperty("--d", (el.getAttribute("data-delay") || 0) + "ms");
+    splitInto(el, { i:0 });
+  });
+
+  /* ═══ THE TIMELINE ════════════════════════════════════════════════════
+     Seconds per beat. The reveal gets the longest hold; the title cards
+     are short because they are read in one glance. */
+  var SECS = [4.4, 5.0, 5.0, 4.2, 5.0, 5.0, 5.2, 5.0, 4.2, 5.2, 6.8, 5.6];   // ≈ 61s
+
+  var chs  = Array.prototype.slice.call(document.querySelectorAll("[data-ch]"));
+  var N    = chs.length;
+  var film = $("film"), doc = $("doc");
+  var fctl = $("fctl"), dctl = $("dctl"), tapz = $("tapz"), hint = $("hint");
+
+  var idx = -1, held = 0, lastT = 0, lastRaf = 0, playing = false, paused = false, running = false;
+
+  function cl(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function ez(x){ return 1 - Math.pow(1 - x, 3); }   // ease-out cubic
+
+  /* Only the picture layer is scrubbed. The words are left to their own
+     animations, which always finish — that is why nothing can be caught
+     half-drawn or clipped mid-line. */
+  function paintCh(i, p){
+    var st = chs[i].style;
+    st.setProperty("--t",  p.toFixed(4));
+    st.setProperty("--e1", ez(cl(p / .30)).toFixed(4));
+    st.setProperty("--e2", ez(cl((p - .10) / .32)).toFixed(4));
+  }
+
+  function show(i){
+    if (i < 0 || i >= N) return;
+    if (idx >= 0 && idx !== i){
+      var prev = chs[idx];
+      prev.classList.remove("on");
+      prev.classList.add("out");
+      clearTimeout(prev._t);
+      prev._t = setTimeout(function(){ prev.classList.remove("out"); }, 1300);
+    }
+    idx = i;
+    paintCh(i, 0);
+    chs[i].classList.remove("out", "on");
+    void chs[i].offsetWidth;          // restart the word animations
+    chs[i].classList.add("on");
+    held = 0;
+  }
+
+  /* Time is accumulated step by step with each step clamped, never
+     measured against the wall clock. Browsers freeze rAF in a background
+     tab, so a wall-clock timeline would come back from a phone call
+     several beats further on; this one resumes where it stopped. */
+  function step(dt){
+    if (!playing || idx < 0) return;
+    held += Math.min(dt, 120);
+    var p = held / 1000 / SECS[idx];
+    if (p >= 1){
+      if (idx >= N - 1) finish();
+      else show(idx + 1);
+      return;
+    }
+    paintCh(idx, p);
+  }
+
+  function tick(now){
+    if (!running) return;
+    requestAnimationFrame(tick);
+    var dt = lastT ? now - lastT : 0;
+    lastT = now; lastRaf = performance.now();
+    step(dt);
+  }
+
+  /* Some browsers starve rAF — low-power mode, heavy pages, an embedded
+     view. Without this the film would stop on the first beat and look
+     broken. The watchdog engages only when frames have actually stopped
+     arriving; at 60fps it never fires. */
+  setInterval(function(){
+    if (!running || !playing) return;
+    var since = performance.now() - lastRaf;
+    if (since > 220){ lastT = 0; lastRaf = performance.now(); step(since); }
+  }, 220);
+
+  function begin(){
+    $("gate").classList.add("up");
+    document.body.classList.add("film-on");
+    film.classList.add("on"); film.removeAttribute("aria-hidden");
+    fctl.classList.add("show");
+    tapz.style.display = "flex";
+    hint.classList.add("show");
+    startAudio();
+    running = true; playing = true; paused = false; lastT = 0;
+    show(0);
+    requestAnimationFrame(tick);
+    setTimeout(function(){ $("gate").hidden = true; }, 1500);
+  }
+  $("begin").addEventListener("click", begin);
+
+  function finish(){
+    running = false; playing = false;
+    film.classList.remove("on"); film.setAttribute("aria-hidden","true");
+    fctl.classList.remove("show");
+    tapz.style.display = "none"; hint.classList.remove("show");
+    document.body.classList.remove("film-on");
+    doc.classList.add("on");
+    dctl.classList.add("show");
+    doc.scrollTop = 0;
+    reveal();
+  }
+  $("skip").addEventListener("click", finish);
+
+  $("again").addEventListener("click", function(){
+    doc.classList.remove("on"); dctl.classList.remove("show");
+    document.body.classList.add("film-on");
+    film.classList.add("on"); film.removeAttribute("aria-hidden");
+    fctl.classList.add("show");
+    tapz.style.display = "flex";
+    running = true; playing = true; lastT = 0;
+    idx = -1;
+    show(0);
+    requestAnimationFrame(tick);
+  });
+
+  /* tap left or right to move, press and hold to pause */
+  var holdT = null, didHold = false;
+  function armHold(){
+    didHold = false;
+    holdT = setTimeout(function(){ didHold = true; playing = false; }, 320);
+  }
+  function release(go){
+    clearTimeout(holdT);
+    if (didHold){ playing = true; return; }
+    go();
+  }
+  function prev(){ show(idx > 0 ? idx - 1 : 0); playing = true; }
+  function next(){ if (idx >= N - 1) finish(); else { show(idx + 1); playing = true; } }
+
+  ["back","fwd"].forEach(function(id){
+    var el = $(id), go = id === "back" ? prev : next;
+    el.addEventListener("pointerdown", function(e){ e.preventDefault(); armHold(); });
+    el.addEventListener("pointerup",   function(e){ e.preventDefault(); release(go); });
+    el.addEventListener("pointercancel", function(){ clearTimeout(holdT); playing = true; });
+  });
+
+  document.addEventListener("keydown", function(e){
+    if (!running) return;
+    if (e.key === "ArrowRight"){ next(); }
+    else if (e.key === "ArrowLeft"){ prev(); }
+    else if (e.key === " "){ e.preventDefault(); playing = !playing; }
+    else if (e.key === "Escape"){ finish(); }
+  });
+
+  document.addEventListener("visibilitychange", function(){
+    if (document.hidden){ paused = playing; playing = false; }
+    else if (paused){ playing = true; paused = false; lastT = 0; }
+  });
+
+  /* ═══ MUSIC — never autoplays ═════════════════════════════════════════ */
+  var au = $("au"), on = false;
+  function paint(){
+    [["wv","sl","sound"],["wv2","sl2","sound2"]].forEach(function(t){
+      var w = $(t[0]), s = $(t[1]), b = $(t[2]);
+      if (!w) return;
+      w.style.display = on ? "" : "none";
+      s.style.display = on ? "none" : "";
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.setAttribute("aria-label", on ? "Mute music" : "Play music");
+    });
+  }
+  function startAudio(){
+    au.volume = 0.42;
+    var p = au.play();
+    if (p && p.then) p.then(function(){ on = true; paint(); }, function(){ on = false; paint(); });
+  }
+  function toggle(){
+    if (on){ au.pause(); on = false; paint(); }
+    else { var p = au.play(); if (p && p.then) p.then(function(){ on = true; paint(); }, function(){ on = false; paint(); }); }
+  }
+  $("sound").addEventListener("click", toggle);
+  $("sound2").addEventListener("click", toggle);
+  paint();
+
+  /* ═══ THE PAGES ═══════════════════════════════════════════════════════
+     The invitation scrolls inside .doc, so the observer watches that box
+     and not the window. A page is marked the moment it is mostly on
+     screen, which with mandatory snapping is the moment it lands. */
+  var views = document.querySelectorAll("[data-view]"), io = null;
+  function reveal(){
+    if (io) return;
+    if ("IntersectionObserver" in window && !reduce){
+      io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) e.target.classList.add("on-view"); });
+      }, { root:doc, threshold:0.42 });
+      Array.prototype.forEach.call(views, function(v){ io.observe(v); });
+    } else {
+      Array.prototype.forEach.call(views, function(v){ v.classList.add("on-view"); });
+      io = true;
+    }
+  }
+
+  /* ═══ COUNTDOWN ═══════════════════════════════════════════════════════ */
+  var target = new Date(EV.iso).getTime();
+  var D = $("d"), H = $("h"), M = $("m"), S = $("s");
+  function p2(n){ return n < 10 ? "0" + n : "" + n; }
+  (function run(){
+    var left = target - Date.now();
+    if (left <= 0){ D.textContent = H.textContent = M.textContent = S.textContent = "00"; return; }
+    var s = Math.floor(left / 1000);
+    D.textContent = Math.floor(s / 86400);
+    H.textContent = p2(Math.floor(s / 3600) % 24);
+    M.textContent = p2(Math.floor(s / 60) % 60);
+    S.textContent = p2(s % 60);
+    setTimeout(run, 1000);
+  })();
+
+  /* ═══ AMBIENT — jasmine petals and lamp motes ═════════════════════════ */
+  var cv = $("motes"), ctx = cv.getContext("2d");
+  var W = 0, Hh = 0, pet = [], mot = [], awake = true;
+  function size(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; Hh = cv.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(Hh * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function r(a,b){ return a + Math.random() * (b - a); }
+  function petal(top){
+    return { x:r(-.05,1.05)*W, y: top ? r(-.35,-.02)*Hh : r(-.3,1)*Hh,
+             s:r(1.5,3.6), vy:r(9,24), sw:r(14,36), ph:r(0,6.2832),
+             sp:r(-.9,.9), ro:r(0,6.2832), a:r(.2,.55), li:Math.random()<.18 };
+  }
+  function mote(){
+    return { x:Math.random()*W, y:Math.random()*Hh, s:r(.5,1.4), vy:r(-8,-3),
+             dr:r(-5,5), ph:r(0,6.2832), a:r(.16,.52) };
+  }
+  function seed(){
+    size();
+    var area = (W * Hh) / 1000;
+    var pn = reduce ? 6 : Math.max(10, Math.min(24, Math.round(area / 14)));
+    var mn = reduce ? 10 : Math.max(20, Math.min(70, Math.round(area / 5)));
+    pet = []; mot = [];
+    for (var i=0;i<pn;i++) pet.push(petal(false));
+    for (var j=0;j<mn;j++) mot.push(mote());
+  }
+  var last = 0;
+  function loop(now){
+    requestAnimationFrame(loop);
+    if (!awake){ last = now; return; }
+    var dt = Math.min((now - last)/1000, .05); last = now;
+    ctx.clearRect(0,0,W,Hh);
+    var i,o,tw;
+    for (i=0;i<mot.length;i++){
+      o = mot[i]; o.y += o.vy*dt; o.ph += dt*.7; o.x += Math.sin(o.ph)*o.dr*dt;
+      if (o.y < -8){ o.y = Hh + 8; o.x = Math.random()*W; }
+      tw = .65 + .35*Math.sin(o.ph*2.3);
+      ctx.globalAlpha = o.a*tw; ctx.fillStyle = "#FAA765";
+      ctx.beginPath(); ctx.arc(o.x,o.y,o.s,0,6.2832); ctx.fill();
+    }
+    for (i=0;i<pet.length;i++){
+      o = pet[i]; o.y += o.vy*dt; o.ph += dt*.85; o.ro += o.sp*dt;
+      o.x += Math.sin(o.ph)*o.sw*dt;
+      if (o.y - o.s > Hh){ pet[i] = petal(true); continue; }
+      ctx.globalAlpha = o.a; ctx.fillStyle = o.li ? "#E3A06D" : "#F8E3C8";
+      ctx.save(); ctx.translate(o.x,o.y); ctx.rotate(o.ro);
+      ctx.beginPath(); ctx.ellipse(0,0,o.s,o.s*.56,0,0,6.2832); ctx.fill();
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+  }
+  var rt;
+  window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(seed, 160); }, { passive:true });
+  document.addEventListener("visibilitychange", function(){ awake = !document.hidden; });
+
+  seed();
+  requestAnimationFrame(function(t){ last = t; loop(t); });
+})();
+</script>
 
 </body>
 </html>
