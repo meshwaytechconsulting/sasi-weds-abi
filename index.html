@@ -413,6 +413,42 @@ body.named .open-words .names i{ animation:wordIn 1s var(--ease-soft) .4s both }
   color:var(--ink-soft); margin:.75rem 0 0;
 }
 
+/* ── THE OPENING TYPE IS SIZED BY THE SHORTER AXIS ──────────────────────
+   Everything here was in vw, so the title block kept the same height in
+   pixels no matter how tall the screen was — which means it took a
+   BIGGER FRACTION of a short screen, and walked down onto their heads.
+   The frame has his hair at 42% and both faces at 44–58%, so the words
+   have to be finished by 34% of the height, whatever that height is.
+
+   Solving the block against that limit gives a straight line. The block
+   is the padding (6vh), about 31px of fixed leading, and 3.99 times the
+   type scale T:
+
+       0.06H + 31 + 3.99T  <=  0.34H        ->  T <= 0.070H - 7.8
+
+   which is `7vh - 8px`, and the width cap stays on top of it. So the
+   type takes whichever axis is tighter:
+
+   The algebra said 7vh. Measuring it said otherwise — the fixed leading
+   and the floors are larger than the model allowed, and the block landed
+   at 40%, two points off his hair. 5.9vh is the measured answer, not the
+   derived one, and it holds the block at about 35% at every height:
+
+       H=844  min(43.7, 41.8) = 41.8   H=600  min(43.7, 27.4) = 27.4
+       H=700  min(43.7, 33.3) = 33.3   H=500  min(43.7, 21.5) = 21.5
+
+   The secondary lines are multiples of T so the proportions hold, with
+   floors so nothing becomes unreadable on a very short window. Portrait
+   only: in landscape the page splits into two columns, the words sit on
+   paper beside the film, and none of this applies. */
+@media (max-aspect-ratio:1/1){
+  .pg--open{ --ot:clamp(1.05rem, min(11.2vw, calc(5.9vh - 8px)), 3.8rem) }
+  .open-words .names{ font-size:var(--ot) }
+  .open-words .eyebrow{ font-size:max(.52rem, calc(var(--ot) * .235)) }
+  .open-words .occ{     font-size:max(.8rem,  calc(var(--ot) * .44)) }
+  .open-words .when{    font-size:max(.5rem,  calc(var(--ot) * .255)) }
+}
+
 /* ═══ TYPE ═════════════════════════════════════════════════════════════ */
 .pg h2{
   font-family:var(--f-display); font-weight:200;
