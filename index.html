@@ -54,7 +54,7 @@
      #F4E1CC: cocoa 9.0:1, ink-soft 6.1:1, crimson 8.0:1,
      rose-deep 5.7:1. */
   --ink:#4A3524;          /* warm cocoa — body and headings             */
-  --ink-soft:#6B4A38;
+  --ink-soft:#5F4231;
   --leaf:#8F9721;         /* banana leaf, 13%                           */
   --leaf-deep:#5E6616;
   --leaf-ink:#4A5110;     /* the leaf taken down far enough to carry text*/
@@ -209,14 +209,22 @@ body.lively #air{ opacity:1 }
    jasmine and dark banana leaf scattered right through the centre — so
    there is no clear box in it at any size.
 
-   Measured: at veil .45 there is still no box where --ink reaches AA. At
-   .50 the portrait gives 60%x92% and the landscape gives nothing at all.
-   At .58 both clear AA across 92%x92%. So .58 it is. That is more than a
-   little, and it is what the picture needs; the alternative was to lay a
-   panel over it, which would hide more of it than the veil does. */
+   It was veiled at .58 for a while, which is a lot of cream over a good
+   photograph. The panel changes the arithmetic: with the words on their
+   own sheer ground, the picture only has to be calmed rather than
+   lifted, and .25 does that — cocoa reads 8.0:1 on a .74 panel over a
+   .25 veil, better than .58 ever gave, with three quarters of the
+   photograph still there instead of under half. */
 .pg--d .wash::after{
   content:""; position:absolute; inset:0;
-  background:rgba(253,248,236,.58);
+  background:rgba(253,248,236,.25);
+}
+/* the blessing sits on a panel like everything else, which is what was
+   wrong with it: it was the one page asking its words to stand on a
+   photograph unaided */
+.pg--d .wrap{
+  padding:clamp(1.4rem,5.2vw,2.1rem) clamp(1.1rem,4.6vw,1.9rem);
+  max-width:min(34rem,var(--gap));
 }
 
 .wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto }
@@ -256,7 +264,7 @@ body.lively #air{ opacity:1 }
    also give back the height this costs, or the second one would run off
    the bottom of the screen. */
 .pg{ --gap:92vw }
-.pg--b{ padding-block-start:clamp(5.5rem,17vh,8rem) }
+.pg--b{ padding-block-start:clamp(3.5rem,11vh,5.5rem) }
 .pg--c{ padding-block-start:clamp(4.5rem,13vh,6.5rem) }
 .pg--b .fam{ gap:clamp(.6rem,2.4vw,1rem) }
 .pg--b .fam div{ padding:clamp(.85rem,3.2vw,1.3rem) 1rem }
@@ -436,7 +444,7 @@ body.named .open-words .names i{ animation:wordIn 1s var(--ease-soft) .4s both }
   color:var(--ink); margin:.5rem 0 0; text-wrap:balance;
 }
 .pg h2 em{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.1em; color:var(--rose-deep) }
-.copy{ color:var(--ink); font-size:clamp(1.04rem,4.2vw,1.16rem); font-weight:500; max-width:34ch; margin:1.1rem auto 0 }
+.copy{ color:var(--ink); font-size:clamp(1rem,4vw,1.1rem); font-weight:500; max-width:34ch; margin:.85rem auto 0 }
 
 /* ── the rings ───────────────────────────────────────────────────────
    The engagement itself, drawn rather than photographed: two bands that
@@ -465,7 +473,7 @@ body.named .open-words .names i{ animation:wordIn 1s var(--ease-soft) .4s both }
    The two rules draw outward from the middle and the flame opens after
    them, rather than all five strokes racing each other to the same
    finish. Same 1.7s, read as a gesture instead of a flicker. */
-.orn{ display:block; width:clamp(132px,40vw,210px); height:22px; margin:1.2rem auto; overflow:visible }
+.orn{ display:block; width:clamp(118px,34vw,185px); height:20px; margin:.85rem auto; overflow:visible }
 .orn line,.orn path{ fill:none; stroke:var(--brass); stroke-width:1; stroke-dasharray:320; stroke-dashoffset:320 }
 .orn .lit{ stroke:var(--rose); stroke-width:1.2 }
 .on-view .orn line{ animation:draw 1.5s var(--ease-io) .2s forwards }
@@ -525,36 +533,28 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 /* ═══ FAMILIES ═════════════════════════════════════════════════════════ */
 .fam{ display:grid; gap:clamp(.9rem,3.4vw,1.4rem); margin-top:1.7rem }
 @media (min-width:620px){ .fam{ grid-template-columns:1fr 1fr } }
-.fam div{
-  border:1px solid var(--rule);
-  background:linear-gradient(180deg,var(--white),var(--paper-warm));
-  box-shadow:0 14px 34px -24px rgba(90,60,20,.5);
-  padding:clamp(1.2rem,4.6vw,1.8rem) 1rem;
-}
+.fam div{ padding:clamp(.95rem,3.7vw,1.35rem) .9rem }   /* compact */
 .fam h3{ font-family:var(--f-display); font-weight:300; font-size:1.34rem; letter-spacing:.012em; color:var(--crimson); margin:0 }
-.fam .rel{ font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--rose-deep); margin:.45rem 0 .95rem }
-.fam p{ font-family:var(--f-body); font-weight:300; font-size:clamp(.97rem,3.9vw,1.08rem); color:var(--ink); margin:0; line-height:1.6 }
+.fam .rel{ font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--rose-deep); margin:.35rem 0 .7rem }
+.fam p{ font-family:var(--f-body); font-weight:300; font-size:clamp(.95rem,3.8vw,1.05rem); color:var(--ink); margin:0; line-height:1.5 }
 .fam .amp{ font-family:var(--f-script); font-style:italic; color:var(--rose-deep); font-size:1.2em; margin:.1rem 0 }
 
 /* ═══ THE CEREMONY ═════════════════════════════════════════════════════ */
 .card{
-  border:1px solid var(--rule);
-  background:linear-gradient(180deg,var(--white),var(--paper-warm));
-  box-shadow:0 18px 44px -28px rgba(90,60,20,.55);
-  padding:clamp(1.4rem,5.4vw,2.2rem) clamp(1rem,5vw,2rem);
-  margin-top:1.5rem;
+  padding:clamp(1.05rem,4.2vw,1.7rem) clamp(.9rem,4vw,1.6rem);
+  margin-top:1.15rem;
 }
 .card .vn{ font-family:var(--f-display); font-weight:300; font-size:clamp(1.5rem,6.7vw,1.98rem); letter-spacing:.012em; color:var(--crimson); margin:0 }
-.card .big{ font-family:var(--f-body); font-weight:300; font-size:clamp(1.1rem,4.7vw,1.36rem); color:var(--ink); margin:.85rem 0 0 }
+.card .big{ font-family:var(--f-body); font-weight:300; font-size:clamp(1.06rem,4.5vw,1.3rem); color:var(--ink); margin:.65rem 0 0 }
 .card .mid{ font-family:var(--f-caps); font-size:clamp(.7rem,3.1vw,.8rem); letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep); margin:.5rem 0 0 }
-.card .addr{ font-family:var(--f-body); font-weight:300; font-size:clamp(.95rem,3.8vw,1.05rem); color:var(--ink-soft); line-height:1.65; margin:1rem 0 0 }
+.card .addr{ font-family:var(--f-body); font-weight:300; font-size:clamp(.93rem,3.7vw,1.02rem); color:var(--ink-soft); line-height:1.55; margin:.8rem 0 0 }
 
 .cd{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-  background:var(--rule); border:1px solid var(--rule);
-  margin:1.4rem auto 0; max-width:30rem;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  margin:1.15rem auto 0; max-width:30rem;
 }
-.cd div{ background:var(--white); padding:.85rem .2rem }
+.cd div{ padding:.7rem .2rem }
+.cd div + div{ border-left:1px solid rgba(186,138,92,.26) }
 .cd b{
   display:block; font-family:var(--f-display); font-weight:300;
   font-size:clamp(1.7rem,7.6vw,2.3rem); line-height:1; color:var(--crimson);
@@ -565,79 +565,60 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 .acts{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:1.5rem }
 .act{
   display:inline-flex; align-items:center; gap:.5rem;
-  padding:.85rem 1.5rem; border:1px solid var(--rule); border-radius:999px;
+  padding:.78rem 1.45rem; border:1px solid rgba(186,138,92,.4); border-radius:999px;
   font-family:var(--f-caps); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--brass-deep);
-  background:var(--white);
+  background:rgba(255,250,241,.72);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
   transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease);
 }
-.act:hover{ background:var(--sand); border-color:var(--brass); transform:translateY(-2px) }
-.act--p{ background:var(--sand); border-color:var(--brass) }
+.act:hover{ background:rgba(249,213,151,.82); border-color:var(--brass); transform:translateY(-2px) }
+.act--p{ background:rgba(249,213,151,.6); border-color:rgba(168,116,46,.5) }
 .act svg{ width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.6; flex:none }
 
 /* ═══ CLOSING ══════════════════════════════════════════════════════════ */
-.sign{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:clamp(1.16rem,4.9vw,1.42rem); color:var(--rose-deep); margin:1.4rem auto 0; max-width:30ch }
+.sign{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:clamp(1.14rem,4.8vw,1.38rem); color:var(--rose-deep); margin:1.1rem auto 0; max-width:30ch }
 .endnames{ font-family:var(--f-display); font-weight:200; font-size:clamp(2.05rem,9vw,3.05rem); color:var(--ink); margin:.6rem 0 0; line-height:1.18; letter-spacing:.015em }
 .endnames i{ display:block; font-family:var(--f-script); font-style:italic; font-size:.56em; color:var(--rose-deep); margin:.02em 0; line-height:1.1 }
 .hash{
-  display:inline-block; margin-top:1.3rem; padding:.62rem 1.5rem;
-  border:1px solid rgba(155,47,69,.38); border-radius:999px; background:var(--white);
+  display:inline-block; margin-top:1.05rem; padding:.58rem 1.35rem;
+  border:1px solid rgba(155,47,69,.34); border-radius:999px;
+  background:rgba(255,250,241,.72);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
   font-family:var(--f-caps); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep);
 }
-.foot{ margin-top:2rem; font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft) }
+.foot{ margin-top:1.5rem; font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft) }
 
-/* ═══ ON A PHONE, NOTHING IS IN A BOX ══════════════════════════════════
-   The last page was the one that worked, and the reason is that it has
-   no container at all: the words lie straight on the cream the frame
-   leaves open, and the frame does the holding. Every other page was
-   putting a cream rectangle on top of a cream background — a box drawn
-   around things that were already surrounded.
+/* ═══ THE PANEL ════════════════════════════════════════════════════════
+   Taking the boxes away did not work: without a ground the words were
+   loose on a busy picture and the pages lost their spine. Putting the
+   OLD boxes back would not work either — an opaque cream rectangle on a
+   cream background is a box drawn round things that were already
+   surrounded, which is what was wrong in the first place.
 
-   So on a portrait screen the cards, the countdown grid and the pill
-   all lose their fill, their border and their shadow, and keep only
-   their spacing. What separates one family from the other is now a
-   drawn flourish, which is what the backdrops are made of.
+   So the panel is sheer. Cream at .74 over a frosted copy of whatever is
+   behind it, which leaves roughly a quarter of the florals showing
+   through: the lotus and the jasmine carry on under the words instead of
+   stopping at an edge, and the panel reads as part of the picture rather
+   than as something laid on it.
 
-   A wide screen keeps its cards: there the picture is a band across the
-   back rather than a frame around the words, and without a ground the
-   two columns would have nothing to stand on. */
-@media (max-aspect-ratio:1/1){
-  .fam{ display:block; margin-top:1.2rem }
-  .fam div{
-    background:none; border:0; box-shadow:none;
-    padding:.1rem .25rem; max-width:min(var(--gap),100%); margin-inline:auto;
-  }
-  /* a flourish between the families, in place of the gap between boxes */
-  .fam div + div{ margin-top:clamp(1.3rem,5vh,2.1rem); position:relative }
-  .fam div + div::before{
-    content:""; position:absolute; left:50%; top:calc(-1 * clamp(.65rem,2.5vh,1.05rem));
-    translate:-50% -50%;
-    width:clamp(74px,26vw,110px); height:1px;
-    background:linear-gradient(90deg,transparent,var(--rule),transparent);
-  }
-  .fam div + div::after{
-    content:"\2766"; position:absolute; left:50%; top:calc(-1 * clamp(.65rem,2.5vh,1.05rem));
-    translate:-50% -50%; color:var(--rose); font-size:.8rem; line-height:1;
-    background:none;
-  }
-  .card{
-    background:none; border:0; box-shadow:none;
-    padding:.2rem .25rem; margin-top:.9rem;
-    max-width:min(var(--gap),100%); margin-inline:auto;
-  }
-  .cd{
-    background:none; border:0; gap:0; margin-top:1.5rem;
-    max-width:min(var(--gap),100%);
-  }
-  .cd div{ background:none; padding:.5rem .15rem }
-  .cd div + div{ border-left:1px solid var(--rule-soft) }
-  .act{ background:none; border-color:var(--rule) }
-  .act--p{ background:none }
-  .hash{ background:none }
-  /* everything is on the picture now, so everything gets the halo */
-  .pg:not(.pg--open) .wrap{
-    text-shadow:0 1px 2px rgba(253,248,236,.92), 0 0 9px rgba(253,248,236,.7);
-  }
+   .74 is measured, not picked. Over the worst 1% of each backdrop, with
+   the frosting applied first because that is what the eye actually
+   meets: cocoa 7.0:1, crimson 6.1:1, ink-soft 4.8:1, rose-deep 4.5:1.
+   At .50 cocoa falls to 4.1 on the closing backdrop and the sheerness
+   stops being worth it. */
+.panel,.card,.fam div,.cd,.pg--d .wrap{
+  background:rgba(255,250,241,.74);
+  -webkit-backdrop-filter:blur(7px) saturate(1.06);
+  backdrop-filter:blur(7px) saturate(1.06);
+  border:1px solid rgba(186,138,92,.32);
+  box-shadow:0 14px 34px -22px rgba(110,60,45,.46),
+             inset 0 1px 0 rgba(255,255,255,.5);
 }
+/* no halo on type that has a panel under it — a glow on a ground reads
+   as a smudge. The halo is for the loose text only. */
+.card *,.fam div *,.cd *,.pg--d .wrap *{ text-shadow:none }
+/* and inside a panel the gap no longer applies: the panel IS the gap */
+.pg--d .eyebrow,.pg--d h2,.pg--d .copy{ max-width:100% }
 
 /* ═══ CHROME ═══════════════════════════════════════════════════════════ */
 .cue{
