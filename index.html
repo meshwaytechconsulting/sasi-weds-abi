@@ -203,7 +203,7 @@ body.lively #air{ opacity:1 }
    written down — .55 over .52 leaves 22%, and at an image opacity of .44
    that is the .095 weight the type zone wants. */
 
-.wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto; padding-top: 96px; }
+.wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto; }
 
 /* ── FITTING THE WORDS INTO THE GAP ──────────────────────────────────
    Each backdrop is a frame, and a frame has a measurable hole in it. For
@@ -693,7 +693,11 @@ body.named .sound{ opacity:1 }
 
 @media (min-width:820px) and (min-aspect-ratio:1/1){
   .pg--open{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; padding:0 }
-  .open-art{ position:relative; inset:auto; grid-column:1; height:100svh }
+  /* height:100% of the grid row, not another 100svh. Declaring svh twice
+     — once on the page, once on the column inside it — let the two
+     disagree, and on a landscape phone the column won by 22px and pushed
+     the page taller than the screen, which makes the snap fight the thumb. */
+  .open-art{ position:relative; inset:auto; grid-column:1; height:100% }
   /* the clip is 9:16 and this column is about 4:5, so covering it would
      cut the couple off at the ankles. Contained, the whole frame survives
      and the paper it sits on is the page's own. */
@@ -710,6 +714,113 @@ body.named .sound{ opacity:1 }
   .names{ font-size:clamp(3rem,6vw,4.6rem) }
   .names i{ margin-left:-.02em }
   .cue{ left:auto; right:clamp(2.5rem,6vw,5rem); translate:none }
+}
+
+/* ═══ SHORT SCREENS ════════════════════════════════════════════════════
+   Everything above was sized on a 375x812 phone. An iPhone SE is 375x667
+   — same width, 145px less height — and page two needs about 600px of
+   content before padding, so it ran off the bottom and the scroll cue
+   landed on top of the second family.
+
+   Height is the only thing that has gone wrong, so height is the only
+   thing queried: this applies to a short phone and to a laptop with a
+   shallow window alike, and it changes no colour, no backdrop and no
+   type face — only the air between things, and the display sizes that
+   drive it.
+
+   Measured on a 375x667 page two: padding 107px -> 54, top offset 73 ->
+   40, heading 30 -> 26, ornament 27 -> 15, copy 18 -> 12, card padding
+   2x35 -> 2x24, family gap 13 -> 9. About 190px recovered against the
+   145px that was missing. */
+@media (max-height:740px){
+  .pg{ padding-block:clamp(1.3rem,4vh,2.4rem) }
+  .pg--b{ padding-block-start:clamp(1.8rem,6vh,3rem) }
+  .pg--c{ padding-block-start:clamp(1.5rem,5vh,2.6rem) }
+
+  .eyebrow{ margin-bottom:.55rem }
+  .pg h2{ font-size:clamp(1.62rem,7vw,2.3rem); line-height:1.14 }
+  .orn{ margin:.6rem auto; height:16px; width:clamp(104px,30vw,150px) }
+  .copy{ font-size:clamp(.92rem,3.7vw,1rem); margin-top:.6rem }
+
+  .fam{ gap:.55rem; margin-top:1rem }
+  .fam div{ padding:.75rem .8rem }
+  .fam h3{ font-size:1.16rem }
+  .fam .rel{ margin:.25rem 0 .5rem }
+  .fam p{ font-size:.92rem; line-height:1.42 }
+  .fam .amp{ font-size:1.05em }
+
+  .card{ padding:.8rem .85rem; margin-top:.8rem }
+  .card .vn{ font-size:clamp(1.3rem,5.8vw,1.7rem) }
+  .card .big{ font-size:clamp(.98rem,4.1vw,1.16rem); margin-top:.45rem }
+  .card .mid{ margin-top:.35rem }
+  .card .addr{ font-size:clamp(.87rem,3.5vw,.96rem); line-height:1.42; margin-top:.55rem }
+
+  .cd{ margin-top:.8rem }
+  .cd div{ padding:.5rem .15rem }
+  .cd b{ font-size:clamp(1.4rem,6.4vw,1.9rem) }
+  .cd span{ margin-top:.3rem }
+  .acts{ margin-top:.9rem }
+  .act{ padding:.66rem 1.25rem }
+
+  .endnames{ font-size:clamp(1.8rem,8vw,2.6rem) }
+  .sign{ margin-top:.8rem; font-size:clamp(1.04rem,4.4vw,1.26rem) }
+  .hash{ margin-top:.75rem }
+  .foot{ margin-top:1rem }
+  .rings--sm{ width:clamp(84px,24vw,116px) }
+
+  .open-words{ padding-top:clamp(4vh,6vh,8vh) }
+}
+
+/* A very short window — a phone on its side, or a laptop with devtools
+   open across the bottom. Same idea, one notch further. */
+@media (max-height:560px){
+  .pg{ padding-block:clamp(.9rem,3vh,1.6rem) }
+  .pg--b,.pg--c{ padding-block-start:clamp(1.1rem,4vh,2rem) }
+  .pg h2{ font-size:clamp(1.42rem,6vw,1.95rem) }
+  .orn{ margin:.45rem auto; height:13px }
+  .copy{ font-size:.9rem; margin-top:.45rem }
+  .fam div{ padding:.6rem .7rem }
+  .fam p{ font-size:.88rem; line-height:1.36 }
+  .card{ padding:.65rem .75rem; margin-top:.6rem }
+  .cd{ margin-top:.6rem }
+  .cd b{ font-size:clamp(1.25rem,5.6vw,1.6rem) }
+  .acts{ margin-top:.7rem }
+}
+
+/* A phone on its side is the hardest case: 390px of height, and the wide
+   branch is in force so the ceremony page lays out in a 46vw column that
+   wraps tall. At the 560 tier its page still measured 458px against a
+   390px screen — taller than the glass, which makes the snap fight the
+   thumb. This tier is sized to keep every page inside the viewport. */
+@media (max-height:440px){
+  .pg{ padding-block:.7rem }
+  .pg--b,.pg--c{ padding-block-start:.9rem }
+  .eyebrow{ font-size:.5rem; letter-spacing:.24em; margin-bottom:.4rem }
+  .pg h2{ font-size:clamp(1.2rem,4.2vw,1.62rem); line-height:1.1 }
+  .orn{ margin:.35rem auto; height:11px; width:clamp(80px,18vw,110px) }
+  .copy{ font-size:.82rem; margin-top:.35rem; line-height:1.45 }
+  .fam{ gap:.45rem; margin-top:.6rem }
+  .fam div{ padding:.45rem .6rem }
+  .fam h3{ font-size:1rem }
+  .fam .rel{ font-size:.46rem; margin:.18rem 0 .32rem }
+  .fam p{ font-size:.82rem; line-height:1.3 }
+  .card{ padding:.5rem .6rem; margin-top:.45rem }
+  .card .vn{ font-size:1.14rem }
+  .card .big{ font-size:.92rem; margin-top:.28rem }
+  .card .mid{ font-size:.6rem; margin-top:.24rem }
+  .card .addr{ font-size:.8rem; line-height:1.3; margin-top:.4rem }
+  .cd{ margin-top:.45rem }
+  .cd div{ padding:.34rem .1rem }
+  .cd b{ font-size:1.14rem }
+  .cd span{ font-size:.4rem; margin-top:.18rem }
+  .acts{ margin-top:.5rem }
+  .act{ padding:.48rem 1rem; font-size:.52rem }
+  .endnames{ font-size:1.58rem }
+  .sign{ font-size:.95rem; margin-top:.5rem }
+  .hash{ margin-top:.5rem; padding:.44rem 1rem }
+  .foot{ margin-top:.6rem }
+  .rings--sm{ width:70px }
+  .open-words{ padding-top:3vh }
 }
 
 /* ═══ REDUCED MOTION ═══════════════════════════════════════════════════ */
