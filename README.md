@@ -3,7 +3,7 @@
 *Nitchayathartham · நிச்சயதார்த்தம் — an engagement, not a wedding. The
 wording says so throughout: "&", never "weds".*
 
-Five pages in daylight, each a whole screen, snapping one at a time. Static
+Four pages, each a whole screen, snapping one at a time. Static
 site. No build step, no framework, no CDN beyond Google Fonts.
 
 **Live:** GitHub Pages on `main` / root. `index.html` is the entry point.
@@ -36,10 +36,15 @@ page of warm paper underneath it.
 | 1 | The film | 3.4s of the couple at the mandapam, the two names, the date |
 | 2 | The families | both sets of parents |
 | 3 | The ceremony | venue, date, time, address, countdown, map |
-| 4 | The blessing | the rings, then the words |
-| 5 | The close | their short names, a smaller pair of rings, the hashtag, the date |
+| 4 | The close | their short names, a pair of drawn rings, the hashtag, the date |
 
-Pages two to four sit on the mandapam; the close sits on the rings.
+There was a blessing page between the ceremony and the close, carrying the
+drawn rings. It is gone at the client's request. Its two backdrops,
+`bg-rings-m.webp` and `bg-rings-d.webp`, stay in `assets/images/` unused, in
+case it comes back; nothing references them.
+
+Each page has its own backdrop, in two cuts — a 9:16 for a phone and a 16:9
+for a wide screen, chosen by aspect ratio rather than by width.
 
 The scroller is a box of its own (`.deck`) rather than the window, so a snap
 point is always one whole screen and the drifting layer above it stays put
@@ -258,9 +263,9 @@ Both also read at 8.0:1 and 7.0:1 on plain paper, so they work on every page.
 **Measure against the worst pixel, not the average.** The average is what let
 the olive pass review and then disappear on somebody's phone.
 
-## The ground under pages two to five
+## The ground under pages two to four
 
-Pages two to five sit on the **client's own decor photograph** — the brass
+Pages two to four sit on their own backdrops — the brass
 Nandi among roses, tuberose and foliage.
 
 > **Two things to check on that file.** It arrived as a phone screenshot: an
@@ -405,7 +410,7 @@ is set in `vw` that proportion holds as the screen narrows.
   wash and the same weights — worst pixel, `--ink` reads 10.2:1 there and the
   small caps 5.4:1.
 - `assets/images/theme-decor.webp` — 706x857, 82 KB. The client's decor,
-  cropped free of its screenshot chrome. The ground under pages two to five.
+  cropped free of its screenshot chrome. The ground under the inner pages.
 - `assets/audio/traditional-nadaswaram.mp3` — 50s, re-encoded 320 kb/s stereo
   down to 128 kb/s (1,958 KB to 783 KB). Replace with any file the browser
   plays.

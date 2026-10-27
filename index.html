@@ -202,32 +202,8 @@ body.lively #air{ opacity:1 }
    again. These numbers are chosen for the product, not for how they look
    written down — .55 over .52 leaves 22%, and at an image opacity of .44
    that is the .095 weight the type zone wants. */
-/* ── THE ONE PAGE THAT NEEDS LIFTING ──────────────────────────────────
-   Five of these backdrops are frames: florals round the edge, flat cream
-   in the middle, and --ink reads 7:1 or better in that middle with no
-   help at all. The rings are not a frame, they are a PHOTOGRAPH — lotus,
-   jasmine and dark banana leaf scattered right through the centre — so
-   there is no clear box in it at any size.
 
-   It was veiled at .58 for a while, which is a lot of cream over a good
-   photograph. The panel changes the arithmetic: with the words on their
-   own sheer ground, the picture only has to be calmed rather than
-   lifted, and .25 does that — cocoa reads 8.0:1 on a .74 panel over a
-   .25 veil, better than .58 ever gave, with three quarters of the
-   photograph still there instead of under half. */
-.pg--d .wash::after{
-  content:""; position:absolute; inset:0;
-  background:rgba(253,248,236,.25);
-}
-/* the blessing sits on a panel like everything else, which is what was
-   wrong with it: it was the one page asking its words to stand on a
-   photograph unaided */
-.pg--d .wrap{
-  padding:clamp(1.4rem,5.2vw,2.1rem) clamp(1.1rem,4.6vw,1.9rem);
-  max-width:min(34rem,var(--gap));
-}
-
-.wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto }
+.wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto; padding-top: 96px; }
 
 /* ── FITTING THE WORDS INTO THE GAP ──────────────────────────────────
    Each backdrop is a frame, and a frame has a measurable hole in it. For
@@ -565,15 +541,26 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 .acts{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:1.5rem }
 .act{
   display:inline-flex; align-items:center; gap:.5rem;
-  padding:.78rem 1.45rem; border:1px solid rgba(186,138,92,.4); border-radius:999px;
-  font-family:var(--f-caps); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--brass-deep);
-  background:rgba(255,250,241,.72);
-  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
-  transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease);
+  padding:.78rem 1.5rem; border:1px solid rgba(155,47,69,.3); border-radius:999px;
+  font-family:var(--f-caps); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--crimson);
+  /* Cream into blush, the way the petals go, rather than the sand-gold
+     fill it had — that belonged to the mandapam. The LOWER stop is the
+     one that matters: it is the darker end and the label sits across it.
+     At .72 blush, crimson measured 4.4:1 where backdrop-filter is
+     unsupported, under AA for a line this small; .80 gives 5.3:1 in that
+     same fallback and 5.8:1 frosted. */
+  background:linear-gradient(180deg, rgba(255,250,241,.88), rgba(247,222,228,.80));
+  -webkit-backdrop-filter:blur(6px) saturate(1.05); backdrop-filter:blur(6px) saturate(1.05);
+  box-shadow:0 10px 24px -16px rgba(140,60,70,.42), inset 0 1px 0 rgba(255,255,255,.6);
+  transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease),box-shadow .4s;
 }
-.act:hover{ background:rgba(249,213,151,.82); border-color:var(--brass); transform:translateY(-2px) }
-.act--p{ background:rgba(249,213,151,.6); border-color:rgba(168,116,46,.5) }
-.act svg{ width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.6; flex:none }
+.act:hover{
+  background:linear-gradient(180deg, rgba(255,250,241,.95), rgba(244,203,213,.9));
+  border-color:rgba(155,47,69,.5); transform:translateY(-2px);
+  box-shadow:0 14px 28px -16px rgba(140,60,70,.5), inset 0 1px 0 rgba(255,255,255,.7);
+}
+.act svg{ width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.5; flex:none; opacity:.85 }
 
 /* ═══ CLOSING ══════════════════════════════════════════════════════════ */
 .sign{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:clamp(1.14rem,4.8vw,1.38rem); color:var(--rose-deep); margin:1.1rem auto 0; max-width:30ch }
@@ -606,7 +593,7 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
    meets: cocoa 7.0:1, crimson 6.1:1, ink-soft 4.8:1, rose-deep 4.5:1.
    At .50 cocoa falls to 4.1 on the closing backdrop and the sheerness
    stops being worth it. */
-.panel,.card,.fam div,.cd,.pg--d .wrap{
+.panel,.card,.fam div,.cd{
   background:rgba(255,250,241,.74);
   -webkit-backdrop-filter:blur(7px) saturate(1.06);
   backdrop-filter:blur(7px) saturate(1.06);
@@ -616,9 +603,7 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 }
 /* no halo on type that has a panel under it — a glow on a ground reads
    as a smudge. The halo is for the loose text only. */
-.card *,.fam div *,.cd *,.pg--d .wrap *{ text-shadow:none }
-/* and inside a panel the gap no longer applies: the panel IS the gap */
-.pg--d .eyebrow,.pg--d h2,.pg--d .copy{ max-width:100% }
+.card *,.fam div *,.cd *{ text-shadow:none }
 
 /* ═══ CHROME ═══════════════════════════════════════════════════════════ */
 .cue{
@@ -865,7 +850,7 @@ body.named .sound{ opacity:1 }
         <div><b id="s">—</b><span>Seconds</span></div>
       </div>
       <div class="acts" rv style="--i:4">
-        <a class="act act--p" href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener">
+        <a class="act" href="https://maps.app.goo.gl/AVTojszWfjC1NAFr6" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
           Open in Maps
         </a>
@@ -874,30 +859,6 @@ body.named .sound{ opacity:1 }
     <div class="cue" aria-hidden="true"><svg viewBox="0 0 20 28"><path d="M10 3v20M4 17l6 6 6-6"/></svg></div>
   </section>
 
-  <!-- ═══ FOUR · THE BLESSING ═══════════════════════════════════════════ -->
-  <section class="pg pg--d" data-view>
-    <div class="wash" aria-hidden="true">
-      <picture>
-        <source media="(min-aspect-ratio:1/1)" srcset="assets/images/bg-rings-d.webp">
-        <img src="assets/images/bg-rings-m.webp" alt="" loading="lazy">
-      </picture>
-    </div>
-    <div class="wrap">
-      <!-- No drawn rings here any more: the backdrop IS a photograph of
-           rings, and two pairs on one page read as a mistake. Page five
-           keeps its small pair, where the ground is floral. -->
-      <p class="eyebrow" data-split data-delay="700">Your blessings</p>
-      <h2 data-split data-delay="920">Come, and <em>bless them</em></h2>
-      <svg class="orn" viewBox="0 0 210 22" aria-hidden="true">
-        <line x1="0" y1="11" x2="78" y2="11"/><line x1="132" y1="11" x2="210" y2="11"/>
-        <path class="lit" d="M105,2 C112,7 112,15 105,20 C98,15 98,7 105,2 Z"/>
-        <path class="lit" d="M88,11 C94,7 99,9 105,11 C99,13 94,15 88,11 Z"/>
-        <path class="lit" d="M122,11 C116,7 111,9 105,11 C111,13 116,15 122,11 Z"/>
-      </svg>
-      <p class="copy" data-split data-delay="1560">Your gracious presence and heartfelt blessings are the only gifts we ask for. There is no list at the door.</p>
-    </div>
-    <div class="cue" aria-hidden="true"><svg viewBox="0 0 20 28"><path d="M10 3v20M4 17l6 6 6-6"/></svg></div>
-  </section>
 
   <!-- ═══ FIVE · THE CLOSE ══════════════════════════════════════════════ -->
   <section class="pg pg--e" data-view>
