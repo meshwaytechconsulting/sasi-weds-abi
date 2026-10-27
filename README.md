@@ -39,6 +39,8 @@ page of warm paper underneath it.
 | 4 | The blessing | the rings, then the words |
 | 5 | The close | their short names, a smaller pair of rings, the hashtag, the date |
 
+Pages two to four sit on the mandapam; the close sits on the rings.
+
 The scroller is a box of its own (`.deck`) rather than the window, so a snap
 point is always one whole screen and the drifting layer above it stays put
 while the pages move underneath.
@@ -86,23 +88,100 @@ resting value and then jumps straight to its first keyframe — which on a phone
 reads as a lurch a few seconds in. `backwards` holds the first frame from load,
 so there is nothing left to jump to.
 
+**The deck is pinned to the top for the first half second.**
+`history.scrollRestoration` covers the window, and the window never scrolls
+here — the deck does. Chrome restores a scroller's position asynchronously,
+after parsing and again after load, so one assignment is not enough and a
+reload would drop a guest into the middle of the invitation with the opening
+never played. Any real scroll input inside that window releases it at once:
+pinning the deck under someone's thumb would be worse than the bug it fixes.
+
 **The names wait on `document.fonts.ready`** as well as on their cue, capped at
 2.2s. Cormorant at display size has very different metrics from the Georgia
 standing in for it, and a swap landing mid-animation reads as the whole line
 jumping.
 
-Dark type on a bright photograph needs **light** behind it, not shade. The
-names sit on a radial veil of the paper's own colour and carry a paper-coloured
-halo, so nothing resembling a dark scrim is ever laid over the picture.
+### Why the names are the page's own ink, on a wash that runs edge to edge
 
-Type laid on the photograph has its own two tokens, `--on-art` `#46401A` and
-`--on-art-soft` `#5A4A18`. Olive-bronze is what "matching the background" has to
-mean when the background is gold **and** leaf at once. Measured against the
-darkest 5% of the band it covers, behind the veil, `--on-art` reads at 7.0:1.
+The opening used to set the names in an olive-bronze that "matched the
+background", on a radial veil 54% of the frame wide. Both halves of that were
+wrong, and on a phone the result was simply unreadable.
 
-Every page after the first keeps the same photograph behind it, washed out
-almost to paper — enough to warm the page, never enough to compete with the
-words.
+The band a name crosses on a 375x812 screen runs from **L=0.06 to L=0.89** —
+lamp flame and the shadow under the arch inside the same word. A mid-tone
+olive scored **1.65:1** against the dark fifth of it. No halo on the glyphs
+was going to rescue that. And a name set at `13.5vw` runs nearly the full
+width of the screen, so both ends of "Sasidharan" hung outside a 54% veil
+entirely.
+
+So:
+
+- **The veil is a vertical wash, edge to edge.** Heaviest at the top where
+  the words are, gone by two thirds down — which leaves the aisle, the lamps
+  and the garlands, the best part of the photograph, completely untouched.
+  Over the band the names cross it takes the darkest pixel from L=0.12 to
+  **L=0.74**.
+- **The type is the page's own ink**, not a special case. Measured against
+  the darkest pixel of the band each line crosses, with the veil applied:
+
+| | | |
+|---|---|---|
+| names | `--ink` `#3A2A14` | **8.7:1** |
+| Tamil | `--leaf-ink` `#4A5110` | 5.4:1 |
+| "are getting engaged" | `--brass-ink` `#7A4A14` | 4.7:1 |
+| eyebrow, date | `--ink-soft` `#6A5230` | 4.6:1 |
+
+Dark type on a bright photograph needs **light** behind it, not shade, so the
+wash is the paper's own colour and nothing resembling a dark scrim is ever
+laid over the picture. Two tokens were added for this, `--leaf-ink` and
+`--brass-ink`: the leaf and the brass taken down far enough to carry text.
+Both also read at 8.0:1 and 7.0:1 on plain paper, so they work on every page.
+
+**Measure against the worst pixel, not the average.** The average is what let
+the olive pass review and then disappear on somebody's phone.
+
+## The ground under pages two to five
+
+Every page after the first keeps a photograph behind it. It used to be papered
+down so hard that nothing survived — the image at `.24` under a scrim reaching
+`.92`, which leaves about six percent of the picture showing, and the pages
+read as blank.
+
+One number governs this: **how much of the photograph survives at any point**.
+Image at opacity `O` under a paper scrim at alpha `A` leaves a weight of
+`O x (1 - A)`. Measured against the darkest pixel in the frame:
+
+| weight | `--ink` | `--ink-soft` | `--brass-deep` |
+|---|---|---|---|
+| .12 | 9.9:1 | 5.3:1 | 4.4:1 |
+| .16 | 9.0:1 | 4.8:1 | 4.0:1 |
+| .26 | 7.0:1 | 3.7:1 | too far |
+
+So each page is built to two weights at once: about **.095** across the band
+the words occupy, and about **.26** at the top and bottom edges, where no type
+goes. The picture is plainly there; it is never where a word is. The blur came
+down from 3px to 1.4px as well — it was a smudge, and now it is a photograph
+seen through morning light.
+
+Note that **stacking scrims multiplies what gets through**: a `.74` radial over
+a `.72` linear leaves `1 - .26 x .28` = 7%, not 28%. Getting that wrong is what
+made the middle of every page read as blank paper on the first pass.
+
+Each page takes a different crop of its photograph (`--wp`) and drifts it on a
+46s cycle of its own, so five pages cut from one picture never read as one
+still frame.
+
+### The kolam
+
+Behind each page, a pulli kolam in gold at a sixth of full strength — twenty-four
+dots, sixteen petals turned around them, a lotus at the middle — turning once
+every three minutes. It is vector, so unlike the photograph it can be bold in
+the margins without costing a word anything, and it gives each page a shape of
+its own. It is defined once as a `<symbol>` and used five times at five sizes.
+
+Its paint is on the geometry as presentation attributes rather than in CSS: a
+`<use>` instance is a shadow clone, and document selectors are not guaranteed
+to reach inside it.
 
 ## The rings
 
@@ -149,9 +228,12 @@ carries the small uppercase lines. Noto Serif Tamil sets நிச்சயத�
 
 ## Assets
 
-- `assets/images/mandapam-open.webp` — 941x1672, the only photograph the page
-  loads. It is the opening plate and, washed out, the ground under every page
-  after it.
+- `assets/images/mandapam-open.webp` — 941x1672. The opening plate, and
+  washed out, the ground under pages two to four.
+- `assets/images/rings-close.webp` — 941x1672. Rings on a gold plate among
+  jasmine, lotus and a kuthuvilakku; the ground under the closing page. Same
+  wash and the same weights — worst pixel, `--ink` reads 10.2:1 there and the
+  small caps 5.4:1.
 - `assets/audio/traditional-nadaswaram.mp3` — replace with any file the
   browser plays. Never autoplays: browsers refuse sound until the page has
   been touched, so the first tap or scroll is what offers it, and the corner
@@ -161,6 +243,14 @@ carries the small uppercase lines. Noto Serif Tamil sets நிச்சயத�
 
 - Words arrive by CSS animation rather than a scrubbed value, so a word always
   finishes where it belongs — nothing can be left half-revealed or clipped.
+- **Every line on every page** arrives word by word now, not just the headings.
+  Each word hinges up off the foot of its own line — translate, a `rotateX`
+  about the baseline and a hair of scale, out of one keyframe. `--st` sets the
+  gap between consecutive words per element: wide for a heading of three words,
+  narrow for a paragraph of thirty, so a long sentence never outlasts its page.
+- That animation no longer carries `filter: blur()`. It is the one property in
+  it that cannot be composited, and with sixty words arriving in sequence it
+  was the entire cost of the effect. Transform and opacity only.
 - `prefers-reduced-motion` stops every drift, the sunlight pass and the
   drifting air entirely, and puts all type at its resting position.
 - `100svh` throughout, safe-area insets on all four edges, no horizontal
