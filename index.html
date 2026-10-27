@@ -37,16 +37,24 @@
      leaf at 13% and the blossom at under 3%. Those two are the colours to
      spend carefully. The paper is lifted above the picture's own lightest
      tone so the photograph always reads as the brightest thing on screen. */
-  --paper:#FDF8EC;        /* the page itself, a shade above the image   */
-  --paper-warm:#F7EEDC;   /* a second ground, for cards and bands       */
-  --white:#FFFDF8;
+  /* warmed to the cream these frames are printed on, #F4E1CC, so a
+     card reads as part of the paper rather than laid on top of it */
+  --paper:#FBF2E6;        /* the page itself                            */
+  --paper-warm:#F7E9D6;   /* a second ground, for cards and bands       */
+  --white:#FFFAF1;
   --cream:#FEF5D0;        /* the image's own highlight                  */
   --sand:#F9D597;         /* its light wash, 15% of the frame           */
   --gold:#D1A45C;         /* the dominant mid tone, a third of the frame*/
   --brass:#A8742E;
   --brass-deep:#8A5520;   /* lit brass out of the light — carries text  */
-  --ink:#3A2A14;          /* body copy                                  */
-  --ink-soft:#6A5230;
+  /* Warmed to the backdrops. #3A2A14 was a cool, almost olive brown,
+     correct on a gold mandapam and wrong on blush and rose — it sat
+     ON these pictures instead of in them. Cocoa belongs to the same
+     family as the silk and the lotus. On the backdrops' own cream,
+     #F4E1CC: cocoa 9.0:1, ink-soft 6.1:1, crimson 8.0:1,
+     rose-deep 5.7:1. */
+  --ink:#4A3524;          /* warm cocoa — body and headings             */
+  --ink-soft:#6B4A38;
   --leaf:#8F9721;         /* banana leaf, 13%                           */
   --leaf-deep:#5E6616;
   --leaf-ink:#4A5110;     /* the leaf taken down far enough to carry text*/
@@ -169,93 +177,112 @@ body.lively #air{ opacity:1 }
 }
 
 /* ═══ THE GROUND UNDER PAGES TWO TO FIVE ═══════════════════════════════
-   Every page after the first keeps the mandapam behind it. It used to be
-   papered down so hard that nothing of it survived and the pages read as
-   blank — the photograph sat at .24 under a scrim reaching .92, which
-   leaves about six percent of the picture showing.
-
-   The arithmetic that matters is one number: how much of the photograph
-   survives at any point on the page. Image at opacity O under a paper
-   scrim at alpha A leaves a weight of O x (1 - A). Measured against the
-   darkest pixel in the whole frame:
-
-      weight .12   ink 9.9:1   ink-soft 5.3:1   brass 4.4:1
-      weight .16   ink 9.0:1   ink-soft 4.8:1   brass 4.0:1
-      weight .26   ink 7.0:1   ink-soft 3.7:1   -- too far
-
-   So the page is built to two weights at once: about .11 across the band
-   the words occupy, and about .28 at the top and bottom edges, where no
-   type goes. The picture is plainly there; it is never where a word is.
-   The blur comes down from 3px to 1.4px as well — it was a smudge, and
-   now it is a photograph seen through morning light. */
+   Eight backdrops, one pair per page: a 9:16 for the phone and a 16:9
+   for a wide screen, chosen by aspect ratio rather than by width, so a
+   tablet held either way gets the right one. They are shown at full
+   strength — the weights-and-scrims arithmetic that used to live here is
+   gone, because these are not textures to hint at behind a page. */
 .wash{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none }
+/* Full strength, no blur, no scrim. These are not textures to hint at
+   behind a page — they ARE the page, and each one is a frame built with
+   an empty middle for exactly this. The one exception is the rings, and
+   it is handled on its own below. */
 .wash img{
-  position:absolute; inset:-7%; width:114%; height:114%; object-fit:cover;
-  object-position:var(--wp,50% 42%);
-  opacity:.44; filter:blur(1.4px) saturate(.9); transform:translateZ(0);
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:var(--wp,50% 50%); transform:translateZ(0);
 }
-/* each page drifts its own ground, slowly and in its own direction, so
-   five pages cut from one photograph never read as one still frame */
-.on-view .wash img{ animation:washDrift 46s ease-in-out infinite alternate backwards }
+.wash picture{ display:contents }
+/* No drift any more. It was there to stop five crops of ONE photograph
+   reading as one still frame; each page has its own picture now, so the
+   reason is gone — and drifting a frame walks its border off the edge of
+   the screen, which is the one thing a border must not do. */
 /* Two scrims stacked, and stacking multiplies what gets through: a .74
    radial over a .72 linear leaves 1 - .26 x .28 = 7% of the image, which
    on the first pass made the middle of every page read as blank paper
    again. These numbers are chosen for the product, not for how they look
    written down — .55 over .52 leaves 22%, and at an image opacity of .44
    that is the .095 weight the type zone wants. */
-/* The ground is the client's own decor now — the brass Nandi among roses,
-   tuberose and foliage — and it is a far darker frame than the mandapam
-   was: median luminance .19 against .38, and its darkest pixels reach
-   zero. Re-measured against it, the budget barely moved, because both
-   images bottom out in near-black:
+/* ── THE ONE PAGE THAT NEEDS LIFTING ──────────────────────────────────
+   Five of these backdrops are frames: florals round the edge, flat cream
+   in the middle, and --ink reads 7:1 or better in that middle with no
+   help at all. The rings are not a frame, they are a PHOTOGRAPH — lotus,
+   jasmine and dark banana leaf scattered right through the centre — so
+   there is no clear box in it at any size.
 
-      weight .11   ink 10.2:1   ink-soft 5.4:1   brass-deep 4.5:1
-      weight .14   ink  9.5:1   ink-soft 5.0:1   brass-deep 4.2:1
-      weight .18   ink  8.6:1   ink-soft 4.6:1   brass-deep 3.8:1  -- brass fails
-
-   brass-deep is the limiting colour, not the ink, so the type zone holds
-   at about .10. What HAS changed is the border: the ask was for the decor
-   around the words rather than a whitish page, so the edges now run at
-   .30 instead of .26 and the ramp between them is tighter. The photograph
-   is a frame; the middle is still paper. */
-.wash::after{
+   Measured: at veil .45 there is still no box where --ink reaches AA. At
+   .50 the portrait gives 60%x92% and the landscape gives nothing at all.
+   At .58 both clear AA across 92%x92%. So .58 it is. That is more than a
+   little, and it is what the picture needs; the alternative was to lay a
+   panel over it, which would hide more of it than the veil does. */
+.pg--d .wash::after{
   content:""; position:absolute; inset:0;
-  background:
-    /* the clean field the words stand in — weight .097, brass-deep 4.6:1 */
-    radial-gradient(92% 46% at 50% 44%,
-      rgba(253,248,236,.56) 0%, rgba(253,248,236,.50) 60%, rgba(253,248,236,.14) 100%),
-    /* and the decor border, where no word goes — weight .30 */
-    linear-gradient(180deg,
-      rgba(253,248,236,.20) 0%,  rgba(253,248,236,.38) 8%,
-      rgba(253,248,236,.50) 18%, rgba(253,248,236,.50) 80%,
-      rgba(253,248,236,.40) 92%, rgba(253,248,236,.20) 100%);
+  background:rgba(253,248,236,.58);
 }
+
 .wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto }
 
-/* ── the drawn ghost ─────────────────────────────────────────────────
-   A kolam laid out in gold behind each page at a twentieth of full
-   strength, turning once every three minutes. It is vector, so unlike
-   the photograph it can be bold in the margins without costing a word
-   anything — and it gives each page a shape of its own rather than five
-   crops of the same picture. */
-.bg-art{
-  position:absolute; z-index:1; pointer-events:none;
-  width:min(148vw,132vh); aspect-ratio:1; left:50%; top:50%;
-  translate:-50% -50%;
-  opacity:0; transition:opacity 2.6s var(--ease-io) .25s;
+/* ── FITTING THE WORDS INTO THE GAP ──────────────────────────────────
+   Each backdrop is a frame, and a frame has a measurable hole in it. For
+   every one, the largest centred box whose darkest percentile still lets
+   --ink reach AA was solved for, then converted from a fraction of the
+   IMAGE to a fraction of the SCREEN — a 9:16 picture covering a 9:19.5
+   phone shows only the middle 82% of its width, so a 64% gap in the
+   picture is a 78% gap on the glass:
+
+      families   64% of the image  ->  78vw      landscape 52vw
+      ceremony   42%               ->  51vw  *   landscape 46vw
+      close      62%               ->  76vw      landscape 70vw
+
+   * relaxed to 68vw. The ceremony's measured gap is pinched by a few
+     scattered leaf pixels rather than by any solid mass, and holding a
+     heading to 191px on a phone would wrap "The engagement ceremony"
+     onto four lines to dodge specks. The halo below covers those.
+
+   Only the LOOSE text is held to this. The cards, the countdown, the map
+   button and the hashtag all carry their own opaque ground, so they can
+   and should run wider than the hole in the frame. */
+/* Width is only half of fitting the words in the hole; the hole has a
+   top and a bottom too. Measured against each backdrop:
+
+     page 2  hole 26-74%   loose text sat at 10-37%  -> 16% too high
+     page 3  hole 19-81%   loose text sat at 13-27%  ->  6% too high
+     page 4  hole  4-96%   (veiled, so the whole page is open)
+     page 5  hole 20-80%   loose text at 27-72%      -> already in it
+
+   So pages two and three start lower. The cards below them are opaque
+   and may sit over the florals quite happily - a card on a decorated
+   table is a card on a decorated table - but a heading laid across a
+   hanging garland is just hard to read. On page two the family cards
+   also give back the height this costs, or the second one would run off
+   the bottom of the screen. */
+.pg{ --gap:92vw }
+.pg--b{ padding-block-start:clamp(5.5rem,17vh,8rem) }
+.pg--c{ padding-block-start:clamp(4.5rem,13vh,6.5rem) }
+.pg--b .fam{ gap:clamp(.6rem,2.4vw,1rem) }
+.pg--b .fam div{ padding:clamp(.85rem,3.2vw,1.3rem) 1rem }
+.pg--b .copy{ margin-top:.85rem }
+.pg--b{ --gap:78vw }
+.pg--c{ --gap:68vw }
+.pg--e{ --gap:76vw }
+.pg:not(.pg--open) .eyebrow,
+.pg:not(.pg--open) h2,
+.pg:not(.pg--open) .copy,
+.pg:not(.pg--open) .sign,
+.pg:not(.pg--open) .foot,
+.pg:not(.pg--open) .endnames,
+.loose{ max-width:min(var(--gap),100%); margin-inline:auto }
+/* a halo of the backdrop's own cream, so a glyph that strays onto a leaf
+   still has light under it. It is not a scrim — it touches nothing but
+   the few pixels around the letters. */
+.pg:not(.pg--open) .eyebrow,
+.pg:not(.pg--open) h2,
+.pg:not(.pg--open) .copy,
+.pg:not(.pg--open) .sign,
+.pg:not(.pg--open) .foot,
+.pg:not(.pg--open) .endnames,
+.pg:not(.pg--open) .loose{
+  text-shadow:0 1px 2px rgba(253,248,236,.92), 0 0 9px rgba(253,248,236,.7);
 }
-.on-view .bg-art{ opacity:1 }
-/* no will-change here: a running transform animation is promoted by the
-   browser for its duration anyway, and five permanently-promoted layers
-   of ~900px square is real memory on a cheap phone for no gain */
-.bg-art svg{ width:100%; height:100%; overflow:visible;
-             animation:kolamTurn 184s linear infinite backwards }
-/* page three sits lower and bigger, page five smaller and higher, so the
-   ghost is never in the same place twice */
-.pg--b .bg-art{ width:min(132vw,118vh); top:44% }
-.pg--c .bg-art{ width:min(164vw,146vh); top:56% }
-.pg--d .bg-art{ width:min(140vw,124vh); top:47% }
-.pg--e .bg-art{ width:min(120vw,108vh); top:52% }
 
 /* ═══ PAGE ONE — THE MANDAPAM ══════════════════════════════════════════ */
 /* ── THE OPENING IS A FILM NOW ──────────────────────────────────────────
@@ -330,18 +357,7 @@ body.no-vid .open-still{ animation:fade 1.6s var(--ease-io) .1s forwards }
 .open-veil{
   position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    linear-gradient(180deg,
-      rgba(253,248,236,.90) 0%,
-      rgba(253,248,236,.88) 20%,
-      rgba(253,248,236,.86) 34%,   /* the words end here */
-      rgba(253,248,236,.72) 38%,
-      rgba(253,248,236,.34) 41%,   /* his hair starts at 42% */
-      rgba(253,248,236,.08) 44%,
-      rgba(253,248,236,0)   47%),  /* and both faces are clear from here */
-    radial-gradient(120% 30% at 50% 18%, rgba(255,253,248,.28) 0%, rgba(255,253,248,0) 100%);
-  /* a transition on a class, not a timed animation: the cue is the film
-     ending, and only the script knows when that is */
-  opacity:0; transition:opacity .8s var(--ease-io);
+    linear-gradient(180deg, rgb(253 248 236 / 89%) 0%, rgb(253 248 236 / 59%) 20%, rgb(253 248 236 / 28%) 34%, /* the words end here */ rgb(253 248 236 / 10%) 38%, rgb(253 248 236 / 4%) 41%, /* his hair starts at 42% */ rgba(253, 248, 236, .08) 44%, rgba(253, 248, 236, 0) 47%), /* and both faces are clear from here */ radial-gradient(120% 30% at 50% 18%, rgba(255, 253, 248, .28) 0%, rgba(255, 253, 248, 0) 100%);
 }
 body.frozen .open-veil{ opacity:1 }
 /* and one slow pass of sunlight across the aisle, in the direction the
@@ -372,7 +388,7 @@ body.frozen .open-veil{ opacity:1 }
 .eyebrow{
   font-family:var(--f-caps); font-weight:400;
   font-size:clamp(.58rem,2.9vw,.66rem); letter-spacing:.3em; text-transform:uppercase;
-  color:var(--brass-ink); margin:0 0 1rem;
+  color:var(--rose-deep); margin:0 0 1rem;
 }
 /* measured against the darkest pixel of the band each one crosses, with
    the veil applied — not against the average, which is what let a
@@ -419,7 +435,7 @@ body.named .open-words .names i{ animation:wordIn 1s var(--ease-soft) .4s both }
   font-size:clamp(1.98rem,8.4vw,2.95rem); line-height:1.2; letter-spacing:.012em;
   color:var(--ink); margin:.5rem 0 0; text-wrap:balance;
 }
-.pg h2 em{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.1em; color:var(--brass-deep) }
+.pg h2 em{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.1em; color:var(--rose-deep) }
 .copy{ color:var(--ink); font-size:clamp(1.04rem,4.2vw,1.16rem); font-weight:500; max-width:34ch; margin:1.1rem auto 0 }
 
 /* ── the rings ───────────────────────────────────────────────────────
@@ -515,7 +531,7 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   box-shadow:0 14px 34px -24px rgba(90,60,20,.5);
   padding:clamp(1.2rem,4.6vw,1.8rem) 1rem;
 }
-.fam h3{ font-family:var(--f-display); font-weight:300; font-size:1.3rem; letter-spacing:.012em; color:var(--brass-deep); margin:0 }
+.fam h3{ font-family:var(--f-display); font-weight:300; font-size:1.34rem; letter-spacing:.012em; color:var(--crimson); margin:0 }
 .fam .rel{ font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--rose-deep); margin:.45rem 0 .95rem }
 .fam p{ font-family:var(--f-body); font-weight:300; font-size:clamp(.97rem,3.9vw,1.08rem); color:var(--ink); margin:0; line-height:1.6 }
 .fam .amp{ font-family:var(--f-script); font-style:italic; color:var(--rose-deep); font-size:1.2em; margin:.1rem 0 }
@@ -528,9 +544,9 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   padding:clamp(1.4rem,5.4vw,2.2rem) clamp(1rem,5vw,2rem);
   margin-top:1.5rem;
 }
-.card .vn{ font-family:var(--f-display); font-weight:300; font-size:clamp(1.5rem,6.7vw,1.98rem); letter-spacing:.012em; color:var(--brass-deep); margin:0 }
+.card .vn{ font-family:var(--f-display); font-weight:300; font-size:clamp(1.5rem,6.7vw,1.98rem); letter-spacing:.012em; color:var(--crimson); margin:0 }
 .card .big{ font-family:var(--f-body); font-weight:300; font-size:clamp(1.1rem,4.7vw,1.36rem); color:var(--ink); margin:.85rem 0 0 }
-.card .mid{ font-family:var(--f-caps); font-size:clamp(.7rem,3.1vw,.8rem); letter-spacing:.2em; text-transform:uppercase; color:var(--leaf-deep); margin:.5rem 0 0 }
+.card .mid{ font-family:var(--f-caps); font-size:clamp(.7rem,3.1vw,.8rem); letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep); margin:.5rem 0 0 }
 .card .addr{ font-family:var(--f-body); font-weight:300; font-size:clamp(.95rem,3.8vw,1.05rem); color:var(--ink-soft); line-height:1.65; margin:1rem 0 0 }
 
 .cd{
@@ -540,8 +556,8 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 }
 .cd div{ background:var(--white); padding:.85rem .2rem }
 .cd b{
-  display:block; font-family:var(--f-serif); font-weight:400;
-  font-size:clamp(1.55rem,7vw,2.2rem); line-height:1; color:var(--brass-deep);
+  display:block; font-family:var(--f-display); font-weight:300;
+  font-size:clamp(1.7rem,7.6vw,2.3rem); line-height:1; color:var(--crimson);
   font-variant-numeric:tabular-nums;
 }
 .cd span{ display:block; font-family:var(--f-caps); font-size:.46rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-top:.42rem }
@@ -568,6 +584,60 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   font-family:var(--f-caps); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep);
 }
 .foot{ margin-top:2rem; font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft) }
+
+/* ═══ ON A PHONE, NOTHING IS IN A BOX ══════════════════════════════════
+   The last page was the one that worked, and the reason is that it has
+   no container at all: the words lie straight on the cream the frame
+   leaves open, and the frame does the holding. Every other page was
+   putting a cream rectangle on top of a cream background — a box drawn
+   around things that were already surrounded.
+
+   So on a portrait screen the cards, the countdown grid and the pill
+   all lose their fill, their border and their shadow, and keep only
+   their spacing. What separates one family from the other is now a
+   drawn flourish, which is what the backdrops are made of.
+
+   A wide screen keeps its cards: there the picture is a band across the
+   back rather than a frame around the words, and without a ground the
+   two columns would have nothing to stand on. */
+@media (max-aspect-ratio:1/1){
+  .fam{ display:block; margin-top:1.2rem }
+  .fam div{
+    background:none; border:0; box-shadow:none;
+    padding:.1rem .25rem; max-width:min(var(--gap),100%); margin-inline:auto;
+  }
+  /* a flourish between the families, in place of the gap between boxes */
+  .fam div + div{ margin-top:clamp(1.3rem,5vh,2.1rem); position:relative }
+  .fam div + div::before{
+    content:""; position:absolute; left:50%; top:calc(-1 * clamp(.65rem,2.5vh,1.05rem));
+    translate:-50% -50%;
+    width:clamp(74px,26vw,110px); height:1px;
+    background:linear-gradient(90deg,transparent,var(--rule),transparent);
+  }
+  .fam div + div::after{
+    content:"\2766"; position:absolute; left:50%; top:calc(-1 * clamp(.65rem,2.5vh,1.05rem));
+    translate:-50% -50%; color:var(--rose); font-size:.8rem; line-height:1;
+    background:none;
+  }
+  .card{
+    background:none; border:0; box-shadow:none;
+    padding:.2rem .25rem; margin-top:.9rem;
+    max-width:min(var(--gap),100%); margin-inline:auto;
+  }
+  .cd{
+    background:none; border:0; gap:0; margin-top:1.5rem;
+    max-width:min(var(--gap),100%);
+  }
+  .cd div{ background:none; padding:.5rem .15rem }
+  .cd div + div{ border-left:1px solid var(--rule-soft) }
+  .act{ background:none; border-color:var(--rule) }
+  .act--p{ background:none }
+  .hash{ background:none }
+  /* everything is on the picture now, so everything gets the halo */
+  .pg:not(.pg--open) .wrap{
+    text-shadow:0 1px 2px rgba(253,248,236,.92), 0 0 9px rgba(253,248,236,.7);
+  }
+}
 
 /* ═══ CHROME ═══════════════════════════════════════════════════════════ */
 .cue{
@@ -641,7 +711,6 @@ body.named .sound{ opacity:1 }
   from{ transform:scale(1) translate3d(0,0,0) }
   to  { transform:scale(1.045) translate3d(0,-1.1%,0) }
 }
-@keyframes kolamTurn{ from{ transform:rotate(0deg) } to{ transform:rotate(360deg) } }
 @keyframes draw{ to{ stroke-dashoffset:0 } }
 @keyframes fade{ from{ opacity:0 } to{ opacity:1 } }
 @keyframes nudge{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(5px) } }
@@ -650,6 +719,12 @@ body.named .sound{ opacity:1 }
    A landscape screen cannot hold a tall photograph and a page of type in
    the same column, so the opening splits: the mandapam keeps its own half
    at full height, and the names take the paper beside it. */
+@media (min-aspect-ratio:1/1){
+  .pg--b{ --gap:52vw }
+  .pg--c{ --gap:46vw }
+  .pg--e{ --gap:70vw }
+}
+
 @media (min-width:820px) and (min-aspect-ratio:1/1){
   .pg--open{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; padding:0 }
   .open-art{ position:relative; inset:auto; grid-column:1; height:100svh }
@@ -678,8 +753,6 @@ body.named .sound{ opacity:1 }
   .open-still{ opacity:1 !important }
   .open-art video{ display:none }
   .wash img,.on-view .wash img{ animation:none !important; transform:none }
-  .bg-art{ opacity:1; transition:none }
-  .bg-art svg{ animation:none !important; transform:none }
   .rings .band{ stroke-dashoffset:0 } .rings .gem{ opacity:1 } .rings .spark{ opacity:.8 }
   .on-view .rings .band,.on-view .rings .gem,.on-view .rings .spark{ animation:none !important }
   .open-veil{ animation:none !important; opacity:1 }
@@ -697,79 +770,6 @@ body.named .sound{ opacity:1 }
 </style>
 </head>
 <body>
-
-<!-- The kolam that ghosts behind pages two to five: a pulli grid of
-     twenty-four dots, sixteen petals turned around it and a lotus at
-     the middle. Defined once and used five times, each at its own size
-     and its own height on the page. -->
-<svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="kolam" viewBox="0 0 400 400">
-    <circle cx="200" cy="200" r="190" fill="none" stroke="#A8742E" stroke-width=".5" opacity=".17"/>
-    <circle cx="200" cy="200" r="181" fill="none" stroke="#A8742E" stroke-width=".5" opacity=".17"/>
-    <circle cx="200" cy="200" r="124" fill="none" stroke="#8F9721" stroke-width=".4" opacity=".15"/>
-    <circle cx="200" cy="200" r="62"  fill="none" stroke="#8F9721" stroke-width=".4" opacity=".15"/>
-    <g fill="none" stroke="#A8742E" stroke-width=".5" opacity=".17">
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(0 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(22.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(45 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(67.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(90 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(112.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(135 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(157.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(180 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(202.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(225 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(247.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(270 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(292.5 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(315 200 200)"/>
-      <path d="M200,22 C238,74 234,118 200,122 C166,118 162,74 200,22 Z" transform="rotate(337.5 200 200)"/>
-    </g>
-    <g fill="none" stroke="#8F9721" stroke-width=".4" opacity=".15">
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(22.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(67.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(112.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(157.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(202.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(247.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(292.5 200 200)"/>
-      <path d="M200,84 C219,110 217,132 200,136 C183,132 181,110 200,84 Z" transform="rotate(337.5 200 200)"/>
-    </g>
-    <g fill="#D1A45C" opacity=".17">
-      <circle cx="200.0" cy="14.5" r="2.1"/>
-      <circle cx="248.0" cy="20.8" r="2.1"/>
-      <circle cx="292.8" cy="39.4" r="2.1"/>
-      <circle cx="331.2" cy="68.8" r="2.1"/>
-      <circle cx="360.6" cy="107.2" r="2.1"/>
-      <circle cx="379.2" cy="152.0" r="2.1"/>
-      <circle cx="385.5" cy="200.0" r="2.1"/>
-      <circle cx="379.2" cy="248.0" r="2.1"/>
-      <circle cx="360.6" cy="292.7" r="2.1"/>
-      <circle cx="331.2" cy="331.2" r="2.1"/>
-      <circle cx="292.8" cy="360.6" r="2.1"/>
-      <circle cx="248.0" cy="379.2" r="2.1"/>
-      <circle cx="200.0" cy="385.5" r="2.1"/>
-      <circle cx="152.0" cy="379.2" r="2.1"/>
-      <circle cx="107.2" cy="360.6" r="2.1"/>
-      <circle cx="68.8" cy="331.2" r="2.1"/>
-      <circle cx="39.4" cy="292.8" r="2.1"/>
-      <circle cx="20.8" cy="248.0" r="2.1"/>
-      <circle cx="14.5" cy="200.0" r="2.1"/>
-      <circle cx="20.8" cy="152.0" r="2.1"/>
-      <circle cx="39.4" cy="107.2" r="2.1"/>
-      <circle cx="68.8" cy="68.8" r="2.1"/>
-      <circle cx="107.2" cy="39.4" r="2.1"/>
-      <circle cx="152.0" cy="20.8" r="2.1"/>
-    </g>
-    <g fill="none" stroke="#8F9721" stroke-width=".4" opacity=".15">
-      <path d="M200,200 C236,164 272,150 302,152 C288,180 258,204 218,208" transform="rotate(45 200 200)"/>
-      <path d="M200,200 C236,164 272,150 302,152 C288,180 258,204 218,208" transform="rotate(135 200 200)"/>
-      <path d="M200,200 C236,164 272,150 302,152 C288,180 258,204 218,208" transform="rotate(225 200 200)"/>
-      <path d="M200,200 C236,164 272,150 302,152 C288,180 258,204 218,208" transform="rotate(315 200 200)"/>
-    </g>
-  </symbol>
-</svg>
 
 <canvas id="air" aria-hidden="true"></canvas>
 
@@ -814,8 +814,12 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ TWO · THE FAMILIES ════════════════════════════════════════════ -->
   <section class="pg pg--b" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:30% 30%"></div>
-    <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
+    <div class="wash" aria-hidden="true">
+      <picture>
+        <source media="(min-aspect-ratio:1/1)" srcset="assets/images/bg-families-d.webp">
+        <img src="assets/images/bg-families-m.webp" alt="" loading="lazy">
+      </picture>
+    </div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">With great joy</p>
       <h2 data-split data-delay="340">Our two <em>families</em></h2>
@@ -848,8 +852,12 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ THREE · THE CEREMONY ══════════════════════════════════════════ -->
   <section class="pg pg--c" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:58% 46%"></div>
-    <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
+    <div class="wash" aria-hidden="true">
+      <picture>
+        <source media="(min-aspect-ratio:1/1)" srcset="assets/images/bg-ceremony-d.webp">
+        <img src="assets/images/bg-ceremony-m.webp" alt="" loading="lazy">
+      </picture>
+    </div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">Nitchayathartham &middot; <span class="tamil">நிச்சயதார்த்தம்</span></p>
       <h2 data-split data-delay="340">The <em>engagement</em> ceremony</h2>
@@ -887,29 +895,16 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ FOUR · THE BLESSING ═══════════════════════════════════════════ -->
   <section class="pg pg--d" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:44% 72%"></div>
-    <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
+    <div class="wash" aria-hidden="true">
+      <picture>
+        <source media="(min-aspect-ratio:1/1)" srcset="assets/images/bg-rings-d.webp">
+        <img src="assets/images/bg-rings-m.webp" alt="" loading="lazy">
+      </picture>
+    </div>
     <div class="wrap">
-      <svg class="rings" viewBox="0 0 230 128" role="img" aria-label="Two engagement rings">
-        <defs>
-          <linearGradient id="ringGold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#F9D597"/>
-            <stop offset=".46" stop-color="#D1A45C"/>
-            <stop offset="1" stop-color="#A8742E"/>
-          </linearGradient>
-        </defs>
-        <circle class="band band--a" cx="92"  cy="80" r="39"/>
-        <circle class="band band--b" cx="140" cy="80" r="39"/>
-        <g class="gem">
-          <path d="M92,24 L103,36 L92,56 L81,36 Z" fill="url(#ringGold)"/>
-          <path d="M81,36 L103,36" stroke="#FFFDF8" stroke-width="1" opacity=".75"/>
-          <path d="M92,24 L87,36 L92,56 L97,36 Z" fill="#FFFDF8" opacity=".32"/>
-        </g>
-        <path class="spark" d="M40,30 L43,40 L53,43 L43,46 L40,56 L37,46 L27,43 L37,40 Z" fill="#F9D597"/>
-        <path class="spark" d="M196,46 L198,53 L205,55 L198,57 L196,64 L194,57 L187,55 L194,53 Z" fill="#FEF5D0"/>
-        <path class="spark" d="M166,18 L168,24 L174,26 L168,28 L166,34 L164,28 L158,26 L164,24 Z" fill="#F59591"/>
-        <path class="spark" d="M58,100 L60,106 L66,108 L60,110 L58,116 L56,110 L50,108 L56,106 Z" fill="#D1A45C"/>
-      </svg>
+      <!-- No drawn rings here any more: the backdrop IS a photograph of
+           rings, and two pairs on one page read as a mistake. Page five
+           keeps its small pair, where the ground is floral. -->
       <p class="eyebrow" data-split data-delay="700">Your blessings</p>
       <h2 data-split data-delay="920">Come, and <em>bless them</em></h2>
       <svg class="orn" viewBox="0 0 210 22" aria-hidden="true">
@@ -928,8 +923,12 @@ body.named .sound{ opacity:1 }
     <!-- the close is the one page that leaves the mandapam behind: rings on
          a gold plate among jasmine, lotus and a kuthuvilakku. Same wash, same
          weights — worst pixel, ink reads 10.2:1 and the small caps 5.4:1. -->
-    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:52% 64%"></div>
-    <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
+    <div class="wash" aria-hidden="true">
+      <picture>
+        <source media="(min-aspect-ratio:1/1)" srcset="assets/images/bg-close-d.webp">
+        <img src="assets/images/bg-close-m.webp" alt="" loading="lazy">
+      </picture>
+    </div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">With your blessings, a new chapter begins</p>
       <h2 class="endnames">
@@ -939,7 +938,9 @@ body.named .sound{ opacity:1 }
       </h2>
       <svg class="rings rings--sm" viewBox="0 0 230 128" role="img" aria-label="Two engagement rings">
         <defs>
-          <linearGradient id="ringGold2" x1="0" y1="0" x2="1" y2="1">
+          <!-- the only ringGold in the page now; .rings .band in the CSS
+               strokes with url(#ringGold), so this def must not be deleted -->
+          <linearGradient id="ringGold" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#F9D597"/>
             <stop offset=".46" stop-color="#D1A45C"/>
             <stop offset="1" stop-color="#A8742E"/>
@@ -948,7 +949,7 @@ body.named .sound{ opacity:1 }
         <circle class="band band--a" cx="92"  cy="80" r="39"/>
         <circle class="band band--b" cx="140" cy="80" r="39"/>
         <g class="gem">
-          <path d="M92,24 L103,36 L92,56 L81,36 Z" fill="url(#ringGold2)"/>
+          <path d="M92,24 L103,36 L92,56 L81,36 Z" fill="url(#ringGold)"/>
           <path d="M81,36 L103,36" stroke="#FFFDF8" stroke-width="1" opacity=".75"/>
           <path d="M92,24 L87,36 L92,56 L97,36 Z" fill="#FFFDF8" opacity=".32"/>
         </g>
@@ -1335,8 +1336,11 @@ body.named .sound{ opacity:1 }
   }
   function r(a,b){ return a + Math.random() * (b - a); }
 
-  var LEAF = ["#8F9721","#A7B02F","#7C8A3A"];
-  var PETAL = ["#F59591","#FBD3D0","#FFFDF8","#FEF5D0"];
+  /* retuned to the flowers actually on screen: jasmine white, lotus pink
+     and rose, with the green dropped back to an occasional note. It used
+     to be mostly banana leaf, which belonged to the mandapam. */
+  var LEAF = ["#7E8A3C","#95A24A","#6E7D35"];
+  var PETAL = ["#F2A7B6","#E57F9B","#FFF6EC","#FBE3D4","#F7C9D4"];
 
   function bit(kind, top){
     var o = {
@@ -1362,9 +1366,9 @@ body.named .sound{ opacity:1 }
   function seed(){
     size();
     var area = (W * H2) / 1000;
-    var nL = Math.max(5,  Math.min(14, Math.round(area / 34)));
-    var nP = Math.max(12, Math.min(34, Math.round(area / 13)));
-    var nD = Math.max(14, Math.min(44, Math.round(area / 9)));
+    var nL = Math.max(2,  Math.min(7,  Math.round(area / 90)));
+    var nP = Math.max(18, Math.min(46, Math.round(area / 9)));
+    var nD = Math.max(16, Math.min(50, Math.round(area / 8)));
     bits = [];
     var i;
     for (i=0;i<nL;i++) bits.push(bit(0,false));
