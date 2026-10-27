@@ -8,12 +8,16 @@
 <meta name="description" content="The engagement of Dr. Sasidharan S and Dr. Abinaya M. Sunday, 15 November 2026, Amman Sakthi Mahal, Thiruvarur.">
 <meta property="og:title" content="Dr. Sasidharan &amp; Dr. Abinaya — Engagement">
 <meta property="og:description" content="Sunday, 15 November 2026 · Amman Sakthi Mahal, Thiruvarur.">
-<meta property="og:image" content="assets/images/mandapam-open.webp">
+<meta property="og:image" content="assets/video/opening-poster.webp">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@200;300;400;500&family=Noto+Serif+Tamil:wght@400&display=swap">
-<link rel="preload" as="image" href="assets/images/mandapam-open.webp" type="image/webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Noto+Sans+Tamil:wght@300;400&display=swap">
+<!-- the poster is what fills the screen while the film buffers, so it has
+     to beat the film to the paint. The film itself is NOT preloaded here:
+     `as="video"` is not a preload destination any browser accepts, and the
+     <video preload="auto"> attribute is the thing that actually does it. -->
+<link rel="preload" as="image" href="assets/video/opening-poster.webp" type="image/webp">
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    SASIDHARAN & ABINAYA — ENGAGEMENT
@@ -50,6 +54,19 @@
   --blossom:#F59591;      /* the pink in the garlands, under 3%         */
   --blossom-deep:#C2586A;
 
+  /* ── THE ROSES ───────────────────────────────────────────────────────
+     Read off the client's own decor photograph — the brass Nandi among
+     roses, tuberose and foliage. That frame is mostly green and brass,
+     which the palette already had; what it had NOT got was the red. The
+     roses are 5.8% of it, and a 5.8% colour used sparingly is what stops
+     a scheme of gold and leaf reading as flat.
+
+     On paper: rose 4.1:1 (display sizes only), rose-deep 6.9:1,
+     crimson 9.5:1 — both of the latter carry text at any size. */
+  --rose:#C2566B;         /* the pink roses in the brass bowl           */
+  --rose-deep:#9B2F45;    /* the deep red ones, able to carry text      */
+  --crimson:#7E1B2E;      /* their shadow                               */
+
   /* ── TYPE ON THE PHOTOGRAPH ──────────────────────────────────────────
      An olive-bronze that "matched the background" was the problem, not
      the solution. The band the names cross runs from L=0.06 to L=0.89 —
@@ -67,15 +84,39 @@
   --rule:rgba(168,116,46,.34);
   --rule-soft:rgba(168,116,46,.18);
 
-  /* Cormorant at 300 is the whole identity — high contrast, wide
-     apertures, and it keeps its elegance at display size. Pinyon is the
-     calligraphic hand, used only for the word that joins their names. */
+  /* ── TWO FACES, MODERN AND LIGHT ─────────────────────────────────────
+     Four settings to get here. Cormorant 300 was too thin to hold the
+     page. Marcellus with Cinzel was handsome but Roman and antique — a
+     monument, not an invitation. Instrument Serif was modern but its
+     Didone stems are heavy, and at display size that reads as forceful
+     rather than fine. The brief is modern AND light, which rules out
+     every high-contrast serif: contrast means weight somewhere.
+
+     OUTFIT at 200 carries the display lines, and a geometric sans is the
+     one way to be large and genuinely light at the same time — the
+     stroke is a single even weight, so there is nothing thick anywhere
+     in the letter. Near-circular bowls, open apertures, a little
+     positive tracking to stop the thin strokes closing up. The small
+     capital lines take the same face at 400, because 200 at 9px would
+     disappear.
+
+     CORMORANT GARAMOND 300 ITALIC is the only other voice, and it only
+     ever speaks in italic: "are getting engaged", the sign-off, the
+     ampersand joining their names. A fine serif italic against a light
+     geometric sans is the contrast doing the work, rather than weight.
+
+     Two families. The Tamil is Noto Sans at 300 so it sits at the same
+     weight as everything around it. */
+  --f-display:'Outfit',-apple-system,'Segoe UI',Helvetica,sans-serif;
   --f-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  --f-script:'Pinyon Script','Cormorant Garamond',cursive;
-  --f-ui:'Jost',-apple-system,'Segoe UI',Helvetica,sans-serif;
-  --f-tamil:'Noto Serif Tamil','Nirmala UI',serif;
+  --f-body:'Outfit',-apple-system,'Segoe UI',Helvetica,sans-serif;
+  --f-caps:'Outfit',-apple-system,'Segoe UI',Helvetica,sans-serif;
+  --f-script:'Cormorant Garamond',Georgia,serif;
+  --f-tamil:'Noto Sans Tamil','Nirmala UI',sans-serif;
 
   --ease:cubic-bezier(.16,1,.3,1);
+  /* for the words: a plain ease-out, no overshoot, nothing springy */
+  --ease-soft:cubic-bezier(.25,.46,.45,.94);
   --ease-io:cubic-bezier(.4,0,.2,1);
 
   --gut:max(24px,env(safe-area-inset-left,0px));
@@ -87,7 +128,7 @@ html{ -webkit-text-size-adjust:100%; height:100% }
 body{
   margin:0; height:100%; overflow:hidden;
   background:var(--paper); color:var(--ink);
-  font-family:var(--f-ui); font-weight:300; line-height:1.7;
+  font-family:var(--f-body); font-weight:300; line-height:1.7;
   -webkit-font-smoothing:antialiased;
 }
 img{ display:block; max-width:100% }
@@ -162,17 +203,32 @@ body.lively #air{ opacity:1 }
    again. These numbers are chosen for the product, not for how they look
    written down — .55 over .52 leaves 22%, and at an image opacity of .44
    that is the .095 weight the type zone wants. */
+/* The ground is the client's own decor now — the brass Nandi among roses,
+   tuberose and foliage — and it is a far darker frame than the mandapam
+   was: median luminance .19 against .38, and its darkest pixels reach
+   zero. Re-measured against it, the budget barely moved, because both
+   images bottom out in near-black:
+
+      weight .11   ink 10.2:1   ink-soft 5.4:1   brass-deep 4.5:1
+      weight .14   ink  9.5:1   ink-soft 5.0:1   brass-deep 4.2:1
+      weight .18   ink  8.6:1   ink-soft 4.6:1   brass-deep 3.8:1  -- brass fails
+
+   brass-deep is the limiting colour, not the ink, so the type zone holds
+   at about .10. What HAS changed is the border: the ask was for the decor
+   around the words rather than a whitish page, so the edges now run at
+   .30 instead of .26 and the ramp between them is tighter. The photograph
+   is a frame; the middle is still paper. */
 .wash::after{
   content:""; position:absolute; inset:0;
   background:
-    /* the clean field the words stand in — weight .095, ink-soft 5.5:1 */
+    /* the clean field the words stand in — weight .097, brass-deep 4.6:1 */
     radial-gradient(92% 46% at 50% 44%,
-      rgba(253,248,236,.55) 0%, rgba(253,248,236,.50) 60%, rgba(253,248,236,.20) 100%),
-    /* and the bands top and bottom, where no word goes — weight .26 */
+      rgba(253,248,236,.56) 0%, rgba(253,248,236,.50) 60%, rgba(253,248,236,.14) 100%),
+    /* and the decor border, where no word goes — weight .30 */
     linear-gradient(180deg,
-      rgba(253,248,236,.26) 0%,  rgba(253,248,236,.44) 10%,
-      rgba(253,248,236,.52) 26%, rgba(253,248,236,.52) 74%,
-      rgba(253,248,236,.46) 92%, rgba(253,248,236,.30) 100%);
+      rgba(253,248,236,.20) 0%,  rgba(253,248,236,.38) 8%,
+      rgba(253,248,236,.50) 18%, rgba(253,248,236,.50) 80%,
+      rgba(253,248,236,.40) 92%, rgba(253,248,236,.20) 100%);
 }
 .wrap{ position:relative; z-index:2; width:100%; max-width:38rem; margin:0 auto }
 
@@ -202,11 +258,20 @@ body.lively #air{ opacity:1 }
 .pg--e .bg-art{ width:min(120vw,108vh); top:52% }
 
 /* ═══ PAGE ONE — THE MANDAPAM ══════════════════════════════════════════ */
-/* The photograph is 941x1672, which is very nearly a phone, so on a
-   portrait screen it simply covers. On a landscape one it cannot: filling
-   the width would throw away three fifths of its height and take the arch
-   and the lamps with it, so there the page splits and the picture stands
-   in its own column. */
+/* ── THE OPENING IS A FILM NOW ──────────────────────────────────────────
+   3.37 seconds of the couple at the mandapam, which plays once and then
+   holds on its last frame for as long as the page is open. It is not a
+   loop: a loop is wallpaper, and this is meant to happen once, the way
+   arriving somewhere happens once.
+
+   The source was 1920x1080 at 12 Mbps with an audio track — but the
+   animation inside it was 9:16, pillarboxed into the middle with hard
+   black bars either side. cropdetect agreed on crop=608:1080:656:0 across
+   all 99 frames, so the bars are gone and what is left is a true portrait
+   clip that covers a phone with nothing thrown away. Audio stripped (it
+   is muted anyway, and the page has its own music), re-encoded at CRF 27:
+   5.1 MB down to 326 KB, which matters when this is opened on mobile
+   data. */
 .pg--open{ padding:0; justify-content:flex-start }
 .open-art{ position:absolute; inset:0; z-index:0; overflow:hidden; background:var(--paper-warm) }
 /* The drift lives on a wrapper rather than on the plate itself, so the
@@ -216,18 +281,20 @@ body.lively #air{ opacity:1 }
   animation:artEnter 3.8s var(--ease-io) .1s both,
             artDrift 38s ease-in-out 4s infinite alternate backwards;
 }
+.open-art video,
 .open-art img{
   position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; object-position:50% 42%;
-  opacity:0; animation:fade 3.6s var(--ease-io) .2s forwards;
+  object-fit:cover; object-position:50% 50%;
   transform:translateZ(0);
 }
-/* No second copy of the plate is laid over the first any more. Rotating a
-   duplicate is the only way to move foliage inside a flat photograph, but
-   wherever the duplicate's mask fades, two slightly offset copies of the
-   same picture blend together — and a double image reads as blur. The
-   plate stays single and sharp; the life comes from the leaves and petals
-   drifting in FRONT of it, which cost the picture nothing. */
+.open-art video{ opacity:0; animation:fade 1.2s var(--ease-io) .1s forwards }
+/* the clip's own last frame, standing in wherever the film cannot run —
+   reduced motion, a refused autoplay, a decode that fails. It is the
+   frame the film would have frozen on anyway, so nothing looks different
+   afterwards; it simply never moved. */
+.open-still{ opacity:0 }
+body.no-vid .open-art video{ display:none }
+body.no-vid .open-still{ animation:fade 1.6s var(--ease-io) .1s forwards }
 
 /* ── THE LIGHT THE NAMES STAND IN ───────────────────────────────────────
    This was a radial 54% wide centred on the middle of the frame. A name
@@ -237,24 +304,46 @@ body.lively #air{ opacity:1 }
    read, and no amount of halo on the glyphs was going to fix it: the
    veil has to be as wide as the line.
 
-   So it is a vertical wash now, edge to edge, heaviest at the top where
-   the words are and gone by two thirds down — which leaves the aisle,
-   the lamps and the garlands, the best part of the photograph, entirely
-   untouched. Over the band the names cross, it takes the darkest pixel
-   from L=0.12 to L=0.74. */
+   So it is a vertical wash, edge to edge, heaviest at the top where the
+   words are and gone by two thirds down — which leaves the aisle, the
+   lamps and the couple, the part worth watching, entirely untouched.
+
+   It is also LATE, and now it waits for the film rather than for a clock.
+   The clip runs its full 3.37s completely clean — no wash, no type —
+   and only once it has frozen does the shade come up over the held
+   frame, with the words arriving into it half a second behind. Three
+   beats in order, none of them overlapping: the film, the light, the
+   names. It is driven by the video's own `ended` event, so it stays in
+   step even if the clip is swapped for a longer one.
+
+   AND IT MUST NOT TOUCH THEIR FACES. A wash that covers the whole frame
+   washes the couple too, which is the one thing in the picture nobody
+   wants faded. Gridding the frame put his hair at 42% and both faces at
+   44–58%, so the shade is at full strength only while the words need it
+   and is gone by 47%.
+
+   Strength is measured against the clip, not the photograph that used to
+   be here: sampled across 13 frames of it, over the band the words now
+   occupy (6–34%), the darkest pixel sits at L=0.0023. At .86 that gives
+   ink 9.5:1, leaf-ink 5.9:1, brass-ink 5.1:1 and ink-soft 5.1:1 — all AA
+   against the worst pixel in the worst frame. */
 .open-veil{
   position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
     linear-gradient(180deg,
       rgba(253,248,236,.90) 0%,
-      rgba(253,248,236,.86) 26%,
-      rgba(253,248,236,.80) 44%,
-      rgba(253,248,236,.46) 58%,
-      rgba(253,248,236,.12) 70%,
-      rgba(253,248,236,0)   80%),
-    radial-gradient(120% 40% at 50% 26%, rgba(255,253,248,.40) 0%, rgba(255,253,248,0) 100%);
-  opacity:0; animation:fade 2.4s var(--ease-io) .9s forwards;
+      rgba(253,248,236,.88) 20%,
+      rgba(253,248,236,.86) 34%,   /* the words end here */
+      rgba(253,248,236,.72) 38%,
+      rgba(253,248,236,.34) 41%,   /* his hair starts at 42% */
+      rgba(253,248,236,.08) 44%,
+      rgba(253,248,236,0)   47%),  /* and both faces are clear from here */
+    radial-gradient(120% 30% at 50% 18%, rgba(255,253,248,.28) 0%, rgba(255,253,248,0) 100%);
+  /* a transition on a class, not a timed animation: the cue is the film
+     ending, and only the script knows when that is */
+  opacity:0; transition:opacity .8s var(--ease-io);
 }
+body.frozen .open-veil{ opacity:1 }
 /* and one slow pass of sunlight across the aisle, in the direction the
    rays already fall in the photograph */
 .open-ray{
@@ -268,54 +357,70 @@ body.lively #air{ opacity:1 }
    it is the one part of the frame carrying nothing. The names go there. */
 .open-words{
   position:relative; z-index:3; width:100%;
-  padding:clamp(13vh,17vh,20vh) var(--gut-r) 0 var(--gut);
+  /* Lifted twice. At 17vh the date line sat across the groom's head; at
+     10vh it cleared him, but the shade behind it still reached his face.
+     Gridding the frame put his hair at 42% and both faces at 44–58%, so
+     the shade has to be gone by 42% — which means the words have to be
+     finished by 34%. At 7vh the block runs 6%–34% and the ramp has room. */
+  padding:clamp(5vh,7vh,10vh) var(--gut-r) 0 var(--gut);
   /* a halo of the paper's own colour rather than a dark bar: dark type on
      a bright photograph needs light behind it, not shade. The veil now
      carries the contrast, so this is only here to keep an edge crisp
      where a glyph happens to fall across a bright lamp. */
-  text-shadow:0 1px 3px rgba(255,253,248,.9), 0 0 18px rgba(255,253,248,.7);
+  text-shadow:0 1px 2px rgba(255,253,248,.85), 0 0 9px rgba(255,253,248,.5);
 }
 .eyebrow{
-  font-size:clamp(.54rem,2.8vw,.62rem); letter-spacing:.4em; text-transform:uppercase;
-  color:var(--brass-deep); margin:0 0 1rem;
+  font-family:var(--f-caps); font-weight:400;
+  font-size:clamp(.58rem,2.9vw,.66rem); letter-spacing:.3em; text-transform:uppercase;
+  color:var(--brass-ink); margin:0 0 1rem;
 }
 /* measured against the darkest pixel of the band each one crosses, with
    the veil applied — not against the average, which is what let a
    mid-olive pass review and then disappear on a phone */
-.open-words .eyebrow{ color:var(--ink-soft) }      /* 4.6:1 */
+.open-words .eyebrow{ color:var(--brass-ink) }     /* 5.1:1 */
 .open-words .tamil{   color:var(--leaf-ink) }      /* 5.4:1 */
 .open-words .names{   color:var(--ink) }           /* 8.7:1 */
 .open-words .names i{ color:var(--brass-ink) }     /* 4.7:1, at 22px+ */
+/* The ampersand is markup, not a split word, so nothing was holding it
+   back: it sat on the moving film from the first frame while every other
+   part of the title waited. It was the one piece of the names arriving
+   early. It now waits with the rest, and lands between them. */
+.open-words .names i{ opacity:0 }
+body.named .open-words .names i{ animation:wordIn 1s var(--ease-soft) .4s both }
 .open-words .occ{     color:var(--brass-ink) }     /* 4.7:1 */
-.open-words .when{    color:var(--ink-soft) }      /* 4.6:1 */
+.open-words .when{    color:var(--ink) }           /* 9.5:1 */
 .tamil{ font-family:var(--f-tamil); letter-spacing:normal; font-size:.92em; color:var(--leaf-deep) }
 .names{
-  font-family:var(--f-serif); font-weight:300;
-  font-size:clamp(2.6rem,13.5vw,4.4rem); line-height:1.02; letter-spacing:.01em;
+  font-family:var(--f-display); font-weight:200;
+  /* Outfit sets wide: at 12.8vw "Dr. Sasidharan" filled 325px of a 327px
+     line box, which is not a margin, it is a coincidence. 11.2vw puts it
+     at 285px and leaves room for a longer name. */
+  font-size:clamp(2.2rem,11.2vw,3.8rem); line-height:1.14; letter-spacing:.015em;
   color:var(--ink); margin:0;
 }
 .names i{
-  display:block; font-family:var(--f-script); font-style:normal;
-  font-size:.44em; letter-spacing:.02em; color:var(--brass);
-  margin:.04em 0; line-height:1;
+  display:block; font-family:var(--f-script); font-style:italic;
+  font-size:.46em; letter-spacing:0; color:var(--brass);
+  margin:.02em 0; line-height:1;
 }
 .occ{
-  font-family:var(--f-serif); font-style:italic; font-weight:300;
-  font-size:clamp(1rem,4.6vw,1.25rem); color:var(--brass-deep); margin:.55rem 0 0;
+  font-family:var(--f-serif); font-style:italic; font-weight:400;
+  font-size:clamp(1.14rem,5.1vw,1.4rem); color:var(--brass-deep); margin:.6rem 0 0;
 }
 .when{
-  font-size:clamp(.58rem,2.9vw,.66rem); letter-spacing:.3em; text-transform:uppercase;
+  font-family:var(--f-caps); font-weight:400;
+  font-size:clamp(.6rem,2.9vw,.68rem); letter-spacing:.24em; text-transform:uppercase;
   color:var(--ink-soft); margin:.75rem 0 0;
 }
 
 /* ═══ TYPE ═════════════════════════════════════════════════════════════ */
 .pg h2{
-  font-family:var(--f-serif); font-weight:300;
-  font-size:clamp(2rem,8.6vw,3rem); line-height:1.12; letter-spacing:.01em;
+  font-family:var(--f-display); font-weight:200;
+  font-size:clamp(1.98rem,8.4vw,2.95rem); line-height:1.2; letter-spacing:.012em;
   color:var(--ink); margin:.5rem 0 0; text-wrap:balance;
 }
-.pg h2 em{ font-style:italic; color:var(--brass-deep) }
-.copy{ color:var(--ink-soft); font-size:clamp(.94rem,3.8vw,1.04rem); max-width:34ch; margin:1.1rem auto 0 }
+.pg h2 em{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:1.1em; color:var(--brass-deep) }
+.copy{ color:var(--ink); font-size:clamp(1.04rem,4.2vw,1.16rem); font-weight:500; max-width:34ch; margin:1.1rem auto 0 }
 
 /* ── the rings ───────────────────────────────────────────────────────
    The engagement itself, drawn rather than photographed: two bands that
@@ -346,7 +451,7 @@ body.lively #air{ opacity:1 }
    finish. Same 1.7s, read as a gesture instead of a flicker. */
 .orn{ display:block; width:clamp(132px,40vw,210px); height:22px; margin:1.2rem auto; overflow:visible }
 .orn line,.orn path{ fill:none; stroke:var(--brass); stroke-width:1; stroke-dasharray:320; stroke-dashoffset:320 }
-.orn .lit{ stroke:var(--gold); stroke-width:1.2 }
+.orn .lit{ stroke:var(--rose); stroke-width:1.2 }
 .on-view .orn line{ animation:draw 1.5s var(--ease-io) .2s forwards }
 .on-view .orn .lit{ animation:draw 1.2s var(--ease-io) .95s forwards }
 .on-view .orn .lit:nth-of-type(2){ animation-delay:1.15s }
@@ -372,14 +477,20 @@ body.lively #air{ opacity:1 }
   display:inline-block; white-space:pre-wrap; opacity:0;
   transform-origin:50% 100%; backface-visibility:hidden;
 }
-.on-view .w,
+/* `:not(.pg--open)` is load-bearing. The opening section carries
+   [data-view] like every other page, so the observer marks it on-view the
+   instant it is on screen — which is at load. Without the exclusion, the
+   opening's words matched `.on-view .w` and animated in at ~300ms, over
+   the running film, and `body.named` decided nothing at all. The opening
+   waits for the freeze; every other page waits for the scroll. */
+.on-view:not(.pg--open) .w,
 body.named .open-words .w{
-  animation:wordIn 1.15s var(--ease) both;
-  animation-delay:calc(var(--d,0ms) + var(--wi,0) * var(--st,52ms));
+  animation:wordIn 1s var(--ease-soft) both;
+  animation-delay:calc(var(--d,0ms) + var(--wi,0) * var(--st,48ms));
 }
 /* long runs of prose get a tighter gap than display lines */
-.copy .w,.addr .w,.sign .w,.fam p .w{ --st:26ms }
-.eyebrow .w,.when .w,.mid .w,.rel .w,.foot .w{ --st:20ms }
+.copy .w,.addr .w,.sign .w,.fam p .w{ --st:24ms }
+.eyebrow .w,.when .w,.mid .w,.rel .w,.foot .w{ --st:18ms }
 
 [rv]{
   opacity:0; transform:translate3d(0,28px,0) scale(.986);
@@ -404,10 +515,10 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   box-shadow:0 14px 34px -24px rgba(90,60,20,.5);
   padding:clamp(1.2rem,4.6vw,1.8rem) 1rem;
 }
-.fam h3{ font-family:var(--f-serif); font-weight:400; font-size:1.34rem; color:var(--brass-deep); margin:0 }
-.fam .rel{ font-size:.5rem; letter-spacing:.3em; text-transform:uppercase; color:var(--leaf-deep); margin:.45rem 0 .95rem }
-.fam p{ font-family:var(--f-serif); font-size:clamp(1.04rem,4.2vw,1.2rem); color:var(--ink); margin:0; line-height:1.55 }
-.fam .amp{ font-family:var(--f-script); color:var(--brass); font-size:1.15em; margin:.1rem 0 }
+.fam h3{ font-family:var(--f-display); font-weight:300; font-size:1.3rem; letter-spacing:.012em; color:var(--brass-deep); margin:0 }
+.fam .rel{ font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--rose-deep); margin:.45rem 0 .95rem }
+.fam p{ font-family:var(--f-body); font-weight:300; font-size:clamp(.97rem,3.9vw,1.08rem); color:var(--ink); margin:0; line-height:1.6 }
+.fam .amp{ font-family:var(--f-script); font-style:italic; color:var(--rose-deep); font-size:1.2em; margin:.1rem 0 }
 
 /* ═══ THE CEREMONY ═════════════════════════════════════════════════════ */
 .card{
@@ -417,10 +528,10 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   padding:clamp(1.4rem,5.4vw,2.2rem) clamp(1rem,5vw,2rem);
   margin-top:1.5rem;
 }
-.card .vn{ font-family:var(--f-serif); font-weight:400; font-size:clamp(1.55rem,7vw,2.05rem); color:var(--brass-deep); margin:0 }
-.card .big{ font-family:var(--f-serif); font-size:clamp(1.22rem,5.4vw,1.58rem); color:var(--ink); margin:.85rem 0 0 }
-.card .mid{ font-size:clamp(.72rem,3.2vw,.82rem); letter-spacing:.26em; text-transform:uppercase; color:var(--leaf-deep); margin:.5rem 0 0 }
-.card .addr{ font-family:var(--f-serif); font-size:clamp(1rem,4.1vw,1.14rem); color:var(--ink-soft); line-height:1.6; margin:1rem 0 0 }
+.card .vn{ font-family:var(--f-display); font-weight:300; font-size:clamp(1.5rem,6.7vw,1.98rem); letter-spacing:.012em; color:var(--brass-deep); margin:0 }
+.card .big{ font-family:var(--f-body); font-weight:300; font-size:clamp(1.1rem,4.7vw,1.36rem); color:var(--ink); margin:.85rem 0 0 }
+.card .mid{ font-family:var(--f-caps); font-size:clamp(.7rem,3.1vw,.8rem); letter-spacing:.2em; text-transform:uppercase; color:var(--leaf-deep); margin:.5rem 0 0 }
+.card .addr{ font-family:var(--f-body); font-weight:300; font-size:clamp(.95rem,3.8vw,1.05rem); color:var(--ink-soft); line-height:1.65; margin:1rem 0 0 }
 
 .cd{
   display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
@@ -433,13 +544,13 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
   font-size:clamp(1.55rem,7vw,2.2rem); line-height:1; color:var(--brass-deep);
   font-variant-numeric:tabular-nums;
 }
-.cd span{ display:block; font-size:.44rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft); margin-top:.42rem }
+.cd span{ display:block; font-family:var(--f-caps); font-size:.46rem; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft); margin-top:.42rem }
 
 .acts{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:1.5rem }
 .act{
   display:inline-flex; align-items:center; gap:.5rem;
   padding:.85rem 1.5rem; border:1px solid var(--rule); border-radius:999px;
-  font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--brass-deep);
+  font-family:var(--f-caps); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--brass-deep);
   background:var(--white);
   transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease);
 }
@@ -448,15 +559,15 @@ body.named .pg--open [rv]{ opacity:1; transform:none }
 .act svg{ width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.6; flex:none }
 
 /* ═══ CLOSING ══════════════════════════════════════════════════════════ */
-.sign{ font-family:var(--f-serif); font-style:italic; font-size:clamp(1.06rem,4.5vw,1.3rem); color:var(--brass-deep); margin:1.4rem auto 0; max-width:30ch }
-.endnames{ font-family:var(--f-serif); font-weight:300; font-size:clamp(2rem,9vw,3rem); color:var(--ink); margin:.6rem 0 0; line-height:1.1 }
-.endnames i{ display:block; font-family:var(--f-script); font-style:normal; font-size:.54em; color:var(--brass); margin:.04em 0; line-height:1.1 }
+.sign{ font-family:var(--f-serif); font-style:italic; font-weight:400; font-size:clamp(1.16rem,4.9vw,1.42rem); color:var(--rose-deep); margin:1.4rem auto 0; max-width:30ch }
+.endnames{ font-family:var(--f-display); font-weight:200; font-size:clamp(2.05rem,9vw,3.05rem); color:var(--ink); margin:.6rem 0 0; line-height:1.18; letter-spacing:.015em }
+.endnames i{ display:block; font-family:var(--f-script); font-style:italic; font-size:.56em; color:var(--rose-deep); margin:.02em 0; line-height:1.1 }
 .hash{
   display:inline-block; margin-top:1.3rem; padding:.62rem 1.5rem;
-  border:1px solid var(--rule); border-radius:999px; background:var(--white);
-  font-size:.6rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brass-deep);
+  border:1px solid rgba(155,47,69,.38); border-radius:999px; background:var(--white);
+  font-family:var(--f-caps); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--rose-deep);
 }
-.foot{ margin-top:2rem; font-size:.5rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-soft) }
+.foot{ margin-top:2rem; font-family:var(--f-caps); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft) }
 
 /* ═══ CHROME ═══════════════════════════════════════════════════════════ */
 .cue{
@@ -505,12 +616,23 @@ body.named .sound{ opacity:1 }
   82%  { opacity:0; transform:translate3d(26%,0,0) }
   100% { opacity:0; transform:translate3d(26%,0,0) }
 }
-/* a word hinges up off the foot of its own line. No filter: blur here —
-   it is the one property in this animation that cannot be composited,
-   and sixty words arriving in sequence made that the whole cost. */
+/* Mostly a fade now, with just enough rise to give it a direction.
+   It used to hinge 48 degrees about the baseline, which read as a
+   mechanism rather than an arrival — at display size a word that tips
+   that far draws attention to the trick. The turn is down to 14 degrees
+   and the lift to a third of what it was, the opacity runs the whole
+   length of the keyframe instead of finishing at 60%, and the curve is
+   a plain ease-out with no overshoot. Still transform and opacity only,
+   so it stays composited. */
+/* The opacity is DONE by 45%; only the movement runs the full length.
+   Fading across the whole keyframe left every word sitting half-there for
+   most of its arrival, and with a stagger on top the line never looked
+   solid — "too faded" is exactly right. Now each word reaches full
+   strength early and simply finishes settling, which keeps the movement
+   smooth without ever showing weak type. */
 @keyframes wordIn{
-  from{ opacity:0; transform:translate3d(0,.62em,0) rotateX(-48deg) scale(.965) }
-  60% { opacity:1 }
+  from{ opacity:0; transform:translate3d(0,.26em,0) rotateX(-12deg) scale(.992) }
+  45% { opacity:1 }
   to  { opacity:1; transform:translate3d(0,0,0) rotateX(0deg) scale(1) }
 }
 /* each page's ground moves a little, so five crops of one photograph
@@ -531,7 +653,11 @@ body.named .sound{ opacity:1 }
 @media (min-width:820px) and (min-aspect-ratio:1/1){
   .pg--open{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; padding:0 }
   .open-art{ position:relative; inset:auto; grid-column:1; height:100svh }
-  .open-art img{ object-position:50% 46% }
+  /* the clip is 9:16 and this column is about 4:5, so covering it would
+     cut the couple off at the ankles. Contained, the whole frame survives
+     and the paper it sits on is the page's own. */
+  .open-art video,.open-art img{ object-fit:contain; object-position:50% 50% }
+  .open-art{ background:var(--paper-warm) }
   .open-art::after{
     background:linear-gradient(90deg, rgba(253,248,236,0) 62%, rgba(253,248,236,.9) 94%, var(--paper) 100%);
   }
@@ -548,7 +674,9 @@ body.named .sound{ opacity:1 }
 /* ═══ REDUCED MOTION ═══════════════════════════════════════════════════ */
 @media (prefers-reduced-motion:reduce){
   .art-move{ animation:none !important }
-  .open-art img{ animation:none !important; opacity:1; transform:none }
+  .open-art img,.open-art video{ animation:none !important; transform:none }
+  .open-still{ opacity:1 !important }
+  .open-art video{ display:none }
   .wash img,.on-view .wash img{ animation:none !important; transform:none }
   .bg-art{ opacity:1; transition:none }
   .bg-art svg{ animation:none !important; transform:none }
@@ -557,7 +685,8 @@ body.named .sound{ opacity:1 }
   .open-veil{ animation:none !important; opacity:1 }
   .open-ray{ display:none }
   #air{ display:none }
-  .w{ opacity:1 !important }
+  .w,.open-words .names i{ opacity:1 !important }
+  body.named .open-words .names i{ animation:none !important }
   .on-view .w, body.named .open-words .w{ animation:none !important }
   [rv],.pg--open [rv]{ opacity:1 !important; transform:none !important; transition:none }
   .orn line,.orn path{ stroke-dashoffset:0 }
@@ -650,8 +779,19 @@ body.named .sound{ opacity:1 }
   <section class="pg pg--open" data-view>
     <div class="open-art">
       <div class="art-move">
-        <img src="assets/images/mandapam-open.webp"
-             alt="The engagement mandapam at Amman Sakthi Mahal — a carved arch hung with jasmine garlands and brass bells, banana leaves and lit lamps either side of the aisle"
+        <!-- plays once and holds; never loops. muted + playsinline are what
+             let it start at all on a phone, and autoplay is refused often
+             enough that the still below is not a nicety. -->
+        <video id="vid" preload="auto" autoplay muted playsinline
+               poster="assets/video/opening-poster.webp" aria-hidden="true">
+          <source src="assets/video/opening.mp4" type="video/mp4">
+        </video>
+        <!-- the same file the <video> uses as its poster, deliberately: the
+             browser fetches it once and reuses it, where a second still
+             would have been 79 KB downloaded by everybody for a case that
+             almost never happens. -->
+        <img class="open-still" src="assets/video/opening-poster.webp"
+             alt="An illustrated couple at the mandapam, exchanging rings beneath a carved arch hung with jasmine garlands and brass bells, lamps lit either side"
              fetchpriority="high">
       </div>
     </div>
@@ -661,9 +801,9 @@ body.named .sound{ opacity:1 }
     <div class="open-words">
       <p class="eyebrow" data-split data-delay="120">Nitchayathartham &middot; <span class="tamil">நிச்சயதார்த்தம்</span></p>
       <h1 class="names">
-        <span data-split data-delay="300">Sasidharan</span>
+        <span data-split data-delay="300">Dr. Sasidharan</span>
         <i>&amp;</i>
-        <span data-split data-delay="760">Abinaya</span>
+        <span data-split data-delay="820">Dr. Abinaya</span>
       </h1>
       <p class="occ" data-split data-delay="1180">are getting engaged</p>
       <p class="when" data-split data-delay="1480">Sunday &middot; 15 November 2026</p>
@@ -674,7 +814,7 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ TWO · THE FAMILIES ════════════════════════════════════════════ -->
   <section class="pg pg--b" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/mandapam-open.webp" alt="" loading="lazy" style="--wp:46% 26%"></div>
+    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:30% 30%"></div>
     <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">With great joy</p>
@@ -708,7 +848,7 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ THREE · THE CEREMONY ══════════════════════════════════════════ -->
   <section class="pg pg--c" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/mandapam-open.webp" alt="" loading="lazy" style="--wp:54% 62%"></div>
+    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:58% 46%"></div>
     <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">Nitchayathartham &middot; <span class="tamil">நிச்சயதார்த்தம்</span></p>
@@ -747,7 +887,7 @@ body.named .sound{ opacity:1 }
 
   <!-- ═══ FOUR · THE BLESSING ═══════════════════════════════════════════ -->
   <section class="pg pg--d" data-view>
-    <div class="wash" aria-hidden="true"><img src="assets/images/mandapam-open.webp" alt="" loading="lazy" style="--wp:50% 40%"></div>
+    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:44% 72%"></div>
     <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
     <div class="wrap">
       <svg class="rings" viewBox="0 0 230 128" role="img" aria-label="Two engagement rings">
@@ -788,7 +928,7 @@ body.named .sound{ opacity:1 }
     <!-- the close is the one page that leaves the mandapam behind: rings on
          a gold plate among jasmine, lotus and a kuthuvilakku. Same wash, same
          weights — worst pixel, ink reads 10.2:1 and the small caps 5.4:1. -->
-    <div class="wash" aria-hidden="true"><img src="assets/images/rings-close.webp" alt="" loading="lazy" style="--wp:46% 56%"></div>
+    <div class="wash" aria-hidden="true"><img src="assets/images/theme-decor.webp" alt="" loading="lazy" style="--wp:52% 64%"></div>
     <div class="bg-art" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#kolam"/></svg></div>
     <div class="wrap">
       <p class="eyebrow" data-split data-delay="120">With your blessings, a new chapter begins</p>
@@ -881,22 +1021,174 @@ body.named .sound{ opacity:1 }
      The order the client asked for: the photograph settles first, then
      the air comes alive, and only then the names. Each step waits for the
      one before it rather than all starting at once. */
-  var ART_IN = reduce ? 0 : 1500;   // the plate has arrived
+  var ART_IN = reduce ? 0 : 1500;   // the film is under way
   var AIR_IN = reduce ? 0 :  700;   // leaves and petals lift
 
   function after(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+  /* ── THE FILM ──────────────────────────────────────────────────────────
+     It plays once and holds on its last frame. A paused <video> keeps that
+     frame on screen by itself, so "freeze" costs nothing — but pause() is
+     called anyway, because a running decoder on a page nobody is looking
+     at any more is just battery.
+
+     The waiting state is the POSTER, which is the clip's own first frame,
+     and that is what makes the rest of this simple. A <video> shows its
+     poster until playback actually begins, so a slow network, a refused
+     autoplay and a tab opened in the background all look the same: the
+     opening frame, held, exactly as if the film had not started yet. When
+     it does start it starts on that same frame, so nothing jumps.
+
+     An earlier version guessed instead — a 2.6s timer that swapped in a
+     still if the clip had not moved. In a background tab that fired and
+     THEN the video played, leaving the page showing the still with the
+     film running invisibly behind it. There is no timer now. Only two
+     things hide the film: reduced motion, and the media element telling
+     us outright that it failed. */
+  var vid = $("vid");
+  function noVid(){ document.body.classList.add("no-vid"); }
+
+  /* ── THE THREE BEATS ───────────────────────────────────────────────────
+     film → light → names, in that order and never overlapping. freeze()
+     is the hinge and it is idempotent, because several things can call
+     it and only the first should count.
+
+     The hard rule here: the names must appear. An invitation that never
+     says who is getting married because a video stalled is not a
+     degraded experience, it is a broken one. So every path that can stop
+     the film from ending has a way out — a refused autoplay freezes
+     early (we know it is not coming), and a cap catches everything else:
+     a stall, a dead connection, a codec the device will not take. */
+  /* The shade and the words arrive together. At 480ms the light landed as
+     its own separate beat and the page read as "shaded, and then written
+     on" — the shading drew attention to itself. At 90ms, with the veil's
+     own fade shortened to match, the two are one movement. */
+  var SHADE_TO_NAMES = reduce ? 0 :   90;  // the light and the words, together
+  var STALL_WAIT     = reduce ? 0 : 2600;  // frames stopped coming
+  var REFUSED_WAIT   = reduce ? 0 : 1100;  // autoplay said no, in full view
+  var FREEZE_CAP     = reduce ? 0 : 6000;  // it never started at all
+
+  var onFreeze = [];
+  function freeze(){
+    if (document.body.classList.contains("frozen")) return;
+    document.body.classList.add("frozen");
+    nameThem(SHADE_TO_NAMES);
+    while (onFreeze.length) onFreeze.shift()();
+  }
+  /* register work for the freeze, running it at once if that moment has
+     already been and gone — the reduced-motion path freezes synchronously,
+     before most of this script has even been read */
+  function atFreeze(fn){
+    if (document.body.classList.contains("frozen")) fn();
+    else onFreeze.push(fn);
+  }
+
+  if (reduce || !vid){
+    noVid();
+    if (vid){ vid.removeAttribute("autoplay"); vid.preload = "none"; }
+    freeze();
+  } else {
+    /* ── NOTHING MAY CUT ACROSS A RUNNING FILM ──────────────────────────
+       The giving-up timers below exist so a film that never arrives
+       cannot strand the names. The rule they must obey is that a film
+       which IS running outranks every one of them: while frames are
+       going by, the only thing allowed to freeze the page is `ended`.
+
+       Getting that wrong is what put the names over the moving picture.
+       A refused autoplay armed a 1.1s timer; a tap before that timer
+       fired started the film after all; the timer was never cancelled
+       and brought the shade and the names up on top of it. So every
+       timer here is held in a variable and cleared the moment a frame
+       is shown — `stand(null)` — and nothing is ever scheduled with a
+       bare setTimeout. */
+    var giveUp = null;
+    /* Outside stand(), deliberately. Declared inside, every re-arm reset
+       it to -1, `currentTime > -0.95` was then always true, and the
+       watchdog would have re-armed forever without ever freezing — the
+       opposite failure to the one it was added to fix. */
+    var mark = -1;
+    function stand(ms){                 /* arm, re-arm, or stand down */
+      clearTimeout(giveUp);
+      giveUp = null;
+      if (ms === null){ mark = -1; return; }
+      giveUp = setTimeout(function(){
+        /* a tab in the background is not a stall — the browser paused
+           the decoder on purpose. Wait for it to be looked at. */
+        if (document.hidden){ stand(ms); return; }
+        /* Still running? Let it run — but ARM AGAIN. Returning here
+           without re-arming was a hang: a stream that stalls while still
+           reporting paused=false stops sending timeupdate, so nothing
+           would ever have re-armed the watchdog and the names would have
+           waited forever. Progress is judged by the clock moving, not by
+           the paused flag, which is the only honest test. */
+        if (!vid.ended && vid.currentTime > mark + 0.05){
+          mark = vid.currentTime;
+          stand(ms);
+          return;
+        }
+        freeze();
+      }, ms);
+    }
+
+    vid.addEventListener("ended", function(){ stand(null); vid.pause(); freeze(); });
+    /* A frame has been shown. Any plan to give up is off, and from here
+       the watchdog follows the film's own progress instead of the clock. */
+    vid.addEventListener("playing", function(){
+      document.body.classList.remove("no-vid");
+      stand(STALL_WAIT);
+    });
+    vid.addEventListener("timeupdate", function(){
+      if (!vid.ended) stand(STALL_WAIT);        /* still moving — push it out */
+    });
+    vid.addEventListener("error", function(){ stand(null); noVid(); freeze(); });
+
+    var p = vid.play();
+    /* A rejection is autoplay being refused — low power mode, data saver,
+       some in-app browsers. An ordinary outcome, not an error: the poster
+       is already the first frame, so the page simply stays on it.
+
+       A page that loaded while its tab was in the background has autoplay
+       refused for that reason alone, and treating that as final would
+       mean the guest opens the tab to find the film already over before
+       it started. So a refusal made unseen is not acted on: wait for
+       first sight and ask again. Only a refusal in full view is final —
+       and even then `stand` checks once more before it fires, because a
+       tap may have started the film in the meantime. */
+    if (p && p.catch) p.catch(function(){
+      if (document.hidden){
+        document.addEventListener("visibilitychange", function once(){
+          if (document.hidden) return;
+          document.removeEventListener("visibilitychange", once);
+          var q = vid.play();
+          if (q && q.catch) q.catch(function(){ stand(REFUSED_WAIT); });
+        });
+      } else {
+        stand(REFUSED_WAIT);
+      }
+    });
+    stand(FREEZE_CAP);   /* it never started at all */
+  }
 
   setTimeout(function(){ document.body.classList.add("lively"); }, ART_IN);
 
   /* The names wait for the fonts as well as for their cue. Cormorant at
      display size has very different metrics from the Georgia standing in
      for it, so a swap landing mid-animation reads as the whole line
-     jumping. Capped, so a font that never arrives cannot hold them back. */
-  var fonts = (document.fonts && document.fonts.ready) || Promise.resolve();
-  Promise.race([
-    Promise.all([ fonts.catch(function(){}), after(ART_IN + AIR_IN) ]),
-    after(ART_IN + AIR_IN + 2200)
-  ]).then(function(){ document.body.classList.add("named"); });
+     jumping. Capped, so a font that never arrives cannot hold them back.
+
+     A function declaration, so freeze() can call it from above — and the
+     font promise is read in here rather than closed over, because
+     freeze() may well run before the line that would have assigned it. */
+  var naming = false;
+  function nameThem(delay){
+    if (naming) return;
+    naming = true;
+    var fonts = (document.fonts && document.fonts.ready) || Promise.resolve();
+    Promise.race([
+      Promise.all([ fonts.catch(function(){}), after(delay) ]),
+      after(delay + 2200)
+    ]).then(function(){ document.body.classList.add("named"); });
+  }
 
   /* ═══ THE PAGES ═══════════════════════════════════════════════════════
      The deck scrolls inside its own box, so the observer watches that box
@@ -948,10 +1240,21 @@ body.named .sound{ opacity:1 }
     }, 180);
   }, { passive:true });
 
-  /* ═══ MUSIC — never autoplays ═════════════════════════════════════════
-     Browsers refuse sound until the page has been touched, so the first
-     tap or scroll is what offers it; after that the button owns it. */
-  var au = $("au"), on = false, asked = false;
+  /* ═══ MUSIC — on by default, as far as that is allowed ════════════════
+     The ask was for sound by default, and this is as close to that as a
+     browser permits. Unmuted autoplay is blocked by Chrome, Safari and
+     Firefox alike until the page has been interacted with — it is a
+     platform rule, not a setting, and there is no flag or trick that
+     turns it off for a public page. (A muted track would be allowed;
+     muted music is not music.)
+
+     So: it ASKS immediately on load, which succeeds on a desktop browser
+     where the visitor has played media on the site before, and it asks
+     again on the first touch, scroll or key — which on a phone is almost
+     always the first flick. Nothing waits for the button; the button is
+     only there to turn it off, or to turn it on if every attempt was
+     refused. */
+  var au = $("au"), on = false, asked = false, hushed = false;
   function paint(){
     $("wv").style.display = on ? "" : "none";
     $("sl").style.display = on ? "none" : "";
@@ -964,19 +1267,40 @@ body.named .sound{ opacity:1 }
     var p = au.play();
     if (p && p.then) p.then(function(){ on = true; paint(); }, function(){ on = false; paint(); });
   }
+  /* Every early gesture is a fresh chance, not one shot — a refused
+     attempt must not burn the only try we had. But once the guest has
+     turned the music off themselves, that is the end of it: `hushed`
+     exists so the next tap anywhere does not start it up again, which is
+     what listening on every pointerdown would otherwise do. */
   function firstTouch(){
-    if (asked) return;
     asked = true;
-    play();
+    if (!on && !hushed) play();
+    /* if autoplay was refused the film never ran either; a tap is a
+       gesture, so offer it the same chance — but only while the opening
+       still belongs to it */
+    if (vid && vid.paused && !vid.ended &&
+        !document.body.classList.contains("frozen")){
+      var q = vid.play();
+      if (q && q.catch) q.catch(function(){});
+    }
   }
-  ["pointerdown","keydown"].forEach(function(ev){
-    document.addEventListener(ev, firstTouch, { once:true, passive:true });
+  ["pointerdown","touchstart","keydown"].forEach(function(ev){
+    document.addEventListener(ev, firstTouch, { passive:true });
   });
-  deck.addEventListener("scroll", firstTouch, { once:true, passive:true });
+  deck.addEventListener("scroll", firstTouch, { passive:true });
+  document.addEventListener("visibilitychange", function(){
+    if (!document.hidden && asked && !on && !hushed) play();
+  });
+  /* The unprompted ask waits for the film to finish. Calling play() forces
+     the track to load, and 2 MB of music competing with 326 KB of video on
+     a slow connection would stutter the one thing the guest is actually
+     watching. Music arriving with the title is the better beat regardless. */
+  atFreeze(function(){ if (!on && !hushed) play(); });
   $("sound").addEventListener("click", function(e){
     e.stopPropagation();
     asked = true;
-    if (on){ au.pause(); on = false; paint(); } else play();
+    if (on){ au.pause(); on = false; hushed = true; paint(); }
+    else { hushed = false; play(); }
   });
   paint();
 

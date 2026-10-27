@@ -33,7 +33,7 @@ page of warm paper underneath it.
 
 | # | Page | Carries |
 |---|------|---------|
-| 1 | The mandapam | the photograph, the two names, the date |
+| 1 | The film | 3.4s of the couple at the mandapam, the two names, the date |
 | 2 | The families | both sets of parents |
 | 3 | The ceremony | venue, date, time, address, countdown, map |
 | 4 | The blessing | the rings, then the words |
@@ -45,23 +45,141 @@ The scroller is a box of its own (`.deck`) rather than the window, so a snap
 point is always one whole screen and the drifting layer above it stays put
 while the pages move underneath.
 
-## The opening
+## The opening is a film
 
-The order is the one the client asked for, and each step waits for the one
-before it rather than all starting together:
+3.37 seconds of an illustrated couple at the mandapam, which **plays once and
+then holds on its last frame** for as long as the page is open. It is not a
+loop: a loop is wallpaper, and this is meant to happen once, the way arriving
+somewhere happens once.
 
-1. **The photograph settles** — a 3.8s fade up out of a 1.11x scale, slow
-   enough to watch, then a 38s drift that never stops. A single slow pass of
-   sunlight crosses the aisle on an 11s cycle, angled to match the rays
-   already in the frame.
+> The couple in it are a **generic illustration**, not photographs of
+> Sasidharan and Abinaya — worth saying out loud given the client's "no need
+> of their pics anywhere". If they meant no depiction of the couple at all
+> rather than no photographs, this is the one thing in the build to check
+> with them.
+
+**What the source needed.** It arrived as 1920x1080 at 12 Mbps with an audio
+track — but the animation inside it was 9:16, pillarboxed into the middle with
+hard black bars either side. `cropdetect` agreed on `crop=608:1080:656:0`
+across all 99 frames, so the bars came off and what is left is a true portrait
+clip that covers a phone with nothing thrown away. Audio stripped (it is muted
+regardless, and the page has its own music), re-encoded at CRF 27:
+
+| | |
+|---|---|
+| source | 5,025 KB, 1920x1080, 12 Mbps, with audio |
+| shipped | **326 KB**, 608x1080, 787 kb/s, silent |
+| poster | 78 KB, the clip's own first frame |
+
+That 94% saving is the difference between this opening and a guest on mobile
+data giving up on it.
+
+### The waiting state is the poster, and that is what keeps it simple
+
+A `<video>` shows its poster until playback actually begins. The poster here is
+the clip's **own first frame**, so a slow network, a refused autoplay and a tab
+opened in the background all look identical: the opening frame, held, exactly
+as if the film had not started yet. When it does start, it starts on that same
+frame — nothing jumps.
+
+An earlier version guessed instead: a 2.6s timer that swapped in a still if the
+clip had not moved yet. Opened in a background tab, that timer fired and *then*
+the video played, leaving the page showing the still with the film running
+invisibly behind it. There is no timer now. Only two things hide the film —
+reduced motion, and the media element reporting an outright failure. A rejected
+`play()` promise (low power mode, data saver, some in-app browsers) needs no
+handling at all; the page simply stays on the poster.
+
+The same file serves as the `<img>` fallback, deliberately: the browser fetches
+it once and reuses it, where a second still would have been 79 KB downloaded by
+everybody for a case that almost never happens.
+
+### The order of the opening
+
+Each step waits for the one before it rather than all starting together:
+
+1. **The film runs clean** — no wash, no type, for its first second and a half.
+   Veiling the arch from frame one would be covering up the thing we were
+   asked to show.
 2. **The air comes alive** — banana leaves turning end over end, jasmine and
    blossom petals fluttering, pollen drifting upward into the light. Three
    shapes at three speeds, because one repeated sprite reads as a screensaver.
    The leaf's turn is faked by squashing it across its stem, so it reads as a
    thin sheet rather than a rotating blob.
-3. **The names arrive** — word by word, each rising out of its own small blur,
-   in the lit window the arch frames between the garlands and the lamps. It is
-   the one part of the picture carrying nothing, so it is where they go.
+2. **The light and the names together.** The shade comes up over the held
+   frame the instant the film freezes — on the video's own `ended` event
+   rather than a clock, so it stays in step if the clip is ever swapped — and
+   the words follow 90ms behind it, which reads as one movement rather than
+   two. At the first attempt the gap was 480ms and the shading announced
+   itself as a separate beat.
+3. **The music** comes in with the title.
+
+Measured on a real load: **film ends 3414ms, shade 3414ms, names 3508ms.**
+
+Each word reaches full opacity by 45% of its keyframe and only the movement
+runs the full length. Fading across the whole keyframe left every word
+half-there for most of its arrival, and with a stagger on top the line never
+looked solid.
+
+   The block sits in the arch above the couple, and it has been lifted twice.
+At 17vh the date line sat across the groom's head. At 10vh it cleared him, but
+the *shade* behind it still washed his face. Gridding the frame put his hair
+at 42% and both faces at 44–58%, so the shade has to be gone by 42% — which
+means the words have to finish by 34%. At 7vh the block runs 6–34% and the
+ramp has room. **Nothing fades the couple.**
+
+### Three bugs worth remembering
+
+**The names were never gated on the freeze at all.** The opening section
+carries `[data-view]` like every other page, so the IntersectionObserver
+marked it on-view the moment it was on screen — at load — and its words
+matched `.on-view .w` and animated in at ~300ms, over the running film.
+`body.named` decided nothing. The rule now reads
+`.on-view:not(.pg--open) .w`, and that `:not()` is load-bearing.
+
+This one hid behind the instrumentation. Watching `document.body.className`
+showed `frozen` and `named` firing in the right order, which looked like
+proof. Sampling the words' **computed opacity** showed them at 1.00 while the
+film still had two seconds to run. Measure the thing itself, not the flag
+that is supposed to control it.
+
+**A give-up timer cut across a running film.** A refused autoplay armed a
+1.1s fallback; a tap before it fired started the film after all; the timer
+was never cancelled and brought the shade and names up on top of the moving
+picture. Every timer is now held in a variable and cleared the moment a frame
+is shown (`stand(null)`), and nothing is scheduled with a bare `setTimeout`.
+
+**And the watchdog could hang, then could never fire.** Its "still running"
+branch returned without re-arming — so a stream that stalls while still
+reporting `paused: false` stops sending `timeupdate`, nothing re-arms, and the
+names wait forever. Re-arming fixed that but introduced the opposite bug: the
+progress marker was declared *inside* `stand()`, so every re-arm reset it to
+-1, `currentTime > -0.95` was always true, and it would have re-armed forever
+without ever freezing. The marker lives outside the function now, and progress
+is judged by the clock moving rather than by the `paused` flag.
+
+**The names must appear.** An invitation that never says who is getting married
+because a video stalled is not degraded, it is broken — so every path that can
+stop the film ending has a way out. A refused autoplay freezes early, since we
+know no `ended` is coming. A cap catches the rest: a stall, a dead connection,
+a codec the device will not take.
+
+One subtlety worth keeping: a page that loads in a **background tab** has its
+autoplay refused for that reason alone. Treating that as final meant the guest
+opened the tab to find the film already over before it started, so a refusal
+made while `document.hidden` is not acted on — the page waits for first sight
+and asks again, and the cap counts from then too.
+
+Page 1 carries **Dr.** on both names, matching the family cards on page 2.
+"Dr. Sasidharan" measures 293px inside a 327px line box at 375px wide, and the
+size is set in `vw`, so the proportion holds as the screen narrows — no
+overflow at 320px either.
+
+### On a landscape screen the film is contained, not covered
+
+The clip is 9:16 and the art column on a wide screen is about 4:5. Covering it
+would cut the couple off at the ankles, so there it is `object-fit: contain`
+and the whole frame survives, on the page's own paper.
 
 ### Why the foliage in the photograph does not move
 
@@ -142,6 +260,28 @@ the olive pass review and then disappear on somebody's phone.
 
 ## The ground under pages two to five
 
+Pages two to five sit on the **client's own decor photograph** — the brass
+Nandi among roses, tuberose and foliage.
+
+> **Two things to check on that file.** It arrived as a phone screenshot: an
+> app back-button top-left, a lens button bottom-right, and a
+> `PICTURES / FILM. WEVA` studio watermark across the bottom. All three are
+> cropped out (`crop top 106, bottom 96`, leaving 706x857), but the watermark
+> means the photograph is a studio's work — worth confirming the couple have
+> the right to use it before this goes out. Swapping in their own decor photo
+> is a one-line change; the wash is tuned to the image's darkest pixel, not to
+> this particular picture.
+>
+> It also **replaced the rings photograph on page five**, which was the
+> previous request for that page. Easy to put back if page five should keep it.
+
+It is a far darker frame than the mandapam was: median luminance .19 against
+.38, and its darkest pixels reach zero. Re-measured against it the budget
+barely moved, because both images bottom out in near-black — and `--brass-deep`
+turns out to be the limiting colour, not the ink. The type zone holds at about
+.10; the border runs at .30, up from .26, because the ask was for the decor
+*around* the words rather than a whitish page.
+
 Every page after the first keeps a photograph behind it. It used to be papered
 down so hard that nothing survived — the image at `.24` under a scrim reaching
 `.92`, which leaves about six percent of the picture showing, and the pages
@@ -211,6 +351,15 @@ and the blossom at under 3%. Those two are the colours to spend carefully.
 | `--leaf` | `#8F9721` | banana leaf, 13% |
 | `--leaf-deep` | `#5E6616` | its shadow |
 | `--blossom` | `#F59591` | the pink in the garlands, under 3% |
+| `--rose` | `#C2566B` | the pink roses in the decor photograph |
+| `--rose-deep` | `#9B2F45` | its deep reds — 6.9:1, carries text |
+| `--crimson` | `#7E1B2E` | their shadow — 9.5:1 |
+
+The roses are the one thing the palette was missing. The decor frame is mostly
+green and brass, which it already had; the reds are 5.8% of that photograph,
+and a 5.8% colour used sparingly is what stops a scheme of gold and leaf
+reading as flat. They carry the ampersands, the relation labels, the lamp
+flame, the sign-off line and the hashtag — nothing structural.
 
 The paper is deliberately lighter than anything in the photograph, so the
 photograph always reads as the brightest thing on screen.
@@ -219,25 +368,73 @@ photograph always reads as the brightest thing on screen.
 5.8 (AA), leaf-deep 5.9 (AA). `--brass` is 3.8 and is used only at display
 size; `--gold` is 2.2 and never carries text at all.
 
-## Type
+## Type — two faces, modern and light
 
-Cormorant Garamond 300 carries the whole identity — high contrast, wide
-apertures, and it keeps its elegance at display size. Pinyon Script is the
-calligraphic hand, used only for the ampersand that joins their names. Jost
-carries the small uppercase lines. Noto Serif Tamil sets நிச்சயதார்த்தம்.
+This page has been through four settings. Cormorant Garamond 300 carried it
+first and was too thin at display size. Marcellus with Cinzel replaced it and
+was handsome, but Roman and antique — a monument rather than an invitation.
+Instrument Serif was properly modern, but a Didone carries weight in its stems
+and at display size that reads as forceful. The brief was modern **and light**,
+which rules out every high-contrast serif, because contrast means weight
+somewhere. So:
+
+| | |
+|---|---|
+| **Outfit 200** | the display lines — names, headings, venue. A geometric sans is the one way to be large and genuinely **light** at once: the stroke is a single even weight, so nothing in the letter is ever thick. Near-circular bowls, open apertures, a little positive tracking so the thin strokes do not close up. The small capital lines take the same face at 400, because 200 at 9px disappears. |
+| **Cormorant Garamond 300 italic** | the only other voice, and it only ever speaks in italic: "are getting engaged", the sign-off, and the ampersand joining their names. A fine serif italic against a light geometric sans is contrast doing the work instead of weight. |
+| **Noto Sans Tamil 300** | நிச்சயதார்த்தம், at the same weight as everything round it. |
+
+Two families where there were five.
+
+Outfit sets wide. At 12.8vw "Dr. Sasidharan" filled 325px of a 327px line box
+— not a margin, a coincidence. At 11.2vw it measures 284px, and since the size
+is set in `vw` that proportion holds as the screen narrows.
 
 ## Assets
 
-- `assets/images/mandapam-open.webp` — 941x1672. The opening plate, and
-  washed out, the ground under pages two to four.
+- `assets/video/opening.mp4` — 608x1080, 3.37s, silent, 326 KB. The opening
+  film. Re-encode it from a new source with
+  `crop=608:1080:656:0` only if the new source is pillarboxed the same way —
+  run `cropdetect` rather than assuming.
+- `assets/video/opening-poster.webp` — its first frame, 78 KB. Poster and
+  fallback both.
+- `assets/images/mandapam-open.webp` — 941x1672. The ground under pages two to
+  four. No longer the opening plate.
 - `assets/images/rings-close.webp` — 941x1672. Rings on a gold plate among
   jasmine, lotus and a kuthuvilakku; the ground under the closing page. Same
   wash and the same weights — worst pixel, `--ink` reads 10.2:1 there and the
   small caps 5.4:1.
-- `assets/audio/traditional-nadaswaram.mp3` — replace with any file the
-  browser plays. Never autoplays: browsers refuse sound until the page has
-  been touched, so the first tap or scroll is what offers it, and the corner
-  button owns it after that.
+- `assets/images/theme-decor.webp` — 706x857, 82 KB. The client's decor,
+  cropped free of its screenshot chrome. The ground under pages two to five.
+- `assets/audio/traditional-nadaswaram.mp3` — 50s, re-encoded 320 kb/s stereo
+  down to 128 kb/s (1,958 KB to 783 KB). Replace with any file the browser
+  plays.
+
+### About "sound on by default"
+
+This is as close to it as a browser permits, and the gap is worth stating
+plainly. **Unmuted autoplay is blocked** by Chrome, Safari and Firefox alike
+until the page has been interacted with. It is a platform rule, not a setting:
+there is no flag, attribute or trick that turns it off for a public page. A
+muted track would be allowed, but muted music is not music.
+
+So the page asks as often as it is allowed to:
+
+- once the film freezes — not at load, because calling `play()` forces the
+  track to load and 783 KB of music competing with 326 KB of video would
+  stutter the one thing the guest is watching;
+- again on the first touch, scroll or key, which on a phone is almost always
+  the first flick;
+- again when a backgrounded tab comes back to the front.
+
+Every early gesture is a fresh chance rather than one shot, so a refused
+attempt does not burn the only try. The exception is deliberate: once the guest
+has pressed the button to turn the music **off**, `hushed` makes sure the next
+tap anywhere does not start it up again.
+
+In practice a desktop visitor who has played media on the site before gets
+sound from the moment the title appears; a phone visitor gets it on their first
+scroll, which is a fraction of a second later.
 
 ## Accessibility & behaviour
 
