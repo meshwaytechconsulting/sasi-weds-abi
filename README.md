@@ -3,197 +3,169 @@
 *Nitchayathartham · நிச்சயதார்த்தம் — an engagement, not a wedding. The
 wording says so throughout: "&", never "weds".*
 
-A scroll-scrubbed cinematic film of how they met, closing on the invitation itself.
-Static site. No build step, no framework, no CDN beyond Google Fonts.
+Five pages in daylight, each a whole screen, snapping one at a time. Static
+site. No build step, no framework, no CDN beyond Google Fonts.
 
-**Live:** enable GitHub Pages on `main` / root. `index.html` is the entry point.
+**Live:** GitHub Pages on `main` / root. `index.html` is the entry point.
 
 ---
 
+## What this is, and what it deliberately is not
+
+The match was made between two families. The invitation says so by showing the
+**room** rather than the couple: there is no courtship narrative and there are
+no portraits anywhere in the page. An earlier build had both — a twelve-beat
+film of how they met, over their own photographs — and both were cut at the
+client's request.
+
+What replaced them is the mandapam itself, photographed in daylight, and a
+page of warm paper underneath it.
+
+> **Still in the repository.** The old story photographs, the couple's
+> portraits among them, remain under `assets/story/` and
+> `assets/story/_original/`. Nothing in `index.html` references them any more
+> — but GitHub Pages serves every file in the repository, so they are still
+> reachable by URL until they are deleted. Removing the files stops them being
+> served; it does not remove them from git history, which needs a history
+> rewrite.
+
 ## Structure
 
-**Part I — the film.** One tap, then it plays itself: 12 chapters on a timed
-timeline, about 56 seconds end to end. Each chapter receives live progress values
-(`--t` raw, `--e1/2/3` staggered eased arrivals, `--x` exit) and arrives by ~34%,
-holds, then leaves, so the middle of every chapter is a composed, held frame.
+| # | Page | Carries |
+|---|------|---------|
+| 1 | The mandapam | the photograph, the two names, the date |
+| 2 | The families | both sets of parents |
+| 3 | The ceremony | venue, date, time, address, countdown, map |
+| 4 | The blessing | the rings, then the words |
+| 5 | The close | their short names, a smaller pair of rings, the hashtag, the date |
 
-Time is accumulated step by step with each step clamped to 120 ms, never read off
-the wall clock — a backgrounded tab resumes where it stopped instead of jumping
-several chapters. A 220 ms watchdog drives the clock if `requestAnimationFrame`
-is being starved (low-power mode, embedded views), so the film can never freeze
-on its first chapter; at 60fps the watchdog never fires.
+The scroller is a box of its own (`.deck`) rather than the window, so a snap
+point is always one whole screen and the drifting layer above it stays put
+while the pages move underneath.
 
-Beats do not cross-fade. Entering and leaving are different gestures — `push`
-(a dolly in), `rise`, `drift` (a lateral pan whose direction alternates), `iris`
-(the aperture opening on the reveal) and `tilt` — each driving only the picture
-layer, so the words never distort. **Every one of them moves transform and
-opacity only.** An animated `filter: blur()` across a full-screen photograph has
-to be re-rastered each frame, and on a phone that is what showed up as flicker
-on the cut; the softness now lives in the bed behind, blurred once and never
-touched again. There are no SVG filters left in the page at all.
+## The opening
 
-Story photographs have **no frame and no crop**. Every frame tried before — the
-box, the torn edge, the gopuram arch — took a bite out of the picture to put
-something of its own around it, and the arch was the worst, because cropping to
-portrait threw away whichever half of a wide photograph it did not want. Each
-plate is now shown whole, at its own aspect ratio, with nothing but its own
-shadow to lift it off the bed. The lead plate breaks out of the chapter gutter
-and runs the full width of the phone: an uncropped wide photograph has only its
-width to work with, so it takes all of it. Past 780px the pair moves side by
-side.
+The order is the one the client asked for, and each step waits for the one
+before it rather than all starting together:
 
-One beat keeps a frame. The ring gets the torn print — a displacement map chews
-the photograph and its cream mount together, so the edge is a tear rather than a
-cut, which suits a ring box and a pair of hands and suits nothing else in the
-film. The second print clips the corner of the first and nothing more. Those two
-`feTurbulence` filters are the only SVG filters left in the page, and the filter
-sits on an inner wrapper while the movement sits on the outer one, so the ragged
-edge is rasterised once instead of on every frame.
+1. **The photograph settles** — a 3.8s fade up out of a 1.11x scale, slow
+   enough to watch, then a 38s drift that never stops. A single slow pass of
+   sunlight crosses the aisle on an 11s cycle, angled to match the rays
+   already in the frame.
+2. **The air comes alive** — banana leaves turning end over end, jasmine and
+   blossom petals fluttering, pollen drifting upward into the light. Three
+   shapes at three speeds, because one repeated sprite reads as a screensaver.
+   The leaf's turn is faked by squashing it across its stem, so it reads as a
+   thin sheet rather than a rotating blob.
+3. **The names arrive** — word by word, each rising out of its own small blur,
+   in the lit window the arch frames between the garlands and the lamps. It is
+   the one part of the picture carrying nothing, so it is where they go.
 
-Words arrive one at a time, each rising out of its own blur on a short stagger.
-That is a CSS animation rather than a scrubbed value, so a word always finishes
-where it belongs — nothing can be left half-revealed or clipped mid-line.
+### Why the foliage in the photograph does not move
 
-Navigation: tap the left or right half to move, press and hold to pause, arrow
-keys and space on a desktop. Nothing is drawn over the picture to track
-progress.
+It did, briefly, and it was wrong. The only way to move leaves inside a flat
+photograph is to lay a second copy of the plate over the first, mask it to the
+foliage and rotate it. But wherever that mask fades, two slightly offset copies
+of the same picture blend together — and a double image reads as **blur**. The
+plate is single and sharp again; the life comes from the leaves and petals
+drifting in *front* of it, which cost the picture nothing.
 
-**Part II — the invitation.** Four pages that snap one whole screen at a time
-(`scroll-snap-type: y mandatory` on the document itself, not the window), each
-over its own photograph thrown far back. IntersectionObserver reveals, live
-countdown, Google Calendar link, Maps link. The blessing page carries its words
-and nothing else — no share buttons, no gallery.
+The entry scale was cut from 1.11 to 1.035 and the drift from 1.05 to 1.03 for
+the same reason: the source is 941px wide and a phone at DPR 3 is already
+enlarging it, so every extra percent of scale is pure softness.
 
-## Scenes
+Doing this properly needs the foliage separated onto its own layer, with the
+background inpainted underneath it — not a duplicate of the whole frame. That
+is a source-asset job, not a CSS one.
 
-| # | Beat | Source |
-|---|------|--------|
-| 1 | Act I — their story | type only |
-| 2–3 | Medical college, the hospital | `hall` `notes` `corridor` `rounds` `study` |
-| 4 | Act II — the years between | type only |
-| 5–6 | The road, the town | `journey` `rain` `campus` `cycle` |
-| 7–8 | The evenings | `marina` (full frame) `ride` `shore` |
-| 9 | Act III — the question | type only |
-| 10 | The rings | `ringbox` `rings2` `parapet` |
-| 11 | **The reveal** — full frame, no border | `couple` |
-| 12 | The announcement | `tank` (full frame) |
+### Two things that must not be undone
 
-Chapter durations live in the `SECS` array at the top of the script.
+**Every delayed animation carries `backwards`.** A delayed animation with no
+fill contributes nothing while it waits, so anything on a delay sits at its
+resting value and then jumps straight to its first keyframe — which on a phone
+reads as a lurch a few seconds in. `backwards` holds the first frame from load,
+so there is nothing left to jump to.
 
-## Assets
+**The names wait on `document.fonts.ready`** as well as on their cue, capped at
+2.2s. Cormorant at display size has very different metrics from the Georgia
+standing in for it, and a swap landing mid-animation reads as the whole line
+jumping.
 
-`assets/story/*.webp` — 24 images, ~605 KB total.
-Most were cropped out of the supplied storyboard collages; `couple.webp` is the
-couple's own photograph and is the only source for how they look.
+Dark type on a bright photograph needs **light** behind it, not shade. The
+names sit on a radial veil of the paper's own colour and carry a paper-coloured
+halo, so nothing resembling a dark scrim is ever laid over the picture.
 
-### Music
+Type laid on the photograph has its own two tokens, `--on-art` `#46401A` and
+`--on-art-soft` `#5A4A18`. Olive-bronze is what "matching the background" has to
+mean when the background is gold **and** leaf at once. Measured against the
+darkest 5% of the band it covers, behind the veil, `--on-art` reads at 7.0:1.
 
-Put your file in `assets/audio/` and point the `<audio>` tag near the bottom of
-`index.html` at it:
+Every page after the first keeps the same photograph behind it, washed out
+almost to paper — enough to warm the page, never enough to compete with the
+words.
 
-```html
-<audio id="au" loop preload="auto" src="assets/audio/YOUR-FILE.mp3"></audio>
-```
+## The rings
 
-Keep the `id="au"` — the script finds it by that. `.mp3`, `.m4a` and `.ogg` all
-work; `.mp3` is the safest across phones. Aim for under about 4 MB so it starts
-quickly on mobile data, and use a track that loops without an obvious seam, since
-it repeats for the length of the visit.
+The engagement itself, drawn rather than photographed, because there are no
+photographs of the couple in this page. Two bands draw themselves on, a stone
+lifts into place above them, and four sparks come and go on their own clocks so
+the set never pulses in time with itself. Full size they lead the blessing page;
+a smaller pair signs off the close.
 
-The file currently referenced is `traditional-nadaswaram.mp3`, which was already
-in the repository — **check its licensing before public use.** Music never
-autoplays: it starts only on the "Begin" tap, and there is a mute toggle in the
-lower right throughout.
+## Colour — measured off the mandapam
 
-### Deliberately excluded
+Read out of the opening photograph rather than chosen. A third of that frame is
+a single mid gold; what keeps the set from going flat is the banana leaf at 13%
+and the blossom at under 3%. Those two are the colours to spend carefully.
 
-- `assets/images/engagement-rings-natural.*` — the rings are engraved
-  "SNEHA & VISHAL · 10-10-2025". Someone else's names, legible at full size.
-- `assets/images/{couple-leaning,couple-standing,bride-portrait,groom-portrait}.*`
-  — painted artwork that does not resemble the couple in the photograph.
+| Token | Hex | Where it came from |
+|---|---|---|
+| `--paper` | `#FDF8EC` | the page itself, lifted a shade above the image's own lightest tone |
+| `--paper-warm` | `#F7EEDC` | a second ground, for cards and bands |
+| `--cream` | `#FEF5D0` | the image's highlight, 6% of the frame |
+| `--sand` | `#F9D597` | its light wash, 15% |
+| `--gold` | `#D1A45C` | the dominant mid tone, 33% |
+| `--brass` | `#A8742E` | rules and ornament |
+| `--brass-deep` | `#8A5520` | lit brass out of the light — carries text |
+| `--ink` | `#3A2A14` | body copy |
+| `--ink-soft` | `#6A5230` | secondary copy |
+| `--leaf` | `#8F9721` | banana leaf, 13% |
+| `--leaf-deep` | `#5E6616` | its shadow |
+| `--blossom` | `#F59591` | the pink in the garlands, under 3% |
 
-## The gate
+The paper is deliberately lighter than anything in the photograph, so the
+photograph always reads as the brightest thing on screen.
 
-Before the film, the mandapam the client is building stands behind the title and
-covers the screen outright, at every size. A 16:9 plate on a 9:19.5 phone shows
-about a quarter of its width — but this one frame has no subject to lose: it is
-a symmetrical backdrop, so the crop lands on the dark centre of the stage with
-the garlands above and the floor below, which is where the names want to be
-anyway. The one plate that can afford to be cropped is the one that is only a
-room.
-
-Behind every beat lies the same arrangement: the photograph it belongs to,
-thrown so far out of focus it is only colour. It is what fills a phone edge to
-edge without a black bar anywhere, and because it is the picture's own light the
-join never reads as a join. It is deliberately **static** — a 40px blur that is
-also being transformed every frame is the most expensive thing a phone can be
-asked to composite. An even film grain over everything (also static) is what
-lets the enlargements read as filmic rather than soft.
-
-**The landscape plates.** A 16:9 photograph and a 9:19.5 phone cannot both be
-satisfied: covering the screen throws away three quarters of the width. There
-are two answers in the page and the choice is per-beat.
-
-The **tank** uses the fitted treatment: the plate is shown nearly whole at
-`--fill` of the viewport width, its top and bottom edges feathered into a bed of
-itself out of focus. The screen is covered corner to corner, nothing is lost,
-and there is no band because the band dissolves into its own blurred
-continuation. That beat needs it — the couple sits off to one side, and covering
-cut the groom in half.
-
-The **sea wall** uses `.bleed--full`, which simply covers, with `--pos` choosing
-what survives. It fills the phone, at the price of the coat, the motorcycle and
-the sun falling outside the crop; the tea glass and the books stay. Swap the
-class for the other treatment if that trade ever stops being worth it.
-
-Past a square viewport both simply cover.
-
-**The reveal.** `couple` is portrait and fills the phone. Its upper left is deep
-foliage in shadow and carries nothing, which is where the names go.
-
-**Resolution.** The source plates ran from 184x169 to 584x222 — a fivefold
-enlargement to fill a phone. `assets/story/_original/` holds them untouched;
-what the page loads is a Lanczos enlargement capped at 4x with a measured
-unsharp pass, which invents no detail but keeps the browser's own bilinear mush
-out of the picture. Re-run that step from the originals if a sharper source ever
-arrives.
+**Contrast, against `--paper`:** ink 13.0 (AAA), ink-soft 6.9 (AA), brass-deep
+5.8 (AA), leaf-deep 5.9 (AA). `--brass` is 3.8 and is used only at display
+size; `--gold` is 2.2 and never carries text at all.
 
 ## Type
 
 Cormorant Garamond 300 carries the whole identity — high contrast, wide
-apertures, and it holds its elegance at display size. Pinyon Script is the
-calligraphic hand, used only for the joining words ("weds", the ampersands).
-Jost sets the small letterspaced labels and all UI. Noto Serif Tamil for Tamil.
+apertures, and it keeps its elegance at display size. Pinyon Script is the
+calligraphic hand, used only for the ampersand that joins their names. Jost
+carries the small uppercase lines. Noto Serif Tamil sets நிச்சயதார்த்தம்.
 
-## Colour — the Sasi & Abi palette
+## Assets
 
-Measured, not chosen, from two sources that agree almost exactly: the couple's
-own photograph and the mandapam the client is building. 100% of the stage's
-colour sits between hue 15° and 44°; its shadows measure S85–93, so the
-near-black is warm brown and never grey; lit brass is 14% of that frame. Lilac
-appears in neither the stage nor the room — it is only ever their clothes,
-which is why it stays the one cool note.
-
-```
-field   #0A0502  #1A0C02  #2F1A06  #5A250A  #754012
-gold    #8B4915  #B46B27  #C78A39  #D99D4F  #E8B464  #FDE3B4
-lilac   #6F4359  #B58FA7  #CDADC4  #E7CEE1
-jasmine #FCF0D6  #F3E3C6
-accent  #9A3328  #3E3D02  #98931C
-```
-
-All body and heading colours clear WCAG AA on `#1A0C02`: jasmine 16.9:1, zari
-8.1:1, gold 6.5:1, brass 4.6:1. `--brass-deep` (2.8:1), `--kumkum` (2.6:1),
-`--lilac-deep` and `--leaf` are decorative only and never carry text.
+- `assets/images/mandapam-open.webp` — 941x1672, the only photograph the page
+  loads. It is the opening plate and, washed out, the ground under every page
+  after it.
+- `assets/audio/traditional-nadaswaram.mp3` — replace with any file the
+  browser plays. Never autoplays: browsers refuse sound until the page has
+  been touched, so the first tap or scroll is what offers it, and the corner
+  button owns it after that.
 
 ## Accessibility & behaviour
 
-- Full `prefers-reduced-motion` path: the film still plays on the same timeline,
-  it simply stops moving — chapters cross-fade and every element sits at rest.
-- Mobile-first. All 12 chapters measured at 390×844: each fits the viewport with
-  clearance on every edge, and the page never scrolls sideways.
-- `100svh` with a `100vh` fallback, safe-area insets on all four edges.
-- Music off by default. Nothing autoplays.
+- Words arrive by CSS animation rather than a scrubbed value, so a word always
+  finishes where it belongs — nothing can be left half-revealed or clipped.
+- `prefers-reduced-motion` stops every drift, the sunlight pass and the
+  drifting air entirely, and puts all type at its resting position.
+- `100svh` throughout, safe-area insets on all four edges, no horizontal
+  scroll at any width.
+- The countdown is a live `role="timer"`.
 
 ## Editing the details
 
@@ -201,7 +173,14 @@ Event data lives inline in the `EV` object at the top of the script in
 `index.html`. `invitation-info.js` is kept as the documented source of truth
 for names, dates and venue; it is not loaded by the page.
 
+Page 1 carries the formal names, page 5 the short ones they actually go by —
+Sasi & Abi, in the same Cormorant display face, not a second script line.
+
+The hashtag on page 5 is `#SasiWedsAbi`. It replaced `#LoveGotPrescribed`,
+which told a courtship story the client asked to remove — change it in the
+markup if they would rather have something else.
+
 ## Legacy
 
-`index-v1-legacy.html` + `styles.css` + `script.js` are the earlier light-themed
-build, kept for reference. They are not used by `index.html` and can be deleted.
+`index-v1-legacy.html` + `styles.css` + `script.js` are an earlier build, kept
+for reference. They are not used by `index.html` and can be deleted.
